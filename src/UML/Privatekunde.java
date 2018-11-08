@@ -4,4 +4,8 @@ public class Privatekunde extends Kunde {
     private String vorname;
     private String nachname;
     private Adresse postAdresse;
+
+    public Privatekunde(Konto[] konto) {
+        super(konto);
+    }
 }
