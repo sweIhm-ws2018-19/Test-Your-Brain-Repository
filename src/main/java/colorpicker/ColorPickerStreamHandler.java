@@ -39,6 +39,7 @@ public class ColorPickerStreamHandler extends SkillStreamHandler {
                 // Add your skill id below
                 //.withSkillId("")
                 .build();
+        //Rudis Branch
     }
 
     public ColorPickerStreamHandler() {
