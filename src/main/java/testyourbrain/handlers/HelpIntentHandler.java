@@ -11,32 +11,32 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package main.java.colorpicker.handlers;
+package main.java.testyourbrain.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
-import main.java.colorpicker.StringContainer;
+import main.java.testyourbrain.StringContainer;
 
 import java.util.Optional;
 
-import static com.amazon.ask.request.Predicates.requestType;
+import static com.amazon.ask.request.Predicates.intentName;
 
-public class LaunchRequestHandler implements RequestHandler {
+public class HelpIntentHandler implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(requestType(LaunchRequest.class));
+        return input.matches(intentName("AMAZON.HelpIntent"));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = StringContainer.WELCOME_MESSAGE + StringContainer.SKILL_DESCRIPTION;
-        String repromptText = StringContainer.RULES_QUESTION;
+        String speechText = StringContainer.SKILL_DESCRIPTION;
+        String repromptText = StringContainer.GO_AHEAD_MESSAGE;
         return input.getResponseBuilder()
                 .withSimpleCard("ColorSession", speechText)
                 .withSpeech(speechText)
                 .withReprompt(repromptText)
+                .withShouldEndSession(false)
                 .build();
     }
 }

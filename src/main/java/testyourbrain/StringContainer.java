@@ -1,4 +1,4 @@
-package main.java.colorpicker;
+package main.java.testyourbrain;
 
 public class StringContainer {
     public static String WELCOME_MESSAGE = "Hallo, willkommen bei Test your Brain";

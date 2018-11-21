@@ -11,16 +11,16 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package main.java.colorpicker;
+package main.java.testyourbrain;
 
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
-import main.java.colorpicker.handlers.FallbackIntentHandler;
-import main.java.colorpicker.handlers.HelpIntentHandler;
-import main.java.colorpicker.handlers.LaunchRequestHandler;
-import main.java.colorpicker.handlers.SessionEndedRequestHandler;
-import main.java.colorpicker.handlers.CancelandStopIntentHandler;
+import main.java.testyourbrain.handlers.FallbackIntentHandler;
+import main.java.testyourbrain.handlers.HelpIntentHandler;
+import main.java.testyourbrain.handlers.LaunchRequestHandler;
+import main.java.testyourbrain.handlers.SessionEndedRequestHandler;
+import main.java.testyourbrain.handlers.CancelandStopIntentHandler;
 
 public class TestYourBrainIntentHandler extends SkillStreamHandler {
 

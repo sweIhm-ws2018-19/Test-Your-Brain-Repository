@@ -1,9 +1,9 @@
-package main.java.colorpicker.handlers;
+package main.java.testyourbrain.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
-import main.java.colorpicker.StringContainer;
+import main.java.testyourbrain.StringContainer;
 
 import java.util.Optional;
 
