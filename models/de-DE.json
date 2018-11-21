@@ -20,6 +20,25 @@
             "Schließe Test your Brain",
             "Beende Test your Brain"
           ]
+        },
+        {
+          "name": "SelectDifficultyIntent",
+          "slots": [],
+          "samples": []
+        },
+        {
+          "name": "SelectCategoryIntent",
+          "slots": [],
+          "samples": []
+        },
+        {
+          "name": "StartGameIntent",
+          "slots": [],
+          "samples": [
+            "los gehts",
+            "start",
+            "lass uns Anfangen"
+          ]
         }
       ],
       "types": [

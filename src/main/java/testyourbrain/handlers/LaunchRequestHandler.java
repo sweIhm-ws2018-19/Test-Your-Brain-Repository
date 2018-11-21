@@ -17,6 +17,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
+import main.java.testyourbrain.GameLogic;
 import main.java.testyourbrain.StringContainer;
 
 import java.util.Optional;
@@ -31,6 +32,8 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
+        //create a new Game by GameLogic
+        new GameLogic();
         String speechText = StringContainer.WELCOME_MESSAGE + StringContainer.SKILL_DESCRIPTION;
         String repromptText = StringContainer.RULES_QUESTION;
         return input.getResponseBuilder()
