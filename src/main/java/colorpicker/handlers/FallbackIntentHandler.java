@@ -3,6 +3,7 @@ package main.java.colorpicker.handlers;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import main.java.colorpicker.StringContainer;
 
 import java.util.Optional;
 
@@ -21,7 +22,7 @@ public class FallbackIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Tut mir leid, das weiss ich nicht. Sage einfach Hilfe.";
+        String speechText = StringContainer.UNKNOWN_MESSAGE;
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("ColorSession", speechText)

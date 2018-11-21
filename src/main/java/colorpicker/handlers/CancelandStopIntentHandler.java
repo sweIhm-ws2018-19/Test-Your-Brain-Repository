@@ -16,6 +16,7 @@ package main.java.colorpicker.handlers;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import main.java.colorpicker.StringContainer;
 
 import java.util.Optional;
 
@@ -30,8 +31,8 @@ public class CancelandStopIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         return input.getResponseBuilder()
-                .withSpeech("Auf Wiedersehen")
-                .withSimpleCard("ColorSession", "Auf Wiedersehen")
+                .withSpeech(StringContainer.GOOD_BYE_MESSAGE)
+                .withSimpleCard("Test your Brain", StringContainer.GOOD_BYE_MESSAGE)
                 .build();
     }
 }
