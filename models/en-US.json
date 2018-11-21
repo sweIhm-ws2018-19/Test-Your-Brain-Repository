@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "color picker",
+      "invocationName": "test your brain",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
@@ -9,77 +9,82 @@
         },
         {
           "name": "AMAZON.HelpIntent",
-          "samples": []
+          "samples": [
+            "was muss ich tun"
+          ]
         },
         {
           "name": "AMAZON.StopIntent",
-          "samples": []
-        },
-        {
-          "name": "MyColorIsIntent",
-          "slots": [
-            {
-              "name": "Color",
-              "type": "LIST_OF_COLORS"
-            }
-          ],
           "samples": [
-            " my color is {Color}",
-            " my favorite color is {Color}"
+            "tschüss",
+            "Schließe Test your Brain",
+            "Beende Test your Brain"
           ]
-        },
-        {
-          "name": "WhatsMyColorIntent",
-          "slots": [],
-          "samples": [
-            "whats my color",
-            "what is my color",
-            "say my color",
-            "tell me my color",
-            "whats my favorite color",
-            "what is my favorite color",
-            "say my favorite color",
-            "tell me my favorite color",
-            "tell me what my favorite color is"
-          ]
-        },
-        {
-          "name": "AMAZON.FallbackIntent",
-          "samples": []
         }
       ],
       "types": [
         {
-          "name": "LIST_OF_COLORS",
+          "name": "Kategorien",
           "values": [
             {
               "name": {
-                "value": "green"
+                "value": "Unnützes Wissen"
               }
             },
             {
               "name": {
-                "value": "blue"
+                "value": "Politik"
               }
             },
             {
               "name": {
-                "value": "purple"
+                "value": "Natur"
               }
             },
             {
               "name": {
-                "value": "red"
+                "value": "Gebirge"
               }
             },
             {
               "name": {
-                "value": "orange"
+                "value": "Gewässer",
+                "synonyms": [
+                  "Wasser",
+                  "Seen",
+                  "Flüsse"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Schwierigkeitsgrade",
+          "values": [
+            {
+              "name": {
+                "value": "Schwer",
+                "synonyms": [
+                  "Sehr Schwer",
+                  "Hart"
+                ]
               }
             },
             {
               "name": {
-                "value": "yellow"
+                "value": "Mittel",
+                "synonyms": [
+                  "Normal"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Leicht",
+                "synonyms": [
+                  "Einfach",
+                  "Easy"
+                ]
               }
             }
           ]

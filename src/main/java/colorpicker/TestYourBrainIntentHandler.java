@@ -20,17 +20,13 @@ import main.java.colorpicker.handlers.FallbackIntentHandler;
 import main.java.colorpicker.handlers.HelpIntentHandler;
 import main.java.colorpicker.handlers.LaunchRequestHandler;
 import main.java.colorpicker.handlers.SessionEndedRequestHandler;
-import main.java.colorpicker.handlers.WhatsMyColorIntentHandler;
 import main.java.colorpicker.handlers.CancelandStopIntentHandler;
-import main.java.colorpicker.handlers.MyColorIsIntentHandler;
 
-public class ColorPickerStreamHandler extends SkillStreamHandler {
+public class TestYourBrainIntentHandler extends SkillStreamHandler {
 
     private static Skill getSkill() {
         return Skills.standard()
                 .addRequestHandlers(
-                        new WhatsMyColorIntentHandler(),
-                        new MyColorIsIntentHandler(),
                         new LaunchRequestHandler(),
                         new CancelandStopIntentHandler(),
                         new SessionEndedRequestHandler(),
@@ -42,7 +38,7 @@ public class ColorPickerStreamHandler extends SkillStreamHandler {
         //Rudis Branch
     }
 
-    public ColorPickerStreamHandler() {
+    public TestYourBrainIntentHandler() {
         super(getSkill());
     }
 
