@@ -31,6 +31,7 @@ public class StartGameIntent implements RequestHandler {
         return handlerInput.getResponseBuilder()
                 .withSimpleCard("startGame", speechText)
                 .withSpeech(speechText)
+                .withShouldEndSession(false)
                 .build();
     }
 }

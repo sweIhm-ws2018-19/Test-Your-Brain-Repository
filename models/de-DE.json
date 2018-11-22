@@ -39,6 +39,30 @@
             "start",
             "lass uns Anfangen"
           ]
+        },
+        {
+          "name": "InsertDifficulty",
+          "slots": [
+            {
+              "name": "Schwierigkeitsgrad",
+              "type": "Schwierigkeitsgrade"
+            }
+          ],
+          "samples": [
+            "{Schwierigkeitsgrad}"
+          ]
+        },
+        {
+          "name": "InsertCategory",
+          "slots": [
+            {
+              "name": "Category",
+              "type": "Kategorien"
+            }
+          ],
+          "samples": [
+            "{Category}"
+          ]
         }
       ],
       "types": [

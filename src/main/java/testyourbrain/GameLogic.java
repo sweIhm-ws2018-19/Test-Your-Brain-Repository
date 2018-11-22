@@ -1,6 +1,7 @@
 package main.java.testyourbrain;
 
 import java.lang.management.GarbageCollectorMXBean;
+import java.util.HashMap;
 
 public class GameLogic {
     public static int DIFFICULTY;

@@ -16,11 +16,7 @@ package main.java.testyourbrain;
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
-import main.java.testyourbrain.handlers.FallbackIntentHandler;
-import main.java.testyourbrain.handlers.HelpIntentHandler;
-import main.java.testyourbrain.handlers.LaunchRequestHandler;
-import main.java.testyourbrain.handlers.SessionEndedRequestHandler;
-import main.java.testyourbrain.handlers.CancelandStopIntentHandler;
+import main.java.testyourbrain.handlers.*;
 
 public class TestYourBrainIntentHandler extends SkillStreamHandler {
 
@@ -31,7 +27,12 @@ public class TestYourBrainIntentHandler extends SkillStreamHandler {
                         new CancelandStopIntentHandler(),
                         new SessionEndedRequestHandler(),
                         new HelpIntentHandler(),
-                        new FallbackIntentHandler())
+                        new FallbackIntentHandler(),
+                        new StartGameIntent(),
+                        new SelectCategoryIntent(),
+                        new SelectDifficultyIntent(),
+                        new InsertDifficulty(),
+                        new InsertCategory())
                 // Add your skill id below
                 //.withSkillId("")
                 .build();
