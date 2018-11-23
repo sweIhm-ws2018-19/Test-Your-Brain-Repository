@@ -30,7 +30,7 @@ public class SolutionIntent implements RequestHandler {
 
         switch (GameLogic.CATEGORY) {
             case "politik":
-                if (answer.equals("horst köhler")) {
+                if (answer.equals("gerhard schröder")) {
                     reply = "Richtig";
                 }
                 break;

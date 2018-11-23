@@ -18,14 +18,14 @@ public class InsertCategory implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         //true wenn Richtige Eingabe gemacht wurde UND die Kategorie noch nicht gesetzt wurde.
-        return handlerInput.matches(intentName("InsertCategory")) && (GameLogic.CATEGORY=="none");
+        return handlerInput.matches(intentName("InsertCategory")) /*&& (GameLogic.CATEGORY=="none")*/;
 
     }
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
         Request request = handlerInput.getRequestEnvelope().getRequest();
-        String answer = ((IntentRequest) request).getIntent().getSlots().get("Category").getValue().toLowerCase();
+        String answer = ((IntentRequest) request).getIntent().getSlots().get("Category").getValue();
 
         GameLogic.CATEGORY = answer;
         //maybe MAP answer <Synonym,Slot>
@@ -35,7 +35,7 @@ public class InsertCategory implements RequestHandler {
         if(GameLogic.DIFFICULTY == 0){
             optionalMessage = "Auf welcher Schwierigkeitsstufe möchtest du spielen?";
         }else{
-            optionalMessage= "Bist du bereit?";
+            optionalMessage= "Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben möchtest sage \"nächste Frage\".";
         }
 
         return handlerInput.getResponseBuilder()

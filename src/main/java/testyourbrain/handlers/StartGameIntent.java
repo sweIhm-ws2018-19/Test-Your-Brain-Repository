@@ -17,15 +17,15 @@ public class StartGameIntent implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
-        String speechText = "Ok lass uns Anfangen";
+        String speechText = "Ok lass uns Anfangen, wenn ich dir eine neue Frage stellen soll, sage einfach \"nächste Frage\".";
 
         if(GameLogic.CATEGORY.equals("none")){
             //start select Category
-            speechText = "zuerst musst du mir eine Kategorie nennen.";
+            speechText = "Zuerst musst du mir eine Kategorie nennen.";
         }
         if(GameLogic.DIFFICULTY == 0){
             //start select Difficulty
-            speechText = "zuerst musst du mir eine Schwirigkeitsstufe nennen.";
+            speechText = "Zuerst musst du mir eine Schwierigkeitsstufe nennen.";
         }
 
         return handlerInput.getResponseBuilder()
