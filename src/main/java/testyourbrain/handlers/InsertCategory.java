@@ -11,6 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import main.java.testyourbrain.GameState;
+
+
 import static com.amazon.ask.request.Predicates.intentName;
 import main.java.testyourbrain.GameCategory;
 
@@ -19,7 +22,7 @@ public class InsertCategory implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         //true wenn Richtige Eingabe gemacht wurde UND die Kategorie noch nicht gesetzt wurde.
-        return handlerInput.matches(intentName("InsertCategory")) /*&& (GameLogic.CATEGORY=="none")*/;
+        return handlerInput.matches(intentName("InsertCategory")) && GameLogic.GAMESTATE == GameState.CONFIG;
 
     }
 
@@ -27,6 +30,7 @@ public class InsertCategory implements RequestHandler {
     public Optional<Response> handle(HandlerInput handlerInput) {
         Request request = handlerInput.getRequestEnvelope().getRequest();
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Category").getValue();
+        boolean noMatchingCategory = false;
         
         switch(answer){
             case "politik":
@@ -50,15 +54,15 @@ public class InsertCategory implements RequestHandler {
                 break;
                 
             default:
-                GameLogic.CATEGORY = null;
+                noMatchingCategory = true;
                 break;
         
         }
         
 
         String optionalMessage ="";
-        if(GameLogic.DIFFICULTY == null){
-            optionalMessage = "Auf welcher Schwierigkeitsstufe möchtest du spielen?";
+        if(noMatchingCategory){
+            optionalMessage = "Die eingegebene entspricht keiner gültigen Kategorie.";
         }else{
             optionalMessage= "Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben möchtest sage \"nächste Frage\".";
         }

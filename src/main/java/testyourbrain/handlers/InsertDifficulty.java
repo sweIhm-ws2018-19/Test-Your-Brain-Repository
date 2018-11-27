@@ -13,12 +13,13 @@ import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 import main.java.testyourbrain.GameDifficulty;
+import main.java.testyourbrain.GameState;
 
 public class InsertDifficulty implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         //true wenn Richtige Eingabe gemacht wurde UND die Schwierigkeit noch nicht gesetzt wurde.
-        return handlerInput.matches(intentName("InsertDifficulty")) && (GameLogic.DIFFICULTY== null);
+        return handlerInput.matches(intentName("InsertDifficulty")) && GameLogic.GAMESTATE == GameState.CONFIG;
 
     }
 
@@ -27,7 +28,6 @@ public class InsertDifficulty implements RequestHandler {
         Request request = handlerInput.getRequestEnvelope().getRequest();
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Schwierigkeitsgrad").getValue().toLowerCase();
         boolean noMatchingDifficulty = false;
-
 
         switch(answer){
             case "leicht":
