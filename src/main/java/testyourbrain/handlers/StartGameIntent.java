@@ -8,7 +8,6 @@ import main.java.testyourbrain.GameLogic;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
-import main.java.testyourbrain.GameDifficulty;
 
 public class StartGameIntent implements RequestHandler {
     @Override
@@ -30,7 +29,6 @@ public class StartGameIntent implements RequestHandler {
         }
 
         return handlerInput.getResponseBuilder()
-                .withSimpleCard("startGame", speechText)
                 .withSpeech(speechText)
                 .withShouldEndSession(false)
                 .build();

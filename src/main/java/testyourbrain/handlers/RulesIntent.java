@@ -26,14 +26,14 @@ public class RulesIntent implements RequestHandler {
         String answer = ((IntentRequest) request).getIntent().toString();
         
         String reply = "Ok. Dann nenne mir bitte eine Schwierigkeitsstufe.";
-        if(answer.equals("ja")){
+        if(answer.equals("juptidu")){
             reply = "Das sind die Rules!";
         }
         
         GameLogic.GAMESTATE = GameState.CONFIG;
 
         return handlerInput.getResponseBuilder()
-                .withSpeech("startet")
+                .withSpeech("startet " + GameLogic.GAMESTATE)
                 .withShouldEndSession(false)
                 .build();
     }

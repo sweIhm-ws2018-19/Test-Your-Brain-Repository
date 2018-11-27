@@ -34,6 +34,7 @@ public class TestYourBrainIntentHandler extends SkillStreamHandler {
                         new InsertDifficulty(),
                         new InsertCategory(),
                         new SolutionIntent(),
+                        new RulesIntent(),
                         new NextQuestionIntent())
                 
                 // Add your skill id below
