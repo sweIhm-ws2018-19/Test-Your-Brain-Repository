@@ -27,13 +27,10 @@ public class InsertDifficulty implements RequestHandler {
         Request request = handlerInput.getRequestEnvelope().getRequest();
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Schwierigkeitsgrad").getValue().toLowerCase();
         boolean noMatchingDifficulty = false;
-//        Map<String,Integer> diffMap = new HashMap<>();
-//        diffMap.put("schwer",3);
-//        diffMap.put("mittel",2);
-//        diffMap.put("leicht",1);
+
 
         switch(answer){
-            case "einfach":
+            case "leicht":
                 GameLogic.DIFFICULTY = GameDifficulty.EASY;
                 break;
                 
@@ -56,8 +53,6 @@ public class InsertDifficulty implements RequestHandler {
             reply = "Deine Antwort: " + answer + " entspricht keinem verfügbaren Schwierigkeitsgrad.";
         }
         
-        //GameLogic.DIFFICULTY = diffMap.getOrDefault(answer,99);
-
         return handlerInput.getResponseBuilder()
                 .withSpeech(reply)
                 .withShouldEndSession(false)

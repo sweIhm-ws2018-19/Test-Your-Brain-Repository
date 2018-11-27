@@ -55,9 +55,6 @@ public class InsertCategory implements RequestHandler {
         
         }
         
-        //GameLogic.CATEGORY = answer;
-        //maybe MAP answer <Synonym,Slot>
-
 
         String optionalMessage ="";
         if(GameLogic.DIFFICULTY == null){

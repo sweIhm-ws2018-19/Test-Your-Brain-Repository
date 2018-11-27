@@ -17,23 +17,23 @@ public class RulesIntent implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("RulesIntent")) /*&& GameLogic.GAMESTATE == GameState.RULES*/;
+        return input.matches(intentName("RulesIntent")) && GameLogic.GAMESTATE == GameState.RULES;
     }
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
         Request request = handlerInput.getRequestEnvelope().getRequest();
-        String answer = ((IntentRequest) request).getIntent().toString();
+        String answer = ((IntentRequest) request).getIntent().getSlots().get("ShowRules").getValue().toLowerCase();
         
         String reply = "Ok. Dann nenne mir bitte eine Schwierigkeitsstufe.";
-        if(answer.equals("juptidu")){
-            reply = "Das sind die Rules!";
+        if(answer.equals("ja")){
+            reply = "Das sind die Rules! Nenne mir nun bitte die gewünsche Schwierigkeitsstufe.";
         }
         
         GameLogic.GAMESTATE = GameState.CONFIG;
 
         return handlerInput.getResponseBuilder()
-                .withSpeech("startet " + GameLogic.GAMESTATE)
+                .withSpeech(reply + GameLogic.GAMESTATE + " " + answer)
                 .withShouldEndSession(false)
                 .build();
     }

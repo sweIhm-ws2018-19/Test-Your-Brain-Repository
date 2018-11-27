@@ -9,8 +9,7 @@
      or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for
      the specific language governing permissions and limitations under the License.
-*/
-
+ */
 package main.java.testyourbrain.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
@@ -23,8 +22,10 @@ import main.java.testyourbrain.StringContainer;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.requestType;
+import main.java.testyourbrain.GameState;
 
 public class LaunchRequestHandler implements RequestHandler {
+
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(requestType(LaunchRequest.class));
@@ -32,11 +33,12 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        //create a new Game by GameLogic
-        //new GameLogic();
         GameLogic.DIFFICULTY = null;
         GameLogic.CATEGORY = null;
+        
         //set initial Game state!
+        GameLogic.GAMESTATE = GameState.RULES;
+
         String speechText = StringContainer.WELCOME_MESSAGE + StringContainer.SKILL_DESCRIPTION;
         String repromptText = StringContainer.RULES_QUESTION;
         return input.getResponseBuilder()
