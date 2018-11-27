@@ -8,7 +8,7 @@ public class Game {
     private HashSet<Question> askedQuestionSet;
     private int score;
 
-    public Game(int difficulty, String category) {
+    public Game(GameCategory CATEGORY, GameDifficulty DIFFICULTY) {
         //create The Set of Questions
         //create the Set of askedQuestions (which is empty)
         //set score to 0

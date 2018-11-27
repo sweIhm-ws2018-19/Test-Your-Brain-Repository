@@ -4,24 +4,25 @@ import java.lang.management.GarbageCollectorMXBean;
 import java.util.HashMap;
 
 public class GameLogic {
-    public static int DIFFICULTY;
-    public static String CATEGORY;
+    public static GameDifficulty DIFFICULTY;
+    public static GameCategory CATEGORY;
+    public static GameState GAMESTATE;
     public static Game GAME;
 
-    public GameLogic() {
-        DIFFICULTY = 0;
-        CATEGORY = "none";
+
+    public static void setDIFFICULTY(GameDifficulty DIFFICULTY){
+        GameLogic.DIFFICULTY = DIFFICULTY;
     }
 
-    public static void setDIFFICULTY(int difficulty){
-        DIFFICULTY = difficulty;
-    }
-
-    public static void setCATEGORY(String CATEGORY) {
+    public static void setCATEGORY(GameCategory CATEGORY) {
         GameLogic.CATEGORY = CATEGORY;
+    }
+    
+    public static void setGAMESTATE(GameState GAMESTATE){
+        GameLogic.GAMESTATE = GAMESTATE;
     }
 
     public static void startGame(){
-        GAME = new Game(DIFFICULTY,CATEGORY);
+        GAME = new Game(CATEGORY, DIFFICULTY);
     }
 }

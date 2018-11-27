@@ -12,12 +12,13 @@ import java.util.Map;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
+import main.java.testyourbrain.GameDifficulty;
 
 public class InsertDifficulty implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         //true wenn Richtige Eingabe gemacht wurde UND die Schwierigkeit noch nicht gesetzt wurde.
-        return handlerInput.matches(intentName("InsertDifficulty")) && (GameLogic.DIFFICULTY==0);
+        return handlerInput.matches(intentName("InsertDifficulty")) && (GameLogic.DIFFICULTY== null);
 
     }
 
@@ -25,16 +26,40 @@ public class InsertDifficulty implements RequestHandler {
     public Optional<Response> handle(HandlerInput handlerInput) {
         Request request = handlerInput.getRequestEnvelope().getRequest();
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Schwierigkeitsgrad").getValue().toLowerCase();
+        boolean noMatchingDifficulty = false;
+//        Map<String,Integer> diffMap = new HashMap<>();
+//        diffMap.put("schwer",3);
+//        diffMap.put("mittel",2);
+//        diffMap.put("leicht",1);
 
-        Map<String,Integer> diffMap = new HashMap<>();
-        diffMap.put("schwer",3);
-        diffMap.put("mittel",2);
-        diffMap.put("leicht",1);
+        switch(answer){
+            case "einfach":
+                GameLogic.DIFFICULTY = GameDifficulty.EASY;
+                break;
+                
+            case "mittel":
+                GameLogic.DIFFICULTY = GameDifficulty.MEDIUM;
+                break;
+                
+            case "schwer":
+                GameLogic.DIFFICULTY = GameDifficulty.HARD;
+                break;
+                
+            default:
+                noMatchingDifficulty = true;
+                break;
+        }
 
-        GameLogic.DIFFICULTY = diffMap.getOrDefault(answer,99);
+        String reply = "Du hast " + answer + " gewählt. Das entspricht " + GameLogic.DIFFICULTY + ". Wähle jetzt noch eine Kategorie.";
+        
+        if(noMatchingDifficulty){
+            reply = "Deine Antwort: " + answer + " entspricht keinem verfügbaren Schwierigkeitsgrad.";
+        }
+        
+        //GameLogic.DIFFICULTY = diffMap.getOrDefault(answer,99);
 
         return handlerInput.getResponseBuilder()
-                .withSpeech("Du hast " + answer + " gewählt. Das entspricht der Zahl " + GameLogic.DIFFICULTY + ". wähle jetzt noch eine Kategorie.")
+                .withSpeech(reply)
                 .withShouldEndSession(false)
                 .build();
     }

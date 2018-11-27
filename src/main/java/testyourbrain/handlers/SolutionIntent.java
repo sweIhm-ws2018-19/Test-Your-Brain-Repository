@@ -29,27 +29,27 @@ public class SolutionIntent implements RequestHandler {
         String reply = "Ich kann deine Antwort nicht verstehen";
 
         switch (GameLogic.CATEGORY) {
-            case "politik":
+            case POLITIK:
                 if (answer.equals("gerhard schröder")) {
                     reply = "Richtig";
                 }
                 break;
-            case "natur":
+            case GEOGRAPHIE:
                 if (answer.equals("widder")) {
                     reply = "Richtig";
                 }
                 break;
-            case "gebirge":
+            case KULTUR:
                 if (answer.equals("zugspitze")) {
                     reply = "Richtig";
                 }
                 break;
-            case "gewässer":
+            case GESCHICHTE:
                 if (answer.equals("moldau")) {
                     reply = "Richtig";
                 }
                 break;
-            case "unnützes wissen":
+            case ZITATE:
                 if (answer.equals("hemden")) {
                     reply = "Richtig";
                 }

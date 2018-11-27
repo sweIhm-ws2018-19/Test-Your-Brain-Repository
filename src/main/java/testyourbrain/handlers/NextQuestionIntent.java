@@ -30,19 +30,19 @@ public class NextQuestionIntent implements RequestHandler {
         String question = "";
         
         switch (GameLogic.CATEGORY) {
-            case "politik":
+            case GEOGRAPHIE:
                 question = "Wer war vor Angela Merkel Bundeskanzler?";
                 break;
-            case "natur":
+            case  GESCHICHTE:
                 question = "Wie nennt man ein männliches Schaf?";
                 break;
-            case "gebirge":
+            case KULTUR:
                 question = "Welcher ist der höchste Berg Deutschlands?";
                 break;
-            case "gewässer":
+            case POLITIK:
                 question = "An welchem Fluss liegt die Stadt Prag?";
                 break;
-            case "unnützes wissen":
+            case ZITATE:
                 question = "Welches Kleidungsstück kaufen deutsche Frauen ihren Ehemännern am Liebsten?";
                 break;
             default:
