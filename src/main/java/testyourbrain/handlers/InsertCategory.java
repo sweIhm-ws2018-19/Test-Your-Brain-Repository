@@ -7,8 +7,6 @@ import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
 import main.java.testyourbrain.GameLogic;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import main.java.testyourbrain.GameState;

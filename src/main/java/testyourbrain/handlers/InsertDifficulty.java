@@ -5,11 +5,8 @@ import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
-import main.java.testyourbrain.GameCategory;
 import main.java.testyourbrain.GameLogic;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
