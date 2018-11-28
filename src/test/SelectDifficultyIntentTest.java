@@ -1,8 +1,5 @@
-package main.tests;
+package test;
 
-import main.java.testyourbrain.GameDifficulty;
-import main.java.testyourbrain.GameLogic;
-import main.java.testyourbrain.handlers.InsertDifficulty;
 import main.java.testyourbrain.handlers.SelectDifficultyIntent;
 import org.junit.jupiter.api.Test;
 

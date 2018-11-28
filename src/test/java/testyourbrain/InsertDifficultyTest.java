@@ -1,8 +1,6 @@
-package main.tests;
+package java.testyourbrain;
 
 import main.java.testyourbrain.GameDifficulty;
-import main.java.testyourbrain.GameLogic;
-import main.java.testyourbrain.handlers.InsertCategory;
 import main.java.testyourbrain.handlers.InsertDifficulty;
 import org.junit.jupiter.api.Test;
 

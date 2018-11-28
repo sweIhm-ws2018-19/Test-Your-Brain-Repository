@@ -1,8 +1,5 @@
-package main.tests;
+package java.testyourbrain;
 
-import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import main.java.testyourbrain.GameLogic;
-import main.java.testyourbrain.StringContainer;
 import main.java.testyourbrain.handlers.InsertCategory;
 import org.junit.jupiter.api.Test;
 
