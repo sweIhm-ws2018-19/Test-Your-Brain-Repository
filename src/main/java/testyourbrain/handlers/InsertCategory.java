@@ -40,7 +40,6 @@ public class InsertCategory implements RequestHandler {
     public String createInsertMessage(String answer) {
         boolean noMatchingCategory = false;
 
-        //TODO Test THIS Way
         try{
             GameLogic.CATEGORY = GameCategory.valueOf(answer.toUpperCase());
         }catch(Exception e){

@@ -10,7 +10,6 @@ import main.java.testyourbrain.GameLogic;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
-import main.java.testyourbrain.GameDifficulty;
 import main.java.testyourbrain.GameState;
 import main.java.testyourbrain.StringContainer;
 
@@ -29,12 +28,12 @@ public class RulesIntent implements RequestHandler {
 
         //ask for Difficulty
         String reply = StringContainer.REQUEST_DIFFICULTY;
-        if(answer.toLowerCase().equals("ja")){
+        if(answer.equalsIgnoreCase("ja")){
             //explain the Rules before
             reply = StringContainer.RULES + reply;
         }
         //set Gamestate to config to enable seting Difficulty and Category
-        GameLogic.GAMESTATE = GameState.CONFIG;
+        GameLogic.setGAMESTATE(GameState.CONFIG);
 
         return handlerInput.getResponseBuilder()
                 .withSpeech(reply + GameLogic.GAMESTATE + " " + answer)

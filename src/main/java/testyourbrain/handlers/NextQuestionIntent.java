@@ -2,8 +2,6 @@ package main.java.testyourbrain.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.IntentRequest;
-import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
 import main.java.testyourbrain.GameLogic;
 
@@ -22,12 +20,8 @@ public class NextQuestionIntent implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
-        Request request = handlerInput.getRequestEnvelope().getRequest();
-        String answer = ((IntentRequest) request).getIntent().toString();
 
-        String reply = "";
-
-        reply = getQuestionBySelectedCategory();
+        String reply = getQuestionBySelectedCategory();
 
         return handlerInput.getResponseBuilder()
                 .withSpeech(reply)

@@ -34,30 +34,30 @@ public class SolutionIntent implements RequestHandler {
 
     private String checkAnswerByCategory(String answer) {
         String reply = "Ich kann deine Antwort nicht verstehen";
-
+        final String right = "Richtig";
         switch (GameLogic.CATEGORY) {
             case POLITIK:
-                //question = "Wer war vor Angela Merkel Bundeskanzler?";
+                //Wer war vor Angela Merkel Bundeskanzler?
                 if (answer.equals("gerhard schröder")) {
-                    reply = "Richtig";
+                    reply = right;
                 }
                 break;
             case GEOGRAFIE:
-                //question = "Welcher ist der höchste Berg Deutschlands?";
+                //Welcher ist der höchste Berg Deutschlands?
                 if (answer.equals("zugspitze")) {
-                    reply = "Richtig";
+                    reply = right;
                 }
                 break;
             case GESCHICHTE:
-                //question = "Wie nennt man ein männliches Schaf?";
+                //Wie nennt man ein männliches Schaf?
                 if (answer.equals("widder")) {
-                    reply = "Richtig";
+                    reply = right;
                 }
                 break;
             case SONSTIGES:
-                //question = "Welches Kleidungsstück kaufen deutsche Frauen ihren Ehemännern am Liebsten?";
+                //Welches Kleidungsstück kaufen deutsche Frauen ihren Ehemännern am Liebsten?
                 if (answer.equals("hemden")) {
-                    reply = "Richtig";
+                    reply = right;
                 }
                 break;
             default:

@@ -23,8 +23,6 @@ public class SelectDifficultyIntent implements RequestHandler {
     public Optional<Response> handle(HandlerInput handlerInput) {
         Request request = handlerInput.getRequestEnvelope().getRequest();
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Schwierigkeitsgrad").getValue().toLowerCase();
-        boolean noMatchingDifficulty = false;
-
 
         String reply = createchangeMessage(answer);
 
@@ -37,12 +35,12 @@ public class SelectDifficultyIntent implements RequestHandler {
     public String createchangeMessage(String answer) {
         boolean noMatchingDifficulty = false;
         try{
-            GameLogic.DIFFICULTY= GameDifficulty.getBySynonym(answer);
+            GameLogic.setDIFFICULTY(GameDifficulty.getBySynonym(answer));
         }catch(Exception e){
             noMatchingDifficulty = true;
         }
         if(GameLogic.DIFFICULTY == GameDifficulty.WRONG){
-            GameLogic.DIFFICULTY = GameDifficulty.EASY;
+            GameLogic.setDIFFICULTY(GameDifficulty.EASY);
             noMatchingDifficulty = true;
         }
         String reply = "Du hast die Kategorie auf " + GameLogic.DIFFICULTY + " gewechselt.";
