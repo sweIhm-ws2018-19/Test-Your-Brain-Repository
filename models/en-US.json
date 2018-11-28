@@ -23,13 +23,30 @@
         },
         {
           "name": "SelectDifficultyIntent",
-          "slots": [],
-          "samples": []
+          "slots": [
+            {
+              "name": "Schwierigkeitsgrad",
+              "type": "Schwierigkeitsgrade"
+            }
+          ],
+          "samples": [
+            "Wechsele Schwierigkeitsstufe auf {Schwierigkeitsgrad}",
+            "Wechsele Schwierigkeitsgrad auf {Schwierigkeitsgrad}",
+            "Wechsele Schwierigkeitsstufe zu {Schwierigkeitsgrad}",
+            "Wechsele Schwierigkeitsgrad zu {Schwierigkeitsgrad}"
+          ]
         },
         {
           "name": "SelectCategoryIntent",
-          "slots": [],
-          "samples": []
+          "slots": [
+            {
+              "name": "Category",
+              "type": "Kategorien"
+            }
+          ],
+          "samples": [
+            "Wechsele Kategorie zu {Category}"
+          ]
         },
         {
           "name": "StartGameIntent",
@@ -62,6 +79,43 @@
           ],
           "samples": [
             "{Category}"
+          ]
+        },
+        {
+          "name": "NextQuestionIntent",
+          "slots": [],
+          "samples": [
+            "stelle mir die nächste Frage",
+            "nächste Frage"
+          ]
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "SolutionIntent",
+          "slots": [
+            {
+              "name": "Solution",
+              "type": "Solution"
+            }
+          ],
+          "samples": [
+            "{Solution}",
+            "antwort {Solution}"
+          ]
+        },
+        {
+          "name": "RulesIntent",
+          "slots": [
+            {
+              "name": "ShowRules",
+              "type": "ShowRules"
+            }
+          ],
+          "samples": [
+            "{ShowRules}"
           ]
         }
       ],
@@ -128,6 +182,51 @@
                   "Einfach",
                   "Easy"
                 ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Solution",
+          "values": [
+            {
+              "name": {
+                "value": "gerhard schröder"
+              }
+            },
+            {
+              "name": {
+                "value": "moldau"
+              }
+            },
+            {
+              "name": {
+                "value": "hemden"
+              }
+            },
+            {
+              "name": {
+                "value": "widder"
+              }
+            },
+            {
+              "name": {
+                "value": "zugspitze"
+              }
+            }
+          ]
+        },
+        {
+          "name": "ShowRules",
+          "values": [
+            {
+              "name": {
+                "value": "nein"
+              }
+            },
+            {
+              "name": {
+                "value": "ja"
               }
             }
           ]
