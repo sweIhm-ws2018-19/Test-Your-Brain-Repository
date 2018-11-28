@@ -20,5 +20,6 @@ package main.java.testyourbrain;
  * @author wiesbob
  */
 public enum GameCategory {
+    //TODO maybe Implement Synonyms like in Difficulty
     POLITIK, GEOGRAFIE, GESCHICHTE, SONSTIGES;
 }
