@@ -20,52 +20,37 @@ public class SelectCategoryIntent implements RequestHandler {
     public boolean canHandle(HandlerInput handlerInput) {
         //true wenn Richtige Eingabe gemacht wurde UND die Kategorie noch nicht gesetzt wurde.
         return handlerInput.matches(intentName("SelectCategoryIntent"));
-
     }
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
         Request request = handlerInput.getRequestEnvelope().getRequest();
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Category").getValue();
-        boolean noMatchingCategory = false;
-        
-        switch(answer){
-            case "politik":
-                GameLogic.CATEGORY = GameCategory.POLITIK;
-                break;
-                
-            case "geographie":
-                GameLogic.CATEGORY = GameCategory.GEOGRAPHIE;
-                break;
-               
-            case "geschichte":
-                GameLogic.CATEGORY = GameCategory.GESCHICHTE;
-                break;
-                
-            case "kultur":
-                GameLogic.CATEGORY = GameCategory.KULTUR;
-                break;
-                
-            case "zitate":
-                GameLogic.CATEGORY = GameCategory.ZITATE;
-                break;
-                
-            default:
-                noMatchingCategory = true;
-                break;
-        
-        }
-//        GameLogic.CATEGORY = answer;
-        //maybe MAP answer <Synonym,Slot>
-        String reply = null;
-        if(!noMatchingCategory)
-            reply = "Du hast die Kategorie auf " + answer + " gewechselt.";
-        
-        else reply = "Keine passende Kategorie verfügbar.";
+
+        String reply = createChangeMessage(answer);
 
         return handlerInput.getResponseBuilder()
                 .withSpeech(reply)
                 .withShouldEndSession(false)
                 .build();
+    }
+
+    public String createChangeMessage(String answer) {
+        boolean noMatchingCategory = false;
+
+        //TODO Test THIS Way
+        try{
+            GameLogic.CATEGORY = GameCategory.valueOf(answer.toUpperCase());
+        }catch(Exception e){
+            noMatchingCategory = true;
+        }
+
+        String optionalMessage ="";
+        if(noMatchingCategory){
+            optionalMessage = "Keine passende Kategorie verfügbar.";
+        }else{
+            optionalMessage= "Du hast die Kategorie auf " + answer + " gewechselt.";
+        }
+        return optionalMessage;
     }
 }

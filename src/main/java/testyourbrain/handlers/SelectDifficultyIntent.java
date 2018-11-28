@@ -25,32 +25,31 @@ public class SelectDifficultyIntent implements RequestHandler {
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Schwierigkeitsgrad").getValue().toLowerCase();
         boolean noMatchingDifficulty = false;
 
-        switch(answer){
-            case "leicht":
-                GameLogic.DIFFICULTY = GameDifficulty.EASY;
-                break;
-                
-            case "mittel":
-                GameLogic.DIFFICULTY = GameDifficulty.MEDIUM;
-                break;
-                
-            case "schwer":
-                GameLogic.DIFFICULTY = GameDifficulty.HARD;
-                break;
-                
-            default:
-                noMatchingDifficulty = true;
-                break;
-        }
-        String reply = "Du hast die Kategorie auf " + GameLogic.DIFFICULTY + " gewechselt.";
-        
-        if(noMatchingDifficulty){
-            reply = "Deine Antwort: " + answer + " entspricht keinem verfügbaren Schwierigkeitsgrad.";
-        }
+
+        String reply = createchangeMessage(answer);
 
         return handlerInput.getResponseBuilder()
                 .withSpeech(reply)
                 .withShouldEndSession(false)
                 .build();
+    }
+
+    public String createchangeMessage(String answer) {
+        boolean noMatchingDifficulty = false;
+        try{
+            GameLogic.DIFFICULTY= GameDifficulty.getBySynonym(answer);
+        }catch(Exception e){
+            noMatchingDifficulty = true;
+        }
+        if(GameLogic.DIFFICULTY == GameDifficulty.WRONG){
+            GameLogic.DIFFICULTY = GameDifficulty.EASY;
+            noMatchingDifficulty = true;
+        }
+        String reply = "Du hast die Kategorie auf " + GameLogic.DIFFICULTY + " gewechselt.";
+
+        if(noMatchingDifficulty){
+            reply = "Deine Antwort: " + answer + " entspricht keinem verfügbaren Schwierigkeitsgrad.";
+        }
+        return reply;
     }
 }

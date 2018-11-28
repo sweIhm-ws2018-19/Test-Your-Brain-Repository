@@ -9,7 +9,6 @@ public class GameLogic {
     public static GameState GAMESTATE;
     public static Game GAME;
 
-
     public static void setDIFFICULTY(GameDifficulty DIFFICULTY){
         GameLogic.DIFFICULTY = DIFFICULTY;
     }

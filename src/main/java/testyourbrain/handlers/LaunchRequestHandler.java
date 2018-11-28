@@ -39,12 +39,13 @@ public class LaunchRequestHandler implements RequestHandler {
         //set initial Game state!
         GameLogic.GAMESTATE = GameState.RULES;
 
-        String speechText = StringContainer.WELCOME_MESSAGE + StringContainer.SKILL_DESCRIPTION;
+        String reply = StringContainer.WELCOME_MESSAGE + StringContainer.SKILL_DESCRIPTION;
         String repromptText = StringContainer.RULES_QUESTION;
         return input.getResponseBuilder()
-                .withSimpleCard("ColorSession", speechText)
-                .withSpeech(speechText)
+                .withSimpleCard("ColorSession", reply)
+                .withSpeech(reply)
                 .withReprompt(repromptText)
                 .build();
     }
 }
+

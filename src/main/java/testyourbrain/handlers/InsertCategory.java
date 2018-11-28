@@ -30,35 +30,24 @@ public class InsertCategory implements RequestHandler {
     public Optional<Response> handle(HandlerInput handlerInput) {
         Request request = handlerInput.getRequestEnvelope().getRequest();
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Category").getValue();
+        String optionalMessage = createInsertMessage(answer);
+
+        String reply = "Du hast " + answer + " gewählt. " + optionalMessage;
+        return handlerInput.getResponseBuilder()
+                .withSpeech(reply)
+                .withShouldEndSession(false)
+                .build();
+    }
+
+    public String createInsertMessage(String answer) {
         boolean noMatchingCategory = false;
-        
-        switch(answer){
-            case "politik":
-                GameLogic.CATEGORY = GameCategory.POLITIK;
-                break;
-                
-            case "geographie":
-                GameLogic.CATEGORY = GameCategory.GEOGRAPHIE;
-                break;
-               
-            case "geschichte":
-                GameLogic.CATEGORY = GameCategory.GESCHICHTE;
-                break;
-                
-            case "kultur":
-                GameLogic.CATEGORY = GameCategory.KULTUR;
-                break;
-                
-            case "zitate":
-                GameLogic.CATEGORY = GameCategory.ZITATE;
-                break;
-                
-            default:
-                noMatchingCategory = true;
-                break;
-        
+
+        //TODO Test THIS Way
+        try{
+            GameLogic.CATEGORY = GameCategory.valueOf(answer.toUpperCase());
+        }catch(Exception e){
+            noMatchingCategory = true;
         }
-        
 
         String optionalMessage ="";
         if(noMatchingCategory){
@@ -66,10 +55,6 @@ public class InsertCategory implements RequestHandler {
         }else{
             optionalMessage= "Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben möchtest sage \"nächste Frage\".";
         }
-
-        return handlerInput.getResponseBuilder()
-                .withSpeech("Du hast " + answer + " gewählt. " + optionalMessage)
-                .withShouldEndSession(false)
-                .build();
+        return optionalMessage;
     }
 }
