@@ -5,6 +5,7 @@ import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
+import main.java.testyourbrain.GameCategory;
 import main.java.testyourbrain.GameLogic;
 
 import java.util.HashMap;
@@ -26,36 +27,33 @@ public class InsertDifficulty implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
         Request request = handlerInput.getRequestEnvelope().getRequest();
+
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Schwierigkeitsgrad").getValue().toLowerCase();
-        boolean noMatchingDifficulty = false;
 
-        switch(answer){
-            case "leicht":
-                GameLogic.DIFFICULTY = GameDifficulty.EASY;
-                break;
-                
-            case "mittel":
-                GameLogic.DIFFICULTY = GameDifficulty.MEDIUM;
-                break;
-                
-            case "schwer":
-                GameLogic.DIFFICULTY = GameDifficulty.HARD;
-                break;
-                
-            default:
-                noMatchingDifficulty = true;
-                break;
-        }
+        String reply = createReplyMessage(answer);
 
-        String reply = "Du hast " + answer + " gewählt. Das entspricht " + GameLogic.DIFFICULTY + ". Wähle jetzt noch eine Kategorie.";
-        
-        if(noMatchingDifficulty){
-            reply = "Deine Antwort: " + answer + " entspricht keinem verfügbaren Schwierigkeitsgrad.";
-        }
-        
         return handlerInput.getResponseBuilder()
                 .withSpeech(reply)
                 .withShouldEndSession(false)
                 .build();
+    }
+
+    public String createReplyMessage(String answer) {
+        boolean noMatchingDifficulty = false;
+        try{
+            GameLogic.DIFFICULTY= GameDifficulty.getBySynonym(answer);
+        }catch(Exception e){
+            noMatchingDifficulty = true;
+        }
+        if(GameLogic.DIFFICULTY == GameDifficulty.WRONG){
+            GameLogic.DIFFICULTY = GameDifficulty.EASY;
+            noMatchingDifficulty = true;
+        }
+        String reply = "Du hast " + answer + " gewählt. Das entspricht " + GameLogic.DIFFICULTY + ". Wähle jetzt noch eine Kategorie.";
+
+        if(noMatchingDifficulty){
+            reply = "Deine Antwort: " + answer + " entspricht keinem verfügbaren Schwierigkeitsgrad.";
+        }
+        return reply;
     }
 }

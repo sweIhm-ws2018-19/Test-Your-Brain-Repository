@@ -22,11 +22,11 @@ public class FallbackIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = StringContainer.UNKNOWN_MESSAGE;
+        String reply = StringContainer.UNKNOWN_MESSAGE;
         return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withSimpleCard("ColorSession", speechText)
-                .withReprompt(speechText)
+                .withSpeech(reply)
+                .withSimpleCard("ColorSession", reply)
+                .withReprompt(reply)
                 .build();
     }
 

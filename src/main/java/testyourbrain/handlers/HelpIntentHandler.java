@@ -30,13 +30,14 @@ public class HelpIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = StringContainer.SKILL_DESCRIPTION;
+        String reply = StringContainer.SKILL_DESCRIPTION;
         String repromptText = StringContainer.GO_AHEAD_MESSAGE;
         return input.getResponseBuilder()
-                .withSimpleCard("ColorSession", speechText)
-                .withSpeech(speechText)
+                .withSimpleCard("ColorSession", reply)
+                .withSpeech(reply)
                 .withReprompt(repromptText)
                 .withShouldEndSession(false)
                 .build();
     }
+
 }

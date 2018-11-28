@@ -17,6 +17,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.SessionEndedRequest;
+import main.java.testyourbrain.StringContainer;
 
 import java.util.Optional;
 
@@ -30,7 +31,10 @@ public class SessionEndedRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
+        String reply = StringContainer.GOOD_BYE_MESSAGE;
         // any cleanup logic goes here
-        return input.getResponseBuilder().build();
+        return input.getResponseBuilder().withSpeech(reply)
+                .withSimpleCard("Test your Brain", reply)
+                .build();
     }
 }

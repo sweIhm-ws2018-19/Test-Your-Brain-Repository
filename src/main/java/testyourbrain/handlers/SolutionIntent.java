@@ -26,30 +26,38 @@ public class SolutionIntent implements RequestHandler {
     public Optional<Response> handle(HandlerInput handlerInput) {
         Request request = handlerInput.getRequestEnvelope().getRequest();
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Solution").getValue().toLowerCase();
+        String reply = checkAnswerByCategory(answer);
+
+        return handlerInput.getResponseBuilder()
+                .withSpeech(reply)
+                .withShouldEndSession(false)
+                .build();
+    }
+
+    private String checkAnswerByCategory(String answer) {
         String reply = "Ich kann deine Antwort nicht verstehen";
 
         switch (GameLogic.CATEGORY) {
             case POLITIK:
+                //question = "Wer war vor Angela Merkel Bundeskanzler?";
                 if (answer.equals("gerhard schröder")) {
                     reply = "Richtig";
                 }
                 break;
-            case GEOGRAPHIE:
-                if (answer.equals("widder")) {
-                    reply = "Richtig";
-                }
-                break;
-            case KULTUR:
+            case GEOGRAFIE:
+                //question = "Welcher ist der höchste Berg Deutschlands?";
                 if (answer.equals("zugspitze")) {
                     reply = "Richtig";
                 }
                 break;
             case GESCHICHTE:
-                if (answer.equals("moldau")) {
+                //question = "Wie nennt man ein männliches Schaf?";
+                if (answer.equals("widder")) {
                     reply = "Richtig";
                 }
                 break;
-            case ZITATE:
+            case SONSTIGES:
+                //question = "Welches Kleidungsstück kaufen deutsche Frauen ihren Ehemännern am Liebsten?";
                 if (answer.equals("hemden")) {
                     reply = "Richtig";
                 }
@@ -59,10 +67,6 @@ public class SolutionIntent implements RequestHandler {
                 break;
 
         }
-
-        return handlerInput.getResponseBuilder()
-                .withSpeech("Deine Antwort: " + answer + " ist " + reply + ".")
-                .withShouldEndSession(false)
-                .build();
+        return "Deine Antwort: " + answer + " ist " + reply + ".";
     }
 }

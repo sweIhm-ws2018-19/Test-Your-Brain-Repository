@@ -30,8 +30,9 @@ public class CancelandStopIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
+        String reply = StringContainer.GOOD_BYE_MESSAGE;
         return input.getResponseBuilder()
-                .withSpeech(StringContainer.GOOD_BYE_MESSAGE)
+                .withSpeech(reply)
                 .withSimpleCard("Test your Brain", StringContainer.GOOD_BYE_MESSAGE)
                 .build();
     }

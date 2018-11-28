@@ -20,5 +20,5 @@ package main.java.testyourbrain;
  * @author wiesbob
  */
 public enum GameCategory {
-    POLITIK, GEOGRAPHIE, ZITATE, GESCHICHTE, KULTUR;
+    POLITIK, GEOGRAFIE, GESCHICHTE, SONSTIGES;
 }

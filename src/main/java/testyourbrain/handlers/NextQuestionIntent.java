@@ -5,10 +5,9 @@ import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
+import main.java.testyourbrain.GameCategory;
 import main.java.testyourbrain.GameLogic;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
@@ -27,33 +26,36 @@ public class NextQuestionIntent implements RequestHandler {
         Request request = handlerInput.getRequestEnvelope().getRequest();
         String answer = ((IntentRequest) request).getIntent().toString();
 
-        String question = "";
-        
+        String reply = "";
+
+        reply = getQuestionBySelectedCategory();
+
+        return handlerInput.getResponseBuilder()
+                .withSpeech(reply)
+                .withShouldEndSession(false)
+                .build();
+    }
+
+    private String getQuestionBySelectedCategory() {
+        //later on we have to Change this Method to get Access on The DB or the questions which are in GameLogic saved
+        String question;
         switch (GameLogic.CATEGORY) {
-            case GEOGRAPHIE:
+            case POLITIK:
                 question = "Wer war vor Angela Merkel Bundeskanzler?";
                 break;
-            case  GESCHICHTE:
+            case GESCHICHTE:
                 question = "Wie nennt man ein männliches Schaf?";
                 break;
-            case KULTUR:
+            case GEOGRAFIE:
                 question = "Welcher ist der höchste Berg Deutschlands?";
                 break;
-            case POLITIK:
-                question = "An welchem Fluss liegt die Stadt Prag?";
-                break;
-            case ZITATE:
+            case SONSTIGES:
                 question = "Welches Kleidungsstück kaufen deutsche Frauen ihren Ehemännern am Liebsten?";
                 break;
             default:
                 question = "Ungültige Kategorie";
                 break;
-    
-    }
-
-        return handlerInput.getResponseBuilder()
-                .withSpeech(question)
-                .withShouldEndSession(false)
-                .build();
+        }
+        return question;
     }
 }
