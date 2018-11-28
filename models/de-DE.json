@@ -1,98 +1,237 @@
 {
-  "interactionModel": {
-    "languageModel": {
-      "invocationName": "lieblingsfarbe",
-      "intents": [
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.HelpIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": []
-        },
-        {
-          "name": "MyColorIsIntent",
-          "slots": [
-            {
-              "name": "Color",
-              "type": "LIST_OF_COLORS"
-            }
-          ],
-          "samples": [
-            " Meine Lieblingsfarbe ist {Color}",
-            " Ich mag {Color}"
-          ]
-        },
-        {
-          "name": "WhatsMyColorIntent",
-          "slots": [],
-          "samples": [
-            "was ist meine Lieblingsfarbe",
-            "welche Farbe mag ich am liebsten",
-            "sag mir meine Lieblingsfarbe"
-          ]
-        },
-        {
-          "name": "AMAZON.PauseIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.ResumeIntent",
-          "samples": []
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "test your brain",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "was muss ich tun"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": [
+                        "tschüss",
+                        "Schließe Test your Brain",
+                        "Beende Test your Brain"
+                    ]
+                },
+                {
+                    "name": "SelectDifficultyIntent",
+                    "slots": [
+                        {
+                            "name": "Schwierigkeitsgrad",
+                            "type": "Schwierigkeitsgrade"
+                        }
+                    ],
+                    "samples": [
+                        "Wechsele Schwierigkeitsstufe auf {Schwierigkeitsgrad}",
+                        "Wechsele Schwierigkeitsgrad auf {Schwierigkeitsgrad}",
+                        "Wechsele Schwierigkeitsstufe zu {Schwierigkeitsgrad}",
+                        "Wechsele Schwierigkeitsgrad zu {Schwierigkeitsgrad}"
+                    ]
+                },
+                {
+                    "name": "SelectCategoryIntent",
+                    "slots": [
+                        {
+                            "name": "Category",
+                            "type": "Kategorien"
+                        }
+                    ],
+                    "samples": [
+                        "Wechsele Kategorie zu {Category}"
+                    ]
+                },
+                {
+                    "name": "StartGameIntent",
+                    "slots": [],
+                    "samples": [
+                        "los gehts",
+                        "start",
+                        "lass uns Anfangen"
+                    ]
+                },
+                {
+                    "name": "InsertDifficulty",
+                    "slots": [
+                        {
+                            "name": "Schwierigkeitsgrad",
+                            "type": "Schwierigkeitsgrade"
+                        }
+                    ],
+                    "samples": [
+                        "{Schwierigkeitsgrad}"
+                    ]
+                },
+                {
+                    "name": "InsertCategory",
+                    "slots": [
+                        {
+                            "name": "Category",
+                            "type": "Kategorien"
+                        }
+                    ],
+                    "samples": [
+                        "{Category}"
+                    ]
+                },
+                {
+                    "name": "NextQuestionIntent",
+                    "slots": [],
+                    "samples": [
+                        "stelle mir die nächste Frage",
+                        "nächste Frage"
+                    ]
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "SolutionIntent",
+                    "slots": [
+                        {
+                            "name": "Solution",
+                            "type": "Solution"
+                        }
+                    ],
+                    "samples": [
+                        "{Solution}",
+                        "antwort {Solution}"
+                    ]
+                },
+                {
+                    "name": "RulesIntent",
+                    "slots": [
+                        {
+                            "name": "ShowRules",
+                            "type": "ShowRules"
+                        }
+                    ],
+                    "samples": [
+                        "{ShowRules}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "Kategorien",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Unnützes Wissen"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Politik"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Natur"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Gebirge"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Gewässer",
+                                "synonyms": [
+                                    "Wasser",
+                                    "Seen",
+                                    "Flüsse"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Schwierigkeitsgrade",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Schwer",
+                                "synonyms": [
+                                    "Sehr Schwer",
+                                    "Hart"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Mittel",
+                                "synonyms": [
+                                    "Normal"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Leicht",
+                                "synonyms": [
+                                    "Einfach",
+                                    "Easy"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Solution",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "gerhard schröder"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "moldau"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "hemden"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "widder"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "zugspitze"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ShowRules",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "nein"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "ja"
+                            }
+                        }
+                    ]
+                }
+            ]
         }
-      ],
-      "types": [
-        {
-          "name": "LIST_OF_COLORS",
-          "values": [
-            {
-              "name": {
-                "value": "grün"
-              }
-            },
-            {
-              "name": {
-                "value": "blau"
-              }
-            },
-            {
-              "name": {
-                "value": "lila"
-              }
-            },
-            {
-              "name": {
-                "value": "rot"
-              }
-            },
-            {
-              "name": {
-                "value": "orange"
-              }
-            },
-            {
-              "name": {
-                "value": "rosa"
-              }
-            },
-            {
-              "name": {
-                "value": "türkis"
-              }
-            },
-            {
-              "name": {
-                "value": "gelb"
-              }
-            }
-          ]
-        }
-      ]
     }
-  }
 }
