@@ -1,5 +1,8 @@
 ﻿# TEST YOUR BRAIN
 
+### Travis CI
+[![Build Status](https://travis-ci.org/sweIhm-ws2018-19/skillproject-fr-34.svg?branch=Roodey)](https://travis-ci.org/sweIhm-ws2018-19/skillproject-fr-34)
+
 ### Description
 Test your brain ist ein alexa Skill.
 
@@ -19,5 +22,3 @@ https://aws.amazon.com/de/
 
 make sure to connect Frontend with aws!
 
-### Travis CI
-[![Build Status](https://travis-ci.org/sweIhm-ws2018-19/skillproject-fr-34.svg?branch=Roodey)](https://travis-ci.org/sweIhm-ws2018-19/skillproject-fr-34)
