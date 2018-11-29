@@ -1,4 +1,4 @@
-package main.java.testyourbrain;
+package testyourbrain;
 
 public class GameLogic {
     public static final boolean DEBUGMODE = false;

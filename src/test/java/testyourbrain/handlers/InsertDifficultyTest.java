@@ -15,9 +15,9 @@
  */
 package test.java.testyourbrain.handlers;
 
-import main.java.testyourbrain.handlers.InsertDifficulty;
-import main.java.testyourbrain.GameLogic;
-import main.java.testyourbrain.GameDifficulty;
+import testyourbrain.handlers.InsertDifficulty;
+import testyourbrain.GameLogic;
+import testyourbrain.GameDifficulty;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

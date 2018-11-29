@@ -11,12 +11,24 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package main.java.testyourbrain;
+package testyourbrain;
 
+import testyourbrain.handlers.SolutionIntent;
+import testyourbrain.handlers.InsertCategory;
+import testyourbrain.handlers.SelectDifficultyIntent;
+import testyourbrain.handlers.InsertDifficulty;
+import testyourbrain.handlers.StartGameIntent;
+import testyourbrain.handlers.SessionEndedRequestHandler;
+import testyourbrain.handlers.SelectCategoryIntent;
+import testyourbrain.handlers.RulesIntent;
+import testyourbrain.handlers.NextQuestionIntent;
+import testyourbrain.handlers.HelpIntentHandler;
+import testyourbrain.handlers.LaunchRequestHandler;
+import testyourbrain.handlers.CancelandStopIntentHandler;
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
-import main.java.testyourbrain.handlers.*;
+import testyourbrain.handlers.FallbackIntentHandler;
 
 public class TestYourBrainIntentHandler extends SkillStreamHandler {
 

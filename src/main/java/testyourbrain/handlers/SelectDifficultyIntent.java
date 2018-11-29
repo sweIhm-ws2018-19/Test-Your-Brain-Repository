@@ -1,4 +1,4 @@
-package main.java.testyourbrain.handlers;
+package testyourbrain.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
@@ -8,8 +8,8 @@ import com.amazon.ask.model.Response;
 import static com.amazon.ask.request.Predicates.intentName;
 
 import java.util.Optional;
-import main.java.testyourbrain.GameDifficulty;
-import main.java.testyourbrain.GameLogic;
+import testyourbrain.GameDifficulty;
+import testyourbrain.GameLogic;
 
 public class SelectDifficultyIntent implements RequestHandler {
     @Override

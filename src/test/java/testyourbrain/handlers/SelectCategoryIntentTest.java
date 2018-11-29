@@ -15,7 +15,7 @@
  */
 package test.java.testyourbrain.handlers;
 
-import main.java.testyourbrain.handlers.SelectCategoryIntent;
+import testyourbrain.handlers.SelectCategoryIntent;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

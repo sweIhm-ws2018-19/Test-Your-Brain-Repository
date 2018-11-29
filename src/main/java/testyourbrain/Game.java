@@ -1,4 +1,4 @@
-package main.java.testyourbrain;
+package testyourbrain;
 
 import java.util.HashSet;
 

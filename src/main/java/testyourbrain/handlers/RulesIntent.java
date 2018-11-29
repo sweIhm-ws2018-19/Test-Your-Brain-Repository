@@ -1,18 +1,18 @@
-package main.java.testyourbrain.handlers;
+package testyourbrain.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
-import main.java.testyourbrain.Game;
-import main.java.testyourbrain.GameLogic;
+import testyourbrain.Game;
+import testyourbrain.GameLogic;
 
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
-import main.java.testyourbrain.GameState;
-import main.java.testyourbrain.StringContainer;
+import testyourbrain.GameState;
+import testyourbrain.StringContainer;
 
 public class RulesIntent implements RequestHandler {
 

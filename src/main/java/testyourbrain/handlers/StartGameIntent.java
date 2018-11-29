@@ -1,10 +1,10 @@
-package main.java.testyourbrain.handlers;
+package testyourbrain.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
-import main.java.testyourbrain.GameLogic;
-import main.java.testyourbrain.StringContainer;
+import testyourbrain.GameLogic;
+import testyourbrain.StringContainer;
 
 import java.util.Optional;
 

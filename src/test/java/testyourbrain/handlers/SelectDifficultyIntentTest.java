@@ -15,7 +15,7 @@
  */
 package test.java.testyourbrain.handlers;
 
-import main.java.testyourbrain.handlers.SelectDifficultyIntent;
+import testyourbrain.handlers.SelectDifficultyIntent;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
