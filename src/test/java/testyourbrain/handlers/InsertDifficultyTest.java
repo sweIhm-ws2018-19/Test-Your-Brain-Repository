@@ -13,9 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package test.java.testyourbrain.handlers;
+package testyourbrain.handlers;
 
-import testyourbrain.handlers.InsertDifficulty;
 import testyourbrain.GameLogic;
 import testyourbrain.GameDifficulty;
 import org.junit.Test;
