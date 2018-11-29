@@ -1,4 +1,4 @@
-package java.testyourbrain;
+package test.testyourbrain.handlers;
 
 import main.java.testyourbrain.handlers.SelectCategoryIntent;
 import org.junit.jupiter.api.Test;

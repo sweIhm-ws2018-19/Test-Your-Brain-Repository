@@ -1,4 +1,4 @@
-package test;
+package test.testyourbrain.handlers;
 
 import main.java.testyourbrain.handlers.SelectDifficultyIntent;
 import org.junit.jupiter.api.Test;
@@ -35,6 +35,6 @@ class SelectDifficultyIntentTest {
         SelectDifficultyIntent id = new SelectDifficultyIntent();
         String inputDifficulty = "passt schon";
         String outputMessage = id.createchangeMessage(inputDifficulty);
-        assertEquals(outputMessage, "Deine Antwort: " + inputDifficulty + " entspricht keinem verfügbaren Schwierigkeitsgrad.");
+        assertEquals(outputMessage, "Deine Antwort: " + inputDifficulty + " entspricht keinem verfuegbaren Schwierigkeitsgrad.");
     }
 }
