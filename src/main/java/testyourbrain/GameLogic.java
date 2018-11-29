@@ -5,7 +5,6 @@ public class GameLogic {
     private static GameDifficulty difficulty;
     private static GameCategory category;
     private static GameState gameState;
-    private static Game game;
 
     public static void setDifficulty(GameDifficulty difficulty) {
         GameLogic.difficulty = difficulty;
@@ -19,9 +18,6 @@ public class GameLogic {
         GameLogic.gameState = gameState;
     }
 
-    public static void startGame() {
-        game = new Game(category, difficulty);
-    }
 
     public static GameDifficulty getDifficulty() {
         return difficulty;
@@ -35,7 +31,4 @@ public class GameLogic {
         return gameState;
     }
 
-    public static Game getGame() {
-        return game;
-    }
 }
