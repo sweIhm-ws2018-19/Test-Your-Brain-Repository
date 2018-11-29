@@ -4,6 +4,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import main.java.testyourbrain.GameLogic;
+import main.java.testyourbrain.StringContainer;
 
 import java.util.Optional;
 
@@ -17,19 +18,19 @@ public class StartGameIntent implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
-        String speechText = "Ok lass uns Anfangen, wenn ich dir eine neue Frage stellen soll, sage einfach \"nächste Frage\".";
+        String reply = StringContainer.START_MESSAGE;
        
         if(GameLogic.CATEGORY == null){
             //start select Category
-            speechText = "Zuerst musst du mir eine Kategorie nennen.";
+            reply = StringContainer.REQUEST_CATEGORY;
         }
         if(GameLogic.DIFFICULTY == null){
             //start select Difficulty
-            speechText = "Zuerst musst du mir eine Schwierigkeitsstufe nennen.";
+            reply = StringContainer.REQUEST_DIFFICULTY;
         }
 
         return handlerInput.getResponseBuilder()
-                .withSpeech(speechText)
+                .withSpeech(reply)
                 .withShouldEndSession(false)
                 .build();
     }
