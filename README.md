@@ -1,5 +1,9 @@
 ﻿# TEST YOUR BRAIN
 
+### Travis-CI Build-Status
+[![Build Status](https://travis-ci.org/sweIhm-ws2018-19/skillproject-fr-34.svg?branch=master)](https://travis-ci.org/sweIhm-ws2018-19/skillproject-fr-34)
+
+
 ### Description
 Test your brain ist ein alexa Skill.
 
