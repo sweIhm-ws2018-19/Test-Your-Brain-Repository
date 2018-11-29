@@ -1,10 +1,14 @@
 package testyourbrain;
 
 public class GameLogic {
+
     public static final boolean DEBUGMODE = false;
     private static GameDifficulty difficulty;
     private static GameCategory category;
     private static GameState gameState;
+
+    private GameLogic() {
+    }
 
     public static void setDifficulty(GameDifficulty difficulty) {
         GameLogic.difficulty = difficulty;
@@ -17,7 +21,6 @@ public class GameLogic {
     public static void setGameState(GameState gameState) {
         GameLogic.gameState = gameState;
     }
-
 
     public static GameDifficulty getDifficulty() {
         return difficulty;
