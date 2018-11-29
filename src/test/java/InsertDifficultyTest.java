@@ -1,4 +1,4 @@
-package test.testyourbrain.handlers;
+package test.java;
 
 import main.java.testyourbrain.GameDifficulty;
 import main.java.testyourbrain.GameLogic;

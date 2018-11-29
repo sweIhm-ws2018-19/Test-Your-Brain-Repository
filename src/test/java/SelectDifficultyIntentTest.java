@@ -1,4 +1,4 @@
-package test.testyourbrain.handlers;
+package test.java;
 
 import main.java.testyourbrain.handlers.SelectDifficultyIntent;
 import org.junit.jupiter.api.Test;
