@@ -38,7 +38,7 @@ public class SelectCategoryIntentTest {
     @Test
     public void change_to_Geografie(){
         SelectCategoryIntent ic = new SelectCategoryIntent();
-        String inputString = "geografie";
+        String inputString = "geographie";
         String outputMessage = ic.generateReply(inputString);
         assertEquals(outputMessage,"Du hast die Kategorie auf " + inputString + " gewechselt.");
     }

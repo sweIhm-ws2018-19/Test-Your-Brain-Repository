@@ -39,7 +39,7 @@ public class NextQuestionIntent implements RequestHandler {
             case GESCHICHTE:
                 question = "Wie nennt man ein männliches Schaf?";
                 break;
-            case GEOGRAFIE:
+            case GEOGRAPHIE:
                 question = "Welcher ist der höchste Berg Deutschlands?";
                 break;
             case SONSTIGES:

@@ -52,21 +52,21 @@ public class InsertCategoryTest {
     @Test
     public void insert_Geografie_klein() {
         InsertCategory ic = new InsertCategory();
-        String outputMessage = ic.generateReply("geografie");
+        String outputMessage = ic.generateReply("geographie");
         assertEquals("Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
     }
 
     @Test
     public void insert_Geografie_groß() {
         InsertCategory ic = new InsertCategory();
-        String outputMessage = ic.generateReply("Geografie");
+        String outputMessage = ic.generateReply("Geographie");
         assertEquals("Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
     }
 
     @Test
     public void insert_Geografie_uppercase() {
         InsertCategory ic = new InsertCategory();
-        String outputMessage = ic.generateReply("GEOGRAFIE");
+        String outputMessage = ic.generateReply("GEOGRAPHIE");
         assertEquals("Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
     }
 

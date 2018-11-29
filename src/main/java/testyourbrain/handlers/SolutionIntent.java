@@ -42,7 +42,7 @@ public class SolutionIntent implements RequestHandler {
                     reply = right;
                 }
                 break;
-            case GEOGRAFIE:
+            case GEOGRAPHIE:
                 //Welcher ist der höchste Berg Deutschlands?
                 if (answer.equals("zugspitze")) {
                     reply = right;
