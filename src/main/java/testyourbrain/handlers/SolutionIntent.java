@@ -33,7 +33,7 @@ public class SolutionIntent implements RequestHandler {
     }
 
     private String checkAnswerByCategory(String answer) {
-        String reply = "Ich kann deine Antwort nicht verstehen";
+        String reply = "Falsch";
         final String right = "Richtig";
         switch (GameLogic.getCategory()) {
             case POLITIK:
@@ -50,7 +50,7 @@ public class SolutionIntent implements RequestHandler {
                 break;
             case GESCHICHTE:
                 //Wie nennt man ein männliches Schaf?
-                if (answer.equals("Otto von Bismark") || answer.equals("Otto von Bismarck")) {
+                if (answer.equals("otto von bismark") || answer.equals("otto von bismarck")) {
                     reply = right;
                 }
                 break;
