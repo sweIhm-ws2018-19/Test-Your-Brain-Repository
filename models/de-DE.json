@@ -125,7 +125,7 @@
           "values": [
             {
               "name": {
-                "value": "Unnützes Wissen"
+                "value": "Sonstiges"
               }
             },
             {
@@ -135,22 +135,12 @@
             },
             {
               "name": {
-                "value": "Natur"
+                "value": "Geschichte"
               }
             },
             {
               "name": {
-                "value": "Gebirge"
-              }
-            },
-            {
-              "name": {
-                "value": "Gewässer",
-                "synonyms": [
-                  "Wasser",
-                  "Seen",
-                  "Flüsse"
-                ]
+                "value": "Geografie"
               }
             }
           ]
