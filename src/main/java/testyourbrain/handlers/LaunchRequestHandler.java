@@ -10,19 +10,19 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for
      the specific language governing permissions and limitations under the License.
  */
-package main.java.testyourbrain.handlers;
+package testyourbrain.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
-import main.java.testyourbrain.GameLogic;
-import main.java.testyourbrain.StringContainer;
+import testyourbrain.GameLogic;
+import testyourbrain.StringContainer;
 
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.requestType;
-import main.java.testyourbrain.GameState;
+import testyourbrain.GameState;
 
 public class LaunchRequestHandler implements RequestHandler {
 

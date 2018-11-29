@@ -1,4 +1,4 @@
-package main.java.testyourbrain;
+package testyourbrain;
 
 public class Question {
     private String question;

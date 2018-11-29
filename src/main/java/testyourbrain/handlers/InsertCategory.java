@@ -1,19 +1,20 @@
-package main.java.testyourbrain.handlers;
+package testyourbrain.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
-import main.java.testyourbrain.GameLogic;
+import testyourbrain.GameLogic;
 
 import java.util.Optional;
 
-import main.java.testyourbrain.GameState;
+import testyourbrain.GameState;
 
 
 import static com.amazon.ask.request.Predicates.intentName;
-import main.java.testyourbrain.GameCategory;
+
+import testyourbrain.GameCategory;
 
 public class InsertCategory implements RequestHandler {
 
@@ -29,8 +30,11 @@ public class InsertCategory implements RequestHandler {
         Request request = handlerInput.getRequestEnvelope().getRequest();
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Category").getValue();
         String optionalMessage = createInsertMessage(answer);
-
-        String reply = "Du hast " + answer + " gewählt. " + optionalMessage;
+        String debugInformation = "";
+        if (GameLogic.DEBUGMODE) {
+            debugInformation = "Du hast " + answer + " gewaehlt. ";
+        }
+        String reply = debugInformation + optionalMessage;
         return handlerInput.getResponseBuilder()
                 .withSpeech(reply)
                 .withShouldEndSession(false)
@@ -40,17 +44,17 @@ public class InsertCategory implements RequestHandler {
     public String createInsertMessage(String answer) {
         boolean noMatchingCategory = false;
 
-        try{
+        try {
             GameLogic.CATEGORY = GameCategory.valueOf(answer.toUpperCase());
-        }catch(Exception e){
+        } catch (Exception e) {
             noMatchingCategory = true;
         }
 
-        String optionalMessage ="";
-        if(noMatchingCategory){
-            optionalMessage = "Die eingegebene entspricht keiner gültigen Kategorie.";
-        }else{
-            optionalMessage= "Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben möchtest sage \"nächste Frage\".";
+        String optionalMessage = "";
+        if (noMatchingCategory) {
+            optionalMessage = "Die eingegebene entspricht keiner gueltigen Kategorie.";
+        } else {
+            optionalMessage = "Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".";
         }
         return optionalMessage;
     }

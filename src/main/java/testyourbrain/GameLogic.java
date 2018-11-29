@@ -1,9 +1,7 @@
-package main.java.testyourbrain;
-
-import java.lang.management.GarbageCollectorMXBean;
-import java.util.HashMap;
+package testyourbrain;
 
 public class GameLogic {
+    public static final boolean DEBUGMODE = false;
     public static GameDifficulty DIFFICULTY;
     public static GameCategory CATEGORY;
     public static GameState GAMESTATE;
@@ -24,4 +22,5 @@ public class GameLogic {
     public static void startGame(){
         GAME = new Game(CATEGORY, DIFFICULTY);
     }
+
 }

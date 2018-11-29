@@ -15,6 +15,6 @@ https://developer.amazon.com/alexa/console/ask
 
 upload jar with dependencies here:
 
-https://aws.amazon.com/de/
+https://aws.amazon.com/de/education/awseducate/
 
 make sure to connect Frontend with aws!

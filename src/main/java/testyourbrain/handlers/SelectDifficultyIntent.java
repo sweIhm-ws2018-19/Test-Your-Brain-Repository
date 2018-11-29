@@ -1,4 +1,4 @@
-package main.java.testyourbrain.handlers;
+package testyourbrain.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
@@ -8,15 +8,14 @@ import com.amazon.ask.model.Response;
 import static com.amazon.ask.request.Predicates.intentName;
 
 import java.util.Optional;
-import main.java.testyourbrain.GameDifficulty;
-import main.java.testyourbrain.GameLogic;
+import testyourbrain.GameDifficulty;
+import testyourbrain.GameLogic;
 
 public class SelectDifficultyIntent implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         //true wenn Richtige Eingabe gemacht wurde UND die Kategorie noch nicht gesetzt wurde.
         return handlerInput.matches(intentName("SelectDifficultyIntent"));
-
     }
 
     @Override
@@ -46,7 +45,7 @@ public class SelectDifficultyIntent implements RequestHandler {
         String reply = "Du hast die Kategorie auf " + GameLogic.DIFFICULTY + " gewechselt.";
 
         if(noMatchingDifficulty){
-            reply = "Deine Antwort: " + answer + " entspricht keinem verfügbaren Schwierigkeitsgrad.";
+            reply = "Deine Antwort: " + answer + " entspricht keinem verfuegbaren Schwierigkeitsgrad.";
         }
         return reply;
     }
