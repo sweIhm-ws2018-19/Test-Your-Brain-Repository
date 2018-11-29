@@ -16,6 +16,8 @@
 package testyourbrain.handlers;
 
 import org.junit.Test;
+import testyourbrain.GameLogic;
+
 import static org.junit.Assert.*;
 
 /**
@@ -31,7 +33,7 @@ public class SelectDifficultyIntentTest {
         SelectDifficultyIntent id = new SelectDifficultyIntent();
         String inputDifficulty = "leicht";
         String outputMessage = id.createchangeMessage(inputDifficulty);
-        assertEquals(outputMessage, "Du hast die Kategorie auf " + "EASY" + " gewechselt.");
+        assertEquals(outputMessage, "Du hast die Schwierigkeit auf " + "EASY" + " gewechselt.");
     }
 
     @Test
@@ -39,7 +41,7 @@ public class SelectDifficultyIntentTest {
         SelectDifficultyIntent id = new SelectDifficultyIntent();
         String inputDifficulty = "mittel";
         String outputMessage = id.createchangeMessage(inputDifficulty);
-        assertEquals(outputMessage, "Du hast die Kategorie auf " + "MEDIUM" + " gewechselt.");
+        assertEquals(outputMessage, "Du hast die Schwierigkeit auf " + "MEDIUM" + " gewechselt.");
     }
 
     @Test
@@ -47,7 +49,7 @@ public class SelectDifficultyIntentTest {
         SelectDifficultyIntent id = new SelectDifficultyIntent();
         String inputDifficulty = "schwer";
         String outputMessage = id.createchangeMessage(inputDifficulty);
-        assertEquals(outputMessage, "Du hast die Kategorie auf " + "HARD" + " gewechselt.");
+        assertEquals(outputMessage, "Du hast die Schwierigkeit auf " + "HARD" + " gewechselt.");
     }
 
     @Test

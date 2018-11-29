@@ -44,7 +44,7 @@ public class SelectDifficultyIntent implements RequestHandler {
             GameLogic.setDifficulty(GameDifficulty.EASY);
             noMatchingDifficulty = true;
         }
-        String reply = "Du hast die Kategorie auf " + GameLogic.getCategory() + " gewechselt.";
+        String reply = "Du hast die Schwierigkeit auf " + GameLogic.getDifficulty() + " gewechselt.";
 
         if (noMatchingDifficulty) {
             reply = "Deine Antwort: " + answer + " entspricht keinem verfuegbaren Schwierigkeitsgrad.";

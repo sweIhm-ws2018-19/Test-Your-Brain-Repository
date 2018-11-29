@@ -23,7 +23,6 @@ public class GameLogic {
         game = new Game(category, difficulty);
     }
 
-
     public static GameDifficulty getDifficulty() {
         return difficulty;
     }
