@@ -50,7 +50,7 @@ public class SolutionIntent implements RequestHandler {
                 break;
             case GESCHICHTE:
                 //Wie nennt man ein männliches Schaf?
-                if (answer.equals("widder")) {
+                if (answer.equals("Otto von Bismark") || answer.equals("Otto von Bismarck")) {
                     reply = right;
                 }
                 break;
