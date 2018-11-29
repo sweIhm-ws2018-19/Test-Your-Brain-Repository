@@ -21,5 +21,3 @@ script:
 #  role: "arn:aws:lambda:us-east-1:799023784580:role/lambda_basic_execution"
 #  runtime: "java8"
 #  handler_name: "main.java.testyourbrain.TestYourBrainIntentHandler"
-#  access_key_id: ASIA3UCMHMKCHQQGKB46
-#  secret_access_key: Ckr3s/x6r+LdyhIQwA19mhK24M59wnjEl/w1OZUg
