@@ -32,7 +32,7 @@ public class InsertCategory implements RequestHandler {
         String optionalMessage = createInsertMessage(answer);
         String debugInformation = "";
         if (GameLogic.DEBUGMODE) {
-            debugInformation = "Du hast " + answer + " gewählt. ";
+            debugInformation = "Du hast " + answer + " gewaehlt. ";
         }
         String reply = debugInformation + optionalMessage;
         return handlerInput.getResponseBuilder()
@@ -52,9 +52,9 @@ public class InsertCategory implements RequestHandler {
 
         String optionalMessage = "";
         if (noMatchingCategory) {
-            optionalMessage = "Die eingegebene entspricht keiner gültigen Kategorie.";
+            optionalMessage = "Die eingegebene entspricht keiner gueltigen Kategorie.";
         } else {
-            optionalMessage = "Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben möchtest sage \"nächste Frage\".";
+            optionalMessage = "Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".";
         }
         return optionalMessage;
     }

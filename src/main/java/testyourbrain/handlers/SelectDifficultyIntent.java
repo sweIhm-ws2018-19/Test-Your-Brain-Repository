@@ -45,7 +45,7 @@ public class SelectDifficultyIntent implements RequestHandler {
         String reply = "Du hast die Kategorie auf " + GameLogic.DIFFICULTY + " gewechselt.";
 
         if(noMatchingDifficulty){
-            reply = "Deine Antwort: " + answer + " entspricht keinem verfügbaren Schwierigkeitsgrad.";
+            reply = "Deine Antwort: " + answer + " entspricht keinem verfuegbaren Schwierigkeitsgrad.";
         }
         return reply;
     }

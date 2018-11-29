@@ -48,12 +48,12 @@ public class InsertDifficulty implements RequestHandler {
         }
         String debugInformation = "";
         if (GameLogic.DEBUGMODE) {
-            debugInformation = "Du hast " + answer + " gewählt. Das entspricht " + GameLogic.DIFFICULTY + ". ";
+            debugInformation = "Du hast " + answer + " gewaehlt. Das entspricht " + GameLogic.DIFFICULTY + ". ";
         }
-        String reply = "Wähle jetzt noch eine Kategorie.";
+        String reply = "Waehle jetzt noch eine Kategorie.";
 
         if (noMatchingDifficulty) {
-            reply = "Deine Antwort: " + answer + " entspricht keinem verfügbaren Schwierigkeitsgrad.";
+            reply = "Deine Antwort: " + answer + " entspricht keinem verfuegbaren Schwierigkeitsgrad.";
         }
         return debugInformation + reply;
     }
