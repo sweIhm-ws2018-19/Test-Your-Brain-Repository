@@ -33,7 +33,7 @@ public class SelectDifficultyIntentTest {
         SelectDifficultyIntent id = new SelectDifficultyIntent();
         String inputDifficulty = "leicht";
         String outputMessage = id.generateReply(inputDifficulty);
-        assertEquals(outputMessage, "Du hast die Schwierigkeit auf " + "EASY" + " gewechselt.");
+        assertEquals(outputMessage, "Du hast die Schwierigkeit auf " + inputDifficulty + " gewechselt.");
     }
 
     @Test
@@ -41,7 +41,7 @@ public class SelectDifficultyIntentTest {
         SelectDifficultyIntent id = new SelectDifficultyIntent();
         String inputDifficulty = "mittel";
         String outputMessage = id.generateReply(inputDifficulty);
-        assertEquals(outputMessage, "Du hast die Schwierigkeit auf " + "MEDIUM" + " gewechselt.");
+        assertEquals(outputMessage, "Du hast die Schwierigkeit auf " + inputDifficulty + " gewechselt.");
     }
 
     @Test
@@ -49,7 +49,7 @@ public class SelectDifficultyIntentTest {
         SelectDifficultyIntent id = new SelectDifficultyIntent();
         String inputDifficulty = "schwer";
         String outputMessage = id.generateReply(inputDifficulty);
-        assertEquals(outputMessage, "Du hast die Schwierigkeit auf " + "HARD" + " gewechselt.");
+        assertEquals(outputMessage, "Du hast die Schwierigkeit auf " + inputDifficulty + " gewechselt.");
     }
 
     @Test
