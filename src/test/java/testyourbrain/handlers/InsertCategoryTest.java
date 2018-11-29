@@ -32,42 +32,42 @@ public class InsertCategoryTest {
     public void insert_Politik_klein() {
         InsertCategory ic = new InsertCategory();
         String outputMessage = ic.generateReply("politik");
-        assertEquals("Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
+        assertEquals("Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
     }
 
     @Test
     public void insert_Politik_groß() {
         InsertCategory ic = new InsertCategory();
         String outputMessage = ic.generateReply("Politik");
-        assertEquals("Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
+        assertEquals("Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
     }
 
     @Test
     public void insert_Politik_uppercase() {
         InsertCategory ic = new InsertCategory();
         String outputMessage = ic.generateReply("POLITIK");
-        assertEquals("Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
+        assertEquals("Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
     }
 
     @Test
     public void insert_Geografie_klein() {
         InsertCategory ic = new InsertCategory();
         String outputMessage = ic.generateReply("geografie");
-        assertEquals("Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
+        assertEquals("Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
     }
 
     @Test
     public void insert_Geografie_groß() {
         InsertCategory ic = new InsertCategory();
         String outputMessage = ic.generateReply("Geografie");
-        assertEquals("Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
+        assertEquals("Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
     }
 
     @Test
     public void insert_Geografie_uppercase() {
         InsertCategory ic = new InsertCategory();
         String outputMessage = ic.generateReply("GEOGRAFIE");
-        assertEquals("Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
+        assertEquals("Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
     }
 
     @Test
@@ -75,7 +75,7 @@ public class InsertCategoryTest {
         InsertCategory ic = new InsertCategory();
         String inputString = "geschichte";
         String outputMessage = ic.generateReply(inputString);
-        assertEquals("Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
+        assertEquals("Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
     }
 
     @Test
@@ -83,7 +83,7 @@ public class InsertCategoryTest {
         InsertCategory ic = new InsertCategory();
         String inputString = "Geschichte";
         String outputMessage = ic.generateReply(inputString);
-        assertEquals("Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
+        assertEquals("Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
     }
 
     @Test
@@ -91,7 +91,7 @@ public class InsertCategoryTest {
         InsertCategory ic = new InsertCategory();
         String inputString = "geschichte".toUpperCase();
         String outputMessage = ic.generateReply(inputString);
-        assertEquals("Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
+        assertEquals("Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
     }
 
     @Test
@@ -99,7 +99,7 @@ public class InsertCategoryTest {
         InsertCategory ic = new InsertCategory();
         String inputString = "sonstiges";
         String outputMessage = ic.generateReply(inputString);
-        assertEquals("Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
+        assertEquals("Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
     }
 
     @Test
@@ -107,7 +107,7 @@ public class InsertCategoryTest {
         InsertCategory ic = new InsertCategory();
         String inputString = "Sonstiges";
         String outputMessage = ic.generateReply(inputString);
-        assertEquals("Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
+        assertEquals("Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
     }
 
     @Test
@@ -115,7 +115,7 @@ public class InsertCategoryTest {
         InsertCategory ic = new InsertCategory();
         String inputString = "sonstiges".toUpperCase();
         String outputMessage = ic.generateReply(inputString);
-        assertEquals("Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
+        assertEquals("Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
     }
 
     

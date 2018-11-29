@@ -54,7 +54,7 @@ public class InsertCategory implements RequestHandler {
         if (noMatchingCategory) {
             optionalMessage = "Die eingegebene entspricht keiner gueltigen Kategorie.";
         } else {
-            optionalMessage = "Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".";
+            optionalMessage = "Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".";
         }
         return optionalMessage;
     }
