@@ -32,7 +32,7 @@ public class NextQuestionIntent implements RequestHandler {
     private String getQuestionBySelectedCategory() {
         //later on we have to Change this Method to get Access on The DB or the questions which are in GameLogic saved
         String question;
-        switch (GameLogic.CATEGORY) {
+        switch (GameLogic.getCategory()) {
             case POLITIK:
                 question = "Wer war vor Angela Merkel Bundeskanzler?";
                 break;

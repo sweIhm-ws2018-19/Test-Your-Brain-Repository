@@ -37,7 +37,7 @@ public class SelectCategoryIntent implements RequestHandler {
         boolean noMatchingCategory = false;
 
         try{
-            GameLogic.setCATEGORY(GameCategory.valueOf(answer.toUpperCase()));
+            GameLogic.setCategory(GameCategory.valueOf(answer.toUpperCase()));
         }catch(Exception e){
             noMatchingCategory = true;
         }

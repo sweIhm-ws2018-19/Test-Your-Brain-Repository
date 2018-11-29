@@ -5,9 +5,11 @@ import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
+
 import static com.amazon.ask.request.Predicates.intentName;
 
 import java.util.Optional;
+
 import testyourbrain.GameDifficulty;
 import testyourbrain.GameLogic;
 
@@ -33,18 +35,18 @@ public class SelectDifficultyIntent implements RequestHandler {
 
     public String createchangeMessage(String answer) {
         boolean noMatchingDifficulty = false;
-        try{
-            GameLogic.setDIFFICULTY(GameDifficulty.getBySynonym(answer));
-        }catch(Exception e){
+        try {
+            GameLogic.setDifficulty(GameDifficulty.getBySynonym(answer));
+        } catch (Exception e) {
             noMatchingDifficulty = true;
         }
-        if(GameLogic.DIFFICULTY == GameDifficulty.WRONG){
-            GameLogic.setDIFFICULTY(GameDifficulty.EASY);
+        if (GameLogic.getDifficulty() == GameDifficulty.WRONG) {
+            GameLogic.setDifficulty(GameDifficulty.EASY);
             noMatchingDifficulty = true;
         }
-        String reply = "Du hast die Kategorie auf " + GameLogic.DIFFICULTY + " gewechselt.";
+        String reply = "Du hast die Kategorie auf " + GameLogic.getCategory() + " gewechselt.";
 
-        if(noMatchingDifficulty){
+        if (noMatchingDifficulty) {
             reply = "Deine Antwort: " + answer + " entspricht keinem verfuegbaren Schwierigkeitsgrad.";
         }
         return reply;

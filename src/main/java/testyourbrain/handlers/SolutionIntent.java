@@ -35,7 +35,7 @@ public class SolutionIntent implements RequestHandler {
     private String checkAnswerByCategory(String answer) {
         String reply = "Ich kann deine Antwort nicht verstehen";
         final String right = "Richtig";
-        switch (GameLogic.CATEGORY) {
+        switch (GameLogic.getCategory()) {
             case POLITIK:
                 //Wer war vor Angela Merkel Bundeskanzler?
                 if (answer.equals("gerhard schröder")) {

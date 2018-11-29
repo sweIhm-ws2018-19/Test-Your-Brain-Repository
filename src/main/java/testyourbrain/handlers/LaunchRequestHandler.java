@@ -33,11 +33,11 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        GameLogic.setDIFFICULTY(null);
-        GameLogic.setCATEGORY(null);
+        GameLogic.setDifficulty(null);
+        GameLogic.setCategory(null);
         
         //set initial Game state!
-        GameLogic.setGAMESTATE(GameState.RULES);
+        GameLogic.setGameState(GameState.RULES);
 
         String reply = StringContainer.WELCOME_MESSAGE + StringContainer.SKILL_DESCRIPTION;
         String repromptText = StringContainer.RULES_QUESTION;

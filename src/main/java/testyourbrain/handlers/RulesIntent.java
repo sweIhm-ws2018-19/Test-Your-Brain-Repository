@@ -11,6 +11,7 @@ import testyourbrain.GameLogic;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
+
 import testyourbrain.GameState;
 import testyourbrain.StringContainer;
 
@@ -19,7 +20,7 @@ public class RulesIntent implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput input) {
         // invoke with "JA" , "Nein"
-        return input.matches(intentName("RulesIntent")) && GameLogic.GAMESTATE == GameState.RULES;
+        return input.matches(intentName("RulesIntent")) && GameLogic.getGameState() == GameState.RULES;
     }
 
     @Override
@@ -29,13 +30,13 @@ public class RulesIntent implements RequestHandler {
         String debugInformation = "";
         //ask for Difficulty
         String reply = StringContainer.REQUEST_DIFFICULTY;
-        if(answer.equalsIgnoreCase("ja")){
+        if (answer.equalsIgnoreCase("ja")) {
             //explain the Rules before
             reply = StringContainer.RULES + reply;
         }
         //set Gamestate to config to enable seting Difficulty and Category
-        GameLogic.setGAMESTATE(GameState.CONFIG);
-        if(GameLogic.DEBUGMODE){
+        GameLogic.setGameState(GameState.CONFIG);
+        if (GameLogic.DEBUGMODE) {
             debugInformation = "Der Status der SpielLogic hat sich auf Config geaendert";
         }
         reply = debugInformation + reply;

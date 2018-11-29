@@ -2,25 +2,41 @@ package testyourbrain;
 
 public class GameLogic {
     public static final boolean DEBUGMODE = false;
-    public static GameDifficulty DIFFICULTY;
-    public static GameCategory CATEGORY;
-    public static GameState GAMESTATE;
-    public static Game GAME;
+    private static GameDifficulty difficulty;
+    private static GameCategory category;
+    private static GameState gameState;
+    private static Game game;
 
-    public static void setDIFFICULTY(GameDifficulty DIFFICULTY){
-        GameLogic.DIFFICULTY = DIFFICULTY;
+    public static void setDifficulty(GameDifficulty difficulty) {
+        GameLogic.difficulty = difficulty;
     }
 
-    public static void setCATEGORY(GameCategory CATEGORY) {
-        GameLogic.CATEGORY = CATEGORY;
-    }
-    
-    public static void setGAMESTATE(GameState GAMESTATE){
-        GameLogic.GAMESTATE = GAMESTATE;
+    public static void setCategory(GameCategory category) {
+        GameLogic.category = category;
     }
 
-    public static void startGame(){
-        GAME = new Game(CATEGORY, DIFFICULTY);
+    public static void setGameState(GameState gameState) {
+        GameLogic.gameState = gameState;
     }
 
+    public static void startGame() {
+        game = new Game(category, difficulty);
+    }
+
+
+    public static GameDifficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public static GameCategory getCategory() {
+        return category;
+    }
+
+    public static GameState getGameState() {
+        return gameState;
+    }
+
+    public static Game getGame() {
+        return game;
+    }
 }

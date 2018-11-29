@@ -20,11 +20,11 @@ public class StartGameIntent implements RequestHandler {
     public Optional<Response> handle(HandlerInput handlerInput) {
         String reply = StringContainer.START_MESSAGE;
        
-        if(GameLogic.CATEGORY == null){
+        if(GameLogic.getCategory() == null){
             //start select Category
             reply = StringContainer.REQUEST_CATEGORY;
         }
-        if(GameLogic.DIFFICULTY == null){
+        if(GameLogic.getDifficulty() == null){
             //start select Difficulty
             reply = StringContainer.REQUEST_DIFFICULTY;
         }

@@ -18,7 +18,7 @@ public class InsertDifficulty implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         //true wenn Richtige Eingabe gemacht wurde UND die Schwierigkeit noch nicht gesetzt wurde.
-        return handlerInput.matches(intentName("InsertDifficulty")) && GameLogic.GAMESTATE == GameState.CONFIG;
+        return handlerInput.matches(intentName("InsertDifficulty")) && GameLogic.getGameState() == GameState.CONFIG;
 
     }
 
@@ -38,17 +38,17 @@ public class InsertDifficulty implements RequestHandler {
     public String createReplyMessage(String answer) {
         boolean noMatchingDifficulty = false;
         try {
-            GameLogic.DIFFICULTY = GameDifficulty.getBySynonym(answer);
+            GameLogic.setDifficulty(GameDifficulty.getBySynonym(answer));
         } catch (Exception e) {
             noMatchingDifficulty = true;
         }
-        if (GameLogic.DIFFICULTY == GameDifficulty.WRONG) {
-            GameLogic.DIFFICULTY = GameDifficulty.EASY;
+        if (GameLogic.getDifficulty() == GameDifficulty.WRONG) {
+            GameLogic.setDifficulty(GameDifficulty.EASY);
             noMatchingDifficulty = true;
         }
         String debugInformation = "";
         if (GameLogic.DEBUGMODE) {
-            debugInformation = "Du hast " + answer + " gewaehlt. Das entspricht " + GameLogic.DIFFICULTY + ". ";
+            debugInformation = "Du hast " + answer + " gewaehlt. Das entspricht " + GameLogic.getDifficulty() + ". ";
         }
         String reply = "Waehle jetzt noch eine Kategorie.";
 

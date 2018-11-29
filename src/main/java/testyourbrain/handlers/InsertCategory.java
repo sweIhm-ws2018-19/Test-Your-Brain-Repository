@@ -21,7 +21,7 @@ public class InsertCategory implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         //true wenn Richtige Eingabe gemacht wurde UND die Kategorie noch nicht gesetzt wurde.
-        return handlerInput.matches(intentName("InsertCategory")) && GameLogic.GAMESTATE == GameState.CONFIG;
+        return handlerInput.matches(intentName("InsertCategory")) && GameLogic.getGameState() == GameState.CONFIG;
 
     }
 
@@ -45,7 +45,7 @@ public class InsertCategory implements RequestHandler {
         boolean noMatchingCategory = false;
 
         try {
-            GameLogic.CATEGORY = GameCategory.valueOf(answer.toUpperCase());
+            GameLogic.setCategory(GameCategory.valueOf(answer.toUpperCase()));
         } catch (Exception e) {
             noMatchingCategory = true;
         }
