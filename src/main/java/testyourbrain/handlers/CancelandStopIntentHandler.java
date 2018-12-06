@@ -13,12 +13,17 @@
 
 package testyourbrain.handlers;
 
+import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import testyourbrain.GameUtil;
 import testyourbrain.StringContainer;
 
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
@@ -31,6 +36,9 @@ public class CancelandStopIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         String reply = StringContainer.GOOD_BYE_MESSAGE;
+
+        reply += GameUtil.getData(input,"regeln");
+
         return input.getResponseBuilder()
                 .withSpeech(reply)
                 .withSimpleCard("Test your Brain", StringContainer.GOOD_BYE_MESSAGE)

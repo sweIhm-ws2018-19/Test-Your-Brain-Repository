@@ -1,5 +1,6 @@
 package testyourbrain.handlers;
 
+import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.IntentRequest;
@@ -7,6 +8,7 @@ import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
 import testyourbrain.GameLogic;
 
+import java.util.Map;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
@@ -26,7 +28,6 @@ public class SelectCategoryIntent implements RequestHandler {
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Category").getValue();
 
         String reply = createChangeMessage(answer);
-
         return handlerInput.getResponseBuilder()
                 .withSpeech(reply)
                 .withShouldEndSession(false)

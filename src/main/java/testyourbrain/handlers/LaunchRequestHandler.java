@@ -12,16 +12,20 @@
  */
 package testyourbrain.handlers;
 
+import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
 import testyourbrain.GameLogic;
+import testyourbrain.GameUtil;
 import testyourbrain.StringContainer;
 
+import java.util.Map;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.requestType;
+
 import testyourbrain.GameState;
 
 public class LaunchRequestHandler implements RequestHandler {
@@ -35,11 +39,17 @@ public class LaunchRequestHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
         GameLogic.setDifficulty(null);
         GameLogic.setCategory(null);
-        
+
         //set initial Game state!
         GameLogic.setGameState(GameState.RULES);
-
         String reply = StringContainer.WELCOME_MESSAGE + StringContainer.SKILL_DESCRIPTION;
+
+        if (GameLogic.DEBUGMODE) {
+            GameUtil.saveData(input,"test","Ich habe etwas in die DynamoDB geschrieben");
+            reply += GameUtil.getData(input,"test");
+        }
+
+
         String repromptText = StringContainer.RULES_QUESTION;
         return input.getResponseBuilder()
                 .withSimpleCard("ColorSession", reply)

@@ -64,10 +64,16 @@ public class InsertDifficultyTest {
 
     @Test
     public void insert_wrong() {
+
         InsertDifficulty id = new InsertDifficulty();
         String inputDifficulty = "passt schon";
         String outputMessage = id.createReplyMessage(inputDifficulty);
-        assertEquals(outputMessage, "Deine Antwort: " + inputDifficulty + " entspricht keinem verfuegbaren Schwierigkeitsgrad.");
+
+        String answer = "";
+        if(GameLogic.DEBUGMODE){
+            answer += "Du hast passt schon gewaehlt. Das entspricht EASY. ";
+        }
+        assertEquals(outputMessage, answer + "Deine Antwort: " + inputDifficulty + " entspricht keinem verfuegbaren Schwierigkeitsgrad.");
     }
 
     

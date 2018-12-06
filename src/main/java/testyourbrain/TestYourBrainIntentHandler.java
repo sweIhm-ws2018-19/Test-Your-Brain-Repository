@@ -36,7 +36,8 @@ public class TestYourBrainIntentHandler extends SkillStreamHandler {
                         new SolutionIntent(),
                         new RulesIntent(),
                         new NextQuestionIntent())
-                
+                .withTableName("testYourBrainData")
+                .withAutoCreateTable(true)
                 // Add your skill id below
                 //.withSkillId("")
                 .build();
