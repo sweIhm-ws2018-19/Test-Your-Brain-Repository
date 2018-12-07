@@ -32,7 +32,7 @@ public class InsertDifficultyTest {
     public void insert_leicht() {
         InsertDifficulty id = new InsertDifficulty();
         String inputDifficulty = "leicht";
-        String outputMessage = id.createReplyMessage(inputDifficulty);
+        String outputMessage = id.generateReply(inputDifficulty);
         String debugMessage = "";
         if (GameLogic.DEBUGMODE)
             debugMessage = "Du hast " + inputDifficulty + " gewaehlt. Das entspricht " + GameDifficulty.EASY + ". ";
@@ -44,7 +44,7 @@ public class InsertDifficultyTest {
     public void insert_mittel() {
         InsertDifficulty id = new InsertDifficulty();
         String inputDifficulty = "mittel";
-        String outputMessage = id.createReplyMessage(inputDifficulty);
+        String outputMessage = id.generateReply(inputDifficulty);
         String debugMessage ="";
         if (GameLogic.DEBUGMODE)
             debugMessage = "Du hast " + inputDifficulty + " gewaehlt. Das entspricht " + GameDifficulty.MEDIUM + ". ";
@@ -55,7 +55,7 @@ public class InsertDifficultyTest {
     public void insert_schwer() {
         InsertDifficulty id = new InsertDifficulty();
         String inputDifficulty = "schwer";
-        String outputMessage = id.createReplyMessage(inputDifficulty);
+        String outputMessage = id.generateReply(inputDifficulty);
         String debugMessage ="";
         if (GameLogic.DEBUGMODE)
             debugMessage = "Du hast " + inputDifficulty + " gewaehlt. Das entspricht " + GameDifficulty.HARD + ". ";
@@ -67,13 +67,10 @@ public class InsertDifficultyTest {
 
         InsertDifficulty id = new InsertDifficulty();
         String inputDifficulty = "passt schon";
-        String outputMessage = id.createReplyMessage(inputDifficulty);
 
-        String answer = "";
-        if(GameLogic.DEBUGMODE){
-            answer += "Du hast passt schon gewaehlt. Das entspricht EASY. ";
-        }
-        assertEquals(outputMessage, answer + "Deine Antwort: " + inputDifficulty + " entspricht keinem verfuegbaren Schwierigkeitsgrad.");
+        String outputMessage = id.generateReply(inputDifficulty);
+        assertEquals(outputMessage, "Deine Antwort: " + inputDifficulty + " entspricht keinem verfuegbaren Schwierigkeitsgrad.");
+
     }
 
     

@@ -37,9 +37,9 @@ public class NextQuestionIntent implements RequestHandler {
                 question = "Wer war vor Angela Merkel Bundeskanzler?";
                 break;
             case GESCHICHTE:
-                question = "Wie nennt man ein männliches Schaf?";
+                question = "Von wem stammt das Zitat: \"Je weniger die Menschen davon wissen wie Würste oder Gesetze gemacht werden, desto besser schlafen sie.\" ?";
                 break;
-            case GEOGRAFIE:
+            case GEOGRAPHIE:
                 question = "Welcher ist der höchste Berg Deutschlands?";
                 break;
             case SONSTIGES:

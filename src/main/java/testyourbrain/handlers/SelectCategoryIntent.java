@@ -27,14 +27,17 @@ public class SelectCategoryIntent implements RequestHandler {
         Request request = handlerInput.getRequestEnvelope().getRequest();
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Category").getValue();
 
-        String reply = createChangeMessage(answer);
+
+        String reply = generateReply(answer);
+
+
         return handlerInput.getResponseBuilder()
                 .withSpeech(reply)
                 .withShouldEndSession(false)
                 .build();
     }
 
-    public String createChangeMessage(String answer) {
+    public String generateReply(String answer) {
         boolean noMatchingCategory = false;
 
         try{

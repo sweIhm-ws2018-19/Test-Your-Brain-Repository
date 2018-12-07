@@ -29,7 +29,7 @@ public class InsertCategory implements RequestHandler {
     public Optional<Response> handle(HandlerInput handlerInput) {
         Request request = handlerInput.getRequestEnvelope().getRequest();
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Category").getValue();
-        String optionalMessage = createInsertMessage(answer);
+        String optionalMessage = generateReply(answer);
         String debugInformation = "";
         if (GameLogic.DEBUGMODE) {
             debugInformation = "Du hast " + answer + " gewaehlt. ";
@@ -41,7 +41,7 @@ public class InsertCategory implements RequestHandler {
                 .build();
     }
 
-    public String createInsertMessage(String answer) {
+    public String generateReply(String answer) {
         boolean noMatchingCategory = false;
 
         try {
@@ -54,7 +54,7 @@ public class InsertCategory implements RequestHandler {
         if (noMatchingCategory) {
             optionalMessage = "Die eingegebene entspricht keiner gueltigen Kategorie.";
         } else {
-            optionalMessage = "Alles klar, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".";
+            optionalMessage = "Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".";
         }
         return optionalMessage;
     }

@@ -32,31 +32,31 @@ public class SelectDifficultyIntentTest {
     public void insert_leicht() {
         SelectDifficultyIntent id = new SelectDifficultyIntent();
         String inputDifficulty = "leicht";
-        String outputMessage = id.createchangeMessage(inputDifficulty);
-        assertEquals(outputMessage, "Du hast die Schwierigkeit auf " + "EASY" + " gewechselt.");
+        String outputMessage = id.generateReply(inputDifficulty);
+        assertEquals(outputMessage, "Du hast die Schwierigkeit auf " + inputDifficulty + " gewechselt.");
     }
 
     @Test
     public void insert_mittel() {
         SelectDifficultyIntent id = new SelectDifficultyIntent();
         String inputDifficulty = "mittel";
-        String outputMessage = id.createchangeMessage(inputDifficulty);
-        assertEquals(outputMessage, "Du hast die Schwierigkeit auf " + "MEDIUM" + " gewechselt.");
+        String outputMessage = id.generateReply(inputDifficulty);
+        assertEquals(outputMessage, "Du hast die Schwierigkeit auf " + inputDifficulty + " gewechselt.");
     }
 
     @Test
     public void insert_schwer() {
         SelectDifficultyIntent id = new SelectDifficultyIntent();
         String inputDifficulty = "schwer";
-        String outputMessage = id.createchangeMessage(inputDifficulty);
-        assertEquals(outputMessage, "Du hast die Schwierigkeit auf " + "HARD" + " gewechselt.");
+        String outputMessage = id.generateReply(inputDifficulty);
+        assertEquals(outputMessage, "Du hast die Schwierigkeit auf " + inputDifficulty + " gewechselt.");
     }
 
     @Test
     public void insert_wrong() {
         SelectDifficultyIntent id = new SelectDifficultyIntent();
         String inputDifficulty = "passt schon";
-        String outputMessage = id.createchangeMessage(inputDifficulty);
+        String outputMessage = id.generateReply(inputDifficulty);
         assertEquals(outputMessage, "Deine Antwort: " + inputDifficulty + " entspricht keinem verfuegbaren Schwierigkeitsgrad.");
     }
     

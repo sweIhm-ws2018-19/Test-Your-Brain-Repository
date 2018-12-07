@@ -27,7 +27,7 @@ public class InsertDifficulty implements RequestHandler {
         Request request = handlerInput.getRequestEnvelope().getRequest();
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Schwierigkeitsgrad").getValue().toLowerCase();
 
-        String reply = createReplyMessage(answer);
+        String reply = generateReply(answer);
 
         return handlerInput.getResponseBuilder()
                 .withSpeech(reply)
@@ -35,7 +35,7 @@ public class InsertDifficulty implements RequestHandler {
                 .build();
     }
 
-    public String createReplyMessage(String answer) {
+    public String generateReply(String answer) {
         boolean noMatchingDifficulty = false;
         try {
             GameLogic.setDifficulty(GameDifficulty.getBySynonym(answer));

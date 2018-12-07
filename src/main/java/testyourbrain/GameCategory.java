@@ -4,5 +4,5 @@ package testyourbrain;
 
 public enum GameCategory {
    
-    POLITIK, GEOGRAFIE, GESCHICHTE, SONSTIGES;
+    POLITIK, GEOGRAPHIE, GESCHICHTE, SONSTIGES;
 }
