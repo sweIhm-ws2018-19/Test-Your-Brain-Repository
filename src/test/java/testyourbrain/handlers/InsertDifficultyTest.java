@@ -64,10 +64,13 @@ public class InsertDifficultyTest {
 
     @Test
     public void insert_wrong() {
+
         InsertDifficulty id = new InsertDifficulty();
         String inputDifficulty = "passt schon";
+
         String outputMessage = id.generateReply(inputDifficulty);
         assertEquals(outputMessage, "Deine Antwort: " + inputDifficulty + " entspricht keinem verfuegbaren Schwierigkeitsgrad.");
+
     }
 
     

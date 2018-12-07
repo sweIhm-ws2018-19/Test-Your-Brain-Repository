@@ -13,13 +13,17 @@
 
 package testyourbrain.handlers;
 
+import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.SessionEndedRequest;
 import testyourbrain.StringContainer;
 
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.amazon.ask.request.Predicates.requestType;
 
@@ -32,6 +36,7 @@ public class SessionEndedRequestHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         String reply = StringContainer.GOOD_BYE_MESSAGE;
+
         // any cleanup logic goes here
         return input.getResponseBuilder().withSpeech(reply)
                 .withSimpleCard("Test your Brain", reply)

@@ -3,6 +3,7 @@ package testyourbrain;
 public class GameLogic {
 
     public static final boolean DEBUGMODE = false;
+
     private static GameDifficulty difficulty;
     private static GameCategory category;
     private static GameState gameState;
