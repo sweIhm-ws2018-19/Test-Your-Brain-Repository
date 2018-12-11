@@ -8,6 +8,7 @@ import testyourbrain.GameLogic;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
+import testyourbrain.GameUtil;
 
 public class NextQuestionIntent implements RequestHandler {
 
@@ -20,11 +21,20 @@ public class NextQuestionIntent implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
-
-        String reply = getQuestionBySelectedCategory();
+        String reply = null;
+        try {
+            GameLogic.setCurrentQuestion(GameUtil.getNextQuestion());//getQuestionBySelectedCategory();
+//            reply = "Current Category: " + GameLogic.getCategory();
+//            reply += "Current Difficulty: " + GameLogic.getDifficulty();
+//            reply += "Current Matching Questions" + GameLogic.getMatchingQuestions().toString();
+//            reply += "Current Question Object: " + GameLogic.getCurrentQuestion();
+//            reply += "All Questions: " + GameLogic.getAllQuestions();
+        } catch (Exception e) {
+            reply += e.getLocalizedMessage() + e.getMessage() + e.getCause() + e.getStackTrace();
+        }
 
         return handlerInput.getResponseBuilder()
-                .withSpeech(reply)
+                .withSpeech(GameLogic.getCurrentQuestion().getQuestion())
                 .withShouldEndSession(false)
                 .build();
     }

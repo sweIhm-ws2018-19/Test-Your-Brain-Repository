@@ -1,64 +1,71 @@
 package testyourbrain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Arrays;
 
 public class Question {
-private final String question;
-private final String thema;
-private final String category;
-private final String hint;
-private final String[] suggestions;
-private final String answer;
-private final int difficulty;
+private String frage;
+private String kategorie;
+private String hinweis;
+private String auswahlmoeglichkeit;
+private String loesung;
+private int schwierigkeit;
+private String themengebiet;
 
-    public Question(String question, String thema, int difficulty, String category, String hint, String suggestions, String answer) {
-        this.question = question;
-        this.thema = thema;
-        this.category = category;
-        this.hint = hint;
-        this.suggestions = suggestions.split(",");
-        this.answer = answer;
-        this.difficulty = difficulty;
+
+    @JsonCreator
+    public Question(@JsonProperty("Frage") String frage,@JsonProperty("Kategorie") String kategorie,@JsonProperty("Hinweis") String hinweis,@JsonProperty("Auswahlmoeglichkeit") String auswahlmoeglichkeit,@JsonProperty("Loesung") String loesung,@JsonProperty("Schwierigkeit") int schwierigkeit,@JsonProperty("Themengebiet") String themengebiet) {
+        this.frage = frage;
+        this.kategorie = kategorie;
+        this.hinweis = hinweis;
+        this.auswahlmoeglichkeit = auswahlmoeglichkeit;
+        this.loesung = loesung;
+        this.schwierigkeit = schwierigkeit;
+        this.themengebiet = themengebiet;
     }
+
+
 
     public String getQuestion() {
-        return question;
+        return frage;
     }
 
-    public String getThema() {
-        return thema;
-    }
 
     public String getCategory() {
-        return category;
+        return kategorie;
     }
 
     public String getHint() {
-        return hint;
+        return hinweis;
     }
 
-    public String[] getSuggestions() {
-        return suggestions;
+    public String getSuggestions() {
+        return auswahlmoeglichkeit;
     }
 
-    public String getAnswer() {
-        return answer;
+    public String getSolution() {
+        return loesung;
     }
 
     public int getDifficulty() {
-        return difficulty;
+        return schwierigkeit;
     }
 
     @Override
     public String toString() {
         return "Question{" +
-                "question='" + question + '\'' +
-                ", thema='" + thema + '\'' +
-                ", category='" + category + '\'' +
-                ", hint='" + hint + '\'' +
-                ", suggestions=" + Arrays.toString(suggestions) +
-                ", answer='" + answer + '\'' +
-                ", difficulty=" + difficulty +
+                "question='" + frage + '\'' +
+                ", category='" + kategorie + '\'' +
+                ", hint='" + hinweis + '\'' +
+                ", suggestions=" + auswahlmoeglichkeit +
+                ", answer='" + loesung + '\'' +
+                ", difficulty=" + schwierigkeit +
                 '}';
     }
+
+    /**
+     * @return the themengebiet
+     */
+
 }

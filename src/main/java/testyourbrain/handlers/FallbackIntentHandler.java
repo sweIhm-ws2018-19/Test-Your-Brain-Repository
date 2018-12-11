@@ -23,6 +23,8 @@ public class FallbackIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         String reply = StringContainer.UNKNOWN_MESSAGE;
+
+        
         return input.getResponseBuilder()
                 .withSpeech(reply)
                 .withSimpleCard("ColorSession", reply)

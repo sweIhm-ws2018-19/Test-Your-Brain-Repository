@@ -23,4 +23,22 @@ public enum GameDifficulty {
     public static GameDifficulty getBySynonym(String in) {
         return synonyms.getOrDefault(in.toLowerCase(),WRONG);
     }
+    
+    public static GameDifficulty getByInteger(int i){
+        if(i < 1 && i > 3){
+            throw new IllegalArgumentException("Invalid difficulty-integer! Must be 1, 2 or 3. Your Input: " + i);
+        }
+        
+        if(i == 1){
+            return EASY;
+        }
+        if(i == 2){
+            return MEDIUM;
+        }
+        if(i == 3){
+            return HARD;
+        }
+        return WRONG;
+    }
+    
 }

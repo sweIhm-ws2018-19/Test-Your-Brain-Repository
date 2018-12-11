@@ -37,8 +37,6 @@ public class CancelandStopIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
         String reply = StringContainer.GOOD_BYE_MESSAGE;
 
-        //reply += GameUtil.getData(input,"regeln");
-        reply += GameUtil.getQuestions(input);
         return input.getResponseBuilder()
                 .withSpeech(reply)
                 .withSimpleCard("Test your Brain", reply)

@@ -27,6 +27,7 @@ import java.util.Optional;
 import static com.amazon.ask.request.Predicates.requestType;
 
 import testyourbrain.GameState;
+import testyourbrain.Question;
 
 public class LaunchRequestHandler implements RequestHandler {
 
@@ -42,11 +43,14 @@ public class LaunchRequestHandler implements RequestHandler {
 
         //set initial Game state!
         GameLogic.setGameState(GameState.RULES);
+        GameLogic.getAllQuestions().addAll(GameUtil.getAllQuestions(input));
         String reply = StringContainer.WELCOME_MESSAGE + StringContainer.SKILL_DESCRIPTION;
 
+        
         if (GameLogic.DEBUGMODE) {
-            GameUtil.saveData(input,"test","Ich habe etwas in die DynamoDB geschrieben");
-            reply += GameUtil.getData(input,"test");
+//            GameUtil.saveData(input,"test","Ich habe etwas in die DynamoDB geschrieben");
+//            reply += GameUtil.getData(input,"test");
+            GameUtil.getMatchingQuestions();
         }
 
 

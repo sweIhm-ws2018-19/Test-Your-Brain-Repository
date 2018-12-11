@@ -43,16 +43,20 @@ public class InsertCategory implements RequestHandler {
 
     public String generateReply(String answer) {
         boolean noMatchingCategory = false;
-
+        String error = null;
         try {
             GameLogic.setCategory(GameCategory.valueOf(answer.toUpperCase()));
         } catch (Exception e) {
             noMatchingCategory = true;
+            error = e.getStackTrace().toString();
+            error += e.getMessage();
+            error += e.getCause();
         }
 
         String optionalMessage = "";
         if (noMatchingCategory) {
-            optionalMessage = "Die eingegebene entspricht keiner gueltigen Kategorie.";
+            optionalMessage = "Die eingegebene entspricht keiner gueltigen Kategorie." + error;
+            
         } else {
             optionalMessage = "Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".";
         }
