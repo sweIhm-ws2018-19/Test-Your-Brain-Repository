@@ -4,6 +4,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import testyourbrain.GameLogic;
+import testyourbrain.GameState;
 
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ public class NextQuestionIntent implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
-
+        GameLogic.setGameState(GameState.GAME);
         String reply = getQuestionBySelectedCategory();
 
         return handlerInput.getResponseBuilder()

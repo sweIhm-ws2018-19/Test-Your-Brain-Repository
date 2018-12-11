@@ -13,13 +13,14 @@ import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 import testyourbrain.GameCategory;
+import testyourbrain.GameState;
 
 public class SelectCategoryIntent implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         //true wenn Richtige Eingabe gemacht wurde UND die Kategorie noch nicht gesetzt wurde.
-        return handlerInput.matches(intentName("SelectCategoryIntent"));
+        return handlerInput.matches(intentName("SelectCategoryIntent")) && GameLogic.getGameState() != GameState.GAME;
     }
 
     @Override

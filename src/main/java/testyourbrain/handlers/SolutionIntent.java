@@ -5,8 +5,9 @@ import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
+import com.amazon.ask.model.Slot;
 import testyourbrain.GameLogic;
-
+import testyourbrain.GameState;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
@@ -16,16 +17,24 @@ public class SolutionIntent implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         //true wenn Richtige Eingabe gemacht wurde UND die Kategorie noch nicht gesetzt wurde.
-        return handlerInput.matches(intentName("SolutionIntent"));
+        System.out.println("canHandle of Solution Intent, GameState: " + GameLogic.getGameState());
+        return handlerInput.matches(intentName("SolutionIntent")) || GameLogic.getGameState() == GameState.GAME;
 
     }
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
         Request request = handlerInput.getRequestEnvelope().getRequest();
-        String answer = ((IntentRequest) request).getIntent().getSlots().get("Solution").getValue().toLowerCase();
+        //get Key
+        Optional<String > key = ((IntentRequest) request).getIntent().getSlots().keySet().stream().findFirst();
+        //get Slot of Key
+        Slot solutionSlot = ((IntentRequest) request).getIntent().getSlots().get(key.get());
+        String answer = "";
+        if (solutionSlot != null) {
+            answer = solutionSlot.getValue().toLowerCase();
+        }
         String reply = checkAnswerByCategory(answer);
-
+        GameLogic.setGameState(GameState.CONFIG);
         return handlerInput.getResponseBuilder()
                 .withSpeech(reply)
                 .withShouldEndSession(false)
@@ -38,29 +47,30 @@ public class SolutionIntent implements RequestHandler {
         switch (GameLogic.getCategory()) {
             case POLITIK:
                 //Wer war vor Angela Merkel Bundeskanzler?
-                if (answer.equals("gerhard schröder")) {
+                if (answer.equals("gerhard schroeder")) {
                     reply = right;
                 }
                 break;
             case GEOGRAPHIE:
-                //Welcher ist der höchste Berg Deutschlands?
+                //Welcher ist der hoechste Berg Deutschlands?
                 if (answer.equals("zugspitze")) {
                     reply = right;
                 }
                 break;
             case GESCHICHTE:
-                //Wie nennt man ein männliches Schaf?
+                //Wie nennt man ein maennliches Schaf?
                 if (answer.equals("otto von bismark") || answer.equals("otto von bismarck")) {
                     reply = right;
                 }
                 break;
             case SONSTIGES:
-                //Welches Kleidungsstück kaufen deutsche Frauen ihren Ehemännern am Liebsten?
+                //Welches Kleidungsstueck kaufen deutsche Frauen ihren Ehemaennern am Liebsten?
                 if (answer.equals("hemden")) {
                     reply = right;
                 }
                 break;
             default:
+                System.out.println("Game Category is: " + GameLogic.getCategory());
                 reply = "Falsch";
                 break;
 
