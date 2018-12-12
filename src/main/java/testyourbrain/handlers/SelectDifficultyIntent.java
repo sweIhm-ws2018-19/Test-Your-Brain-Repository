@@ -15,12 +15,13 @@ import java.util.Optional;
 
 import testyourbrain.GameDifficulty;
 import testyourbrain.GameLogic;
+import testyourbrain.GameState;
 
 public class SelectDifficultyIntent implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         //true wenn Richtige Eingabe gemacht wurde UND die Kategorie noch nicht gesetzt wurde.
-        return handlerInput.matches(intentName("SelectDifficultyIntent"));
+        return handlerInput.matches(intentName("SelectDifficultyIntent")) && GameLogic.getGameState() != GameState.GAME;
     }
 
     @Override

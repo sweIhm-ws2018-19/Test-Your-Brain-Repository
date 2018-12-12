@@ -15,15 +15,29 @@
  */
 package testyourbrain.handlers;
 
+import com.amazon.ask.attributes.AttributesManager;
+import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import testyourbrain.GameLogic;
+import testyourbrain.GameState;
+
+import java.util.function.Predicate;
+
+import static com.amazon.ask.request.Predicates.intentName;
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 /**
  *
  * @author wiesbob
  */
 public class InsertCategoryTest {
-    
+    InsertCategory insertCategoryHandler;
+
     public InsertCategoryTest() {
     }
     
@@ -118,5 +132,29 @@ public class InsertCategoryTest {
         assertEquals("Ok, es kann losgehen. Wenn du eine neue Frage gestellt haben moechtest sage \"naechste Frage\".", outputMessage);
     }
 
+    @Before
+    public void setup() {
+        insertCategoryHandler = new InsertCategory();
+    }
+
+    @Test
+    public void test_InsertCategory_canHandle(){
+        HandlerInput handlerInput = Mockito.mock(HandlerInput.class);
+
+        GameLogic.setGameState(GameState.CONFIG);
+        handlerInput.matches(intentName("InsertCategory"));
+        when(handlerInput.matches(any())).thenReturn(true);
+        assertTrue(insertCategoryHandler.canHandle(handlerInput));
+    }
+
+    @Test
+    public void test_InsertCategory_canHandle_cantBecauseOfState(){
+        HandlerInput handlerInput = Mockito.mock(HandlerInput.class);
+
+        GameLogic.setGameState(GameState.RULES);
+        handlerInput.matches(intentName("InsertCategory"));
+        when(handlerInput.matches(any())).thenReturn(false);
+        assertFalse(insertCategoryHandler.canHandle(handlerInput));
+    }
     
 }

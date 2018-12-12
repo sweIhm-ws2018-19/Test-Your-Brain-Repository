@@ -3,6 +3,8 @@ package testyourbrain.handlers;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import testyourbrain.GameLogic;
+import testyourbrain.GameState;
 import testyourbrain.StringContainer;
 
 import java.util.Optional;
@@ -17,18 +19,20 @@ public class FallbackIntentHandler implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.FallbackIntent"));
+        System.out.println("canHandle of FallbackIntentHandler " + GameLogic.getGameState());
+        return input.matches(intentName("AMAZON.FallbackIntent")) /*|| GameLogic.getGameState() == GameState.GAME*/;
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String reply = StringContainer.UNKNOWN_MESSAGE;
+        String reply;
+        reply = StringContainer.UNKNOWN_MESSAGE;
 
-        
+
         return input.getResponseBuilder()
                 .withSpeech(reply)
                 .withSimpleCard("ColorSession", reply)
-                .withReprompt(reply)
+                //.withReprompt(reply)
                 .build();
     }
 
