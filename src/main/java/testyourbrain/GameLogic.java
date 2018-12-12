@@ -1,6 +1,7 @@
 package testyourbrain;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -18,6 +19,7 @@ public class GameLogic {
     private static void updateMatchingQuestions() {
         if (getCategory() != null && getDifficulty() != null && !getAllQuestions().isEmpty()) {
             getMatchingQuestions().addAll(GameUtil.getMatchingQuestions());
+            System.out.println("Es gibt nun : " + matchingQuestions.size() + " fragen in der Kategorie: " + category + " und in der Schwierigkeit: " + difficulty);
         }
 
     }

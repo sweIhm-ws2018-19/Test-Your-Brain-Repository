@@ -19,7 +19,6 @@ public class FallbackIntentHandler implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        System.out.println("canHandle of FallbackIntentHandler " + GameLogic.getGameState());
         return input.matches(intentName("AMAZON.FallbackIntent")) /*|| GameLogic.getGameState() == GameState.GAME*/;
     }
 

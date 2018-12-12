@@ -8,6 +8,7 @@ import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
 import testyourbrain.GameLogic;
 import testyourbrain.GameState;
+
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
@@ -16,8 +17,10 @@ public class SolutionIntent implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
-        //true wenn Richtige Eingabe gemacht wurde UND die Kategorie noch nicht gesetzt wurde.
-        System.out.println("canHandle of Solution Intent, GameState: " + GameLogic.getGameState());
+        //catch Get Hints...
+        //catch Cancel Or Stop...
+        //catch Help...
+        //... intentHandler
         return handlerInput.matches(intentName("SolutionIntent")) || GameLogic.getGameState() == GameState.GAME;
 
     }
@@ -26,19 +29,37 @@ public class SolutionIntent implements RequestHandler {
     public Optional<Response> handle(HandlerInput handlerInput) {
         Request request = handlerInput.getRequestEnvelope().getRequest();
         //get Key
-        Optional<String > key = ((IntentRequest) request).getIntent().getSlots().keySet().stream().findFirst();
+        Optional<String> key = ((IntentRequest) request).getIntent().getSlots().keySet().stream().findFirst();
         //get Slot of Key
         Slot solutionSlot = ((IntentRequest) request).getIntent().getSlots().get(key.get());
         String answer = "";
         if (solutionSlot != null) {
             answer = solutionSlot.getValue().toLowerCase();
         }
-        String reply = checkAnswerByCategory(answer);
+
+        String reply = checkAnswer(answer);
         GameLogic.setGameState(GameState.CONFIG);
         return handlerInput.getResponseBuilder()
                 .withSpeech(reply)
                 .withShouldEndSession(false)
                 .build();
+    }
+
+    private String checkAnswer(String answer) {
+        boolean result = false;
+        String solution = GameLogic.getCurrentQuestion().getSolution();
+        System.out.println("Compare " + answer + " with the right answers: " + solution);
+        for (String sutableOption : solution.split(",")) {
+            if (sutableOption.equalsIgnoreCase(answer)) {
+                result = true;
+            }
+            System.out.println("compare " + answer + " with " + sutableOption);
+        }
+
+        String returningString = "Die gewaehlte Antwort " + answer + " ist " + (result ? "richtig" : "falsch");
+        if (!result)
+            returningString += " Die Richtige Antwort waere " + solution.replace(","," oder ") + " gewesen.";
+        return returningString;
     }
 
     private String checkAnswerByCategory(String answer) {

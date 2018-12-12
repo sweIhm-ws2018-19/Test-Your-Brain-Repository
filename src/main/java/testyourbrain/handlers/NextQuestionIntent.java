@@ -9,7 +9,9 @@ import testyourbrain.GameState;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
+
 import testyourbrain.GameUtil;
+import testyourbrain.Question;
 
 public class NextQuestionIntent implements RequestHandler {
 
@@ -34,9 +36,14 @@ public class NextQuestionIntent implements RequestHandler {
         } catch (Exception e) {
             reply += e.getLocalizedMessage() + e.getMessage() + e.getCause() + e.getStackTrace();
         }
+        Question currentQuestion = GameLogic.getCurrentQuestion();
+        if (currentQuestion != null)
+            reply = currentQuestion.getQuestion();
+        else
+            reply = "Es gibt keine Fragen mehr";
 
         return handlerInput.getResponseBuilder()
-                .withSpeech(GameLogic.getCurrentQuestion().getQuestion())
+                .withSpeech(reply)
                 .withShouldEndSession(false)
                 .build();
     }
