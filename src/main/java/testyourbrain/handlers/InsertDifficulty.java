@@ -15,19 +15,30 @@ import testyourbrain.GameDifficulty;
 import testyourbrain.GameState;
 
 public class InsertDifficulty implements RequestHandler {
+
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         //true wenn Richtige Eingabe gemacht wurde UND die Schwierigkeit noch nicht gesetzt wurde.
-        return handlerInput.matches(intentName("InsertDifficulty")) && GameLogic.getGameState() == GameState.CONFIG;
+        return handlerInput.matches(intentName("InsertDifficulty"));
 
     }
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
+        if (GameLogic.getGameState() == GameState.ANSWER) {
+            return new SolutionIntent().handle(handlerInput);
+        }
+        
+        
+        
         Request request = handlerInput.getRequestEnvelope().getRequest();
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Schwierigkeitsgrad").getValue().toLowerCase();
 
         String reply = generateReply(answer);
+
+        if (GameLogic.getCategory() != null) {
+            GameLogic.setGameState(GameState.GAME);
+        }
 
         return handlerInput.getResponseBuilder()
                 .withSpeech(reply)

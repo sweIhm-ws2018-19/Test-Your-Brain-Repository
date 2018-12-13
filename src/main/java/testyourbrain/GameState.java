@@ -2,5 +2,5 @@ package testyourbrain;
 
 
 public enum GameState {
-    RULES, CONFIG, GAME;
+    RULES, CONFIG, GAME, ANSWER;
 }

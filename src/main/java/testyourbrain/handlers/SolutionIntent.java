@@ -2,6 +2,7 @@ package testyourbrain.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
+import com.amazon.ask.model.Intent;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
@@ -21,26 +22,47 @@ public class SolutionIntent implements RequestHandler {
         //catch Cancel Or Stop...
         //catch Help...
         //... intentHandler
-        return handlerInput.matches(intentName("SolutionIntent")) || GameLogic.getGameState() == GameState.GAME;
+        return handlerInput.matches(intentName("SolutionIntent"));
 
     }
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
+        String response = "Solution Intent triggered. Eventual Exception: ";
+        String triggeredIntentStr = "";
+        try{
         Request request = handlerInput.getRequestEnvelope().getRequest();
-        //get Key
-        Optional<String> key = ((IntentRequest) request).getIntent().getSlots().keySet().stream().findFirst();
-        //get Slot of Key
-        Slot solutionSlot = ((IntentRequest) request).getIntent().getSlots().get(key.get());
-        String answer = "";
-        if (solutionSlot != null) {
-            answer = solutionSlot.getValue().toLowerCase();
+        Intent triggeredIntent = ((IntentRequest) request).getIntent();
+        triggeredIntentStr = triggeredIntent.getName();
+        if (triggeredIntent.getName().equals("AMAZON.FallbackIntent")) {
+            return handlerInput.getResponseBuilder()
+                    .withSpeech(" FallBackIntent Triggered. Deine Antwort war leider falsch. Richtig gewesen wäre: " + GameLogic.getCurrentQuestion().getSolution().replace(",", " oder "))
+                    .withShouldEndSession(false)
+                    .build();
         }
-
-        String reply = checkAnswer(answer);
-        GameLogic.setGameState(GameState.CONFIG);
+                
+        if (triggeredIntent.getName().equals("SolutionIntent")) {
+            String answer = triggeredIntent.getSlots().get("Solution").getValue();
+            if(answer != null){
+                response = checkAnswer(answer);
+            } else {
+                response = "Deine Antwort ist leider falsch. Richtig gewesen wäre: " + GameLogic.getCurrentQuestion().getSolution().replace(",", " oder ");
+            }
+//            System.out.println("sout answer");
+//            return handlerInput.getResponseBuilder()
+//                    .withSpeech("SolutionIntent:" + response)
+//                    .withShouldEndSession(false)
+//                    .build();
+        }
+        
+        
+        } catch(Exception e){
+            response += e.getLocalizedMessage() + "Exception" + e.getMessage() + e.getCause() + e.getStackTrace();
+        }
+        //response += "trigger: " + triggeredIntentStr + "response: " + response;
+        GameLogic.setGameState(GameState.GAME);
         return handlerInput.getResponseBuilder()
-                .withSpeech(reply)
+                .withSpeech(response)
                 .withShouldEndSession(false)
                 .build();
     }
@@ -57,45 +79,9 @@ public class SolutionIntent implements RequestHandler {
         }
 
         String returningString = "Die gewaehlte Antwort " + answer + " ist " + (result ? "richtig" : "falsch");
-        if (!result)
-            returningString += " Die Richtige Antwort waere " + solution.replace(","," oder ") + " gewesen.";
-        return returningString;
-    }
-
-    private String checkAnswerByCategory(String answer) {
-        String reply = "Falsch";
-        final String right = "Richtig";
-        switch (GameLogic.getCategory()) {
-            case POLITIK:
-                //Wer war vor Angela Merkel Bundeskanzler?
-                if (answer.equals("gerhard schroeder")) {
-                    reply = right;
-                }
-                break;
-            case GEOGRAPHIE:
-                //Welcher ist der hoechste Berg Deutschlands?
-                if (answer.equals("zugspitze")) {
-                    reply = right;
-                }
-                break;
-            case GESCHICHTE:
-                //Wie nennt man ein maennliches Schaf?
-                if (answer.equals("otto von bismark") || answer.equals("otto von bismarck")) {
-                    reply = right;
-                }
-                break;
-            case SONSTIGES:
-                //Welches Kleidungsstueck kaufen deutsche Frauen ihren Ehemaennern am Liebsten?
-                if (answer.equals("hemden")) {
-                    reply = right;
-                }
-                break;
-            default:
-                System.out.println("Game Category is: " + GameLogic.getCategory());
-                reply = "Falsch";
-                break;
-
+        if (!result) {
+            returningString += " Die Richtige Antwort waere " + solution.replace(",", " oder ") + " gewesen.";
         }
-        return "Deine Antwort: " + answer + " ist " + reply + ".";
+        return returningString;
     }
 }

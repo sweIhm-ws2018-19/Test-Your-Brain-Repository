@@ -20,7 +20,7 @@ public class SelectCategoryIntent implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         //true wenn Richtige Eingabe gemacht wurde UND die Kategorie noch nicht gesetzt wurde.
-        return handlerInput.matches(intentName("SelectCategoryIntent")) && GameLogic.getGameState() != GameState.GAME;
+        return handlerInput.matches(intentName("SelectCategoryIntent"));
     }
 
     @Override

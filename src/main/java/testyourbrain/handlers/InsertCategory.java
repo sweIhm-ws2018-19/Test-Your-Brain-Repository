@@ -21,12 +21,18 @@ public class InsertCategory implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         //true wenn Richtige Eingabe gemacht wurde UND die Kategorie noch nicht gesetzt wurde.
-        return handlerInput.matches(intentName("InsertCategory")) && GameLogic.getGameState() == GameState.CONFIG;
+        return handlerInput.matches(intentName("InsertCategory"));
 
     }
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
+        if(GameLogic.getGameState() == GameState.ANSWER){
+            return new SolutionIntent().handle(handlerInput);
+        }
+        
+        
+        
         Request request = handlerInput.getRequestEnvelope().getRequest();
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Category").getValue();
         String optionalMessage = generateReply(answer);
@@ -34,6 +40,12 @@ public class InsertCategory implements RequestHandler {
         if (GameLogic.DEBUGMODE) {
             debugInformation = "Du hast " + answer + " gewaehlt. ";
         }
+        
+        if(GameLogic.getDifficulty() != null){
+            GameLogic.setGameState(GameState.GAME);
+        }
+        
+        
         String reply = debugInformation + optionalMessage;
         return handlerInput.getResponseBuilder()
                 .withSpeech(reply)

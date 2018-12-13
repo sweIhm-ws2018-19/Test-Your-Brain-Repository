@@ -25,14 +25,14 @@ public class NextQuestionIntent implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
         String reply = null;
-        GameLogic.setGameState(GameState.GAME);
+        GameLogic.setGameState(GameState.ANSWER);
         try {
             GameLogic.setCurrentQuestion(GameUtil.getNextQuestion());//getQuestionBySelectedCategory();
 //            reply = "Current Category: " + GameLogic.getCategory();
 //            reply += "Current Difficulty: " + GameLogic.getDifficulty();
 //            reply += "Current Matching Questions" + GameLogic.getMatchingQuestions().toString();
 //            reply += "Current Question Object: " + GameLogic.getCurrentQuestion();
-//            reply += "All Questions: " + GameLogic.getAllQuestions();
+           // reply += "All Questions: " + GameLogic.getAllQuestions();
         } catch (Exception e) {
             reply += e.getLocalizedMessage() + e.getMessage() + e.getCause() + e.getStackTrace();
         }
@@ -40,7 +40,7 @@ public class NextQuestionIntent implements RequestHandler {
         if (currentQuestion != null)
             reply = currentQuestion.getQuestion();
         else
-            reply = "Es gibt keine Fragen mehr";
+            reply = "Leider sind für die aktuellen Einstellungen keine weiteren Fragen verfügbar. Um die Einstellungen zu wechseln sage zum Beispiel \" Wechsele Schwierigkeit zu schwer\" . ";
 
         return handlerInput.getResponseBuilder()
                 .withSpeech(reply)
