@@ -101,10 +101,7 @@
               "type": "Solution"
             }
           ],
-          "samples": [
-            "{Solution}",
-            "antwort {Solution}"
-          ]
+          "samples": []
         },
         {
           "name": "RulesIntent",
@@ -117,6 +114,22 @@
           "samples": [
             "{ShowRules}"
           ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "RepeatQuestionIntent",
+          "slots": [],
+          "samples": [
+            "was",
+            "noch mal",
+            "wiederholung bitte",
+            "Wiederholung",
+            "Wiederhole",
+            "Wiederhole die Frage"
+          ]
         }
       ],
       "types": [
@@ -125,22 +138,22 @@
           "values": [
             {
               "name": {
-                "value": "Sonstiges"
+                "value": "sonstiges"
               }
             },
             {
               "name": {
-                "value": "Politik"
+                "value": "geographie"
               }
             },
             {
               "name": {
-                "value": "Geschichte"
+                "value": "politik"
               }
             },
             {
               "name": {
-                "value": "Geografie"
+                "value": "geschichte"
               }
             }
           ]
@@ -179,6 +192,16 @@
         {
           "name": "Solution",
           "values": [
+            {
+              "name": {
+                "value": "otto von bismarck"
+              }
+            },
+            {
+              "name": {
+                "value": "otto von bismark"
+              }
+            },
             {
               "name": {
                 "value": "gerhard schröder"
@@ -222,6 +245,171 @@
           ]
         }
       ]
-    }
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "SelectDifficultyIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "Schwierigkeitsgrad",
+              "type": "Schwierigkeitsgrade",
+              "confirmationRequired": false,
+              "elicitationRequired": false,
+              "prompts": {},
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.1172933450413.1456709498670.1527604022847"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "SelectCategoryIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "Category",
+              "type": "Kategorien",
+              "confirmationRequired": false,
+              "elicitationRequired": false,
+              "prompts": {},
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.752799755210.1536209404621.1205617391714"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "InsertDifficulty",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "Schwierigkeitsgrad",
+              "type": "Schwierigkeitsgrade",
+              "confirmationRequired": false,
+              "elicitationRequired": false,
+              "prompts": {},
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.961355402238.64108002593.77561978011"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "InsertCategory",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "Category",
+              "type": "Kategorien",
+              "confirmationRequired": false,
+              "elicitationRequired": false,
+              "prompts": {},
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.995277991861.702245281282.616471569334"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "RulesIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "ShowRules",
+              "type": "ShowRules",
+              "confirmationRequired": false,
+              "elicitationRequired": false,
+              "prompts": {},
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.1444177752885.262287461025.1410746789362"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "SolutionIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "Solution",
+              "type": "Solution",
+              "confirmationRequired": false,
+              "elicitationRequired": false,
+              "prompts": {}
+            }
+          ]
+        }
+      ]
+    },
+    "prompts": [
+      {
+        "id": "Slot.Validation.1172933450413.1456709498670.1527604022847",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "try again Schwiergkeitsgrad"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.752799755210.1536209404621.1205617391714",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "try again Category"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.961355402238.64108002593.77561978011",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "try again Schwiergkeitsgrad"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.995277991861.702245281282.616471569334",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "try again Category"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.1444177752885.262287461025.1410746789362",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "try again showrules"
+          }
+        ]
+      }
+    ]
   }
 }

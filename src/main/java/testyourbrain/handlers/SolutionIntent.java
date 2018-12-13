@@ -14,9 +14,22 @@ import java.util.Optional;
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class SolutionIntent implements RequestHandler {
+    String[] repeatUtterances = new String[]{"was",
+        "noch mal",
+        "wiederholung bitte",
+        "Wiederholung",
+        "Wiederhole",
+        "Wiederhole die Frage"};
 
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
+        //String answer = getAnswer(handlerInput);
+        //System.out.println("Der SolutionIntent wurde mit der Eingabe " + answer + " aufgerufen \n wir befinden uns im Gamestate: " + GameLogic.getGameState());
+
+
+
+            //solutionSlot.getValue()
+
         //catch Get Hints...
         //catch Cancel Or Stop...
         //catch Help...
@@ -27,6 +40,34 @@ public class SolutionIntent implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
+        String answer = getAnswer(handlerInput);
+        String reply = "";
+        int isSolutionInput = 0;
+        for(String repeatQuestionUtterance : repeatUtterances){
+            if(answer.equalsIgnoreCase(repeatQuestionUtterance))
+                isSolutionInput = 1;
+        }
+        if(answer.equalsIgnoreCase("hinweis")){
+            isSolutionInput=2;
+        }
+
+        System.out.println("SolutionInput is: " + isSolutionInput);
+        if(isSolutionInput==0){
+            reply = checkAnswer(answer);
+            GameLogic.setGameState(GameState.CONFIG);
+        }else if(isSolutionInput==1){
+            reply = GameLogic.getCurrentQuestion().getQuestion();
+        }else{
+            reply = GameLogic.getCurrentQuestion().getHint();
+        }
+
+        return handlerInput.getResponseBuilder()
+                .withSpeech(reply)
+                .withShouldEndSession(false)
+                .build();
+    }
+
+    private String getAnswer(HandlerInput handlerInput) {
         Request request = handlerInput.getRequestEnvelope().getRequest();
         //get Key
         Optional<String> key = ((IntentRequest) request).getIntent().getSlots().keySet().stream().findFirst();
@@ -36,13 +77,7 @@ public class SolutionIntent implements RequestHandler {
         if (solutionSlot != null) {
             answer = solutionSlot.getValue().toLowerCase();
         }
-
-        String reply = checkAnswer(answer);
-        GameLogic.setGameState(GameState.CONFIG);
-        return handlerInput.getResponseBuilder()
-                .withSpeech(reply)
-                .withShouldEndSession(false)
-                .build();
+        return answer;
     }
 
     private String checkAnswer(String answer) {

@@ -1,22 +1,10 @@
 
 package testyourbrain;
 
-import testyourbrain.handlers.SolutionIntent;
-import testyourbrain.handlers.InsertCategory;
-import testyourbrain.handlers.SelectDifficultyIntent;
-import testyourbrain.handlers.InsertDifficulty;
-import testyourbrain.handlers.StartGameIntent;
-import testyourbrain.handlers.SessionEndedRequestHandler;
-import testyourbrain.handlers.SelectCategoryIntent;
-import testyourbrain.handlers.RulesIntent;
-import testyourbrain.handlers.NextQuestionIntent;
-import testyourbrain.handlers.HelpIntentHandler;
-import testyourbrain.handlers.LaunchRequestHandler;
-import testyourbrain.handlers.CancelandStopIntentHandler;
+import testyourbrain.handlers.*;
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
-import testyourbrain.handlers.FallbackIntentHandler;
 
 public class TestYourBrainIntentHandler extends SkillStreamHandler {
 
@@ -35,7 +23,9 @@ public class TestYourBrainIntentHandler extends SkillStreamHandler {
                         new InsertCategory(),
                         new SolutionIntent(),
                         new RulesIntent(),
-                        new NextQuestionIntent())
+                        new NextQuestionIntent(),
+                        new RepeatQuestionIntent()
+                        )
                 .withTableName("testYourBrainData")
                 .withAutoCreateTable(false)
                 // Add your skill id below
