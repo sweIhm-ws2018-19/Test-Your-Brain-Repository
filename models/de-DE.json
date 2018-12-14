@@ -1,227 +1,795 @@
 {
-  "interactionModel": {
-    "languageModel": {
-      "invocationName": "test your brain",
-      "intents": [
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": []
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "test your brain",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "was muss ich tun"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": [
+                        "tschüss",
+                        "Schließe Test your Brain",
+                        "Beende Test your Brain"
+                    ]
+                },
+                {
+                    "name": "SelectDifficultyIntent",
+                    "slots": [
+                        {
+                            "name": "Schwierigkeitsgrad",
+                            "type": "Schwierigkeitsgrade"
+                        }
+                    ],
+                    "samples": [
+                        "Wechsele Schwierigkeitsstufe auf {Schwierigkeitsgrad}",
+                        "Wechsele Schwierigkeitsgrad auf {Schwierigkeitsgrad}",
+                        "Wechsele Schwierigkeitsstufe zu {Schwierigkeitsgrad}",
+                        "Wechsele Schwierigkeitsgrad zu {Schwierigkeitsgrad}"
+                    ]
+                },
+                {
+                    "name": "SelectCategoryIntent",
+                    "slots": [
+                        {
+                            "name": "Category",
+                            "type": "Kategorien"
+                        }
+                    ],
+                    "samples": [
+                        "Wechsele Kategorie zu {Category}"
+                    ]
+                },
+                {
+                    "name": "StartGameIntent",
+                    "slots": [],
+                    "samples": [
+                        "los gehts",
+                        "start",
+                        "lass uns Anfangen"
+                    ]
+                },
+                {
+                    "name": "InsertDifficulty",
+                    "slots": [
+                        {
+                            "name": "Schwierigkeitsgrad",
+                            "type": "Schwierigkeitsgrade"
+                        }
+                    ],
+                    "samples": [
+                        "{Schwierigkeitsgrad}"
+                    ]
+                },
+                {
+                    "name": "InsertCategory",
+                    "slots": [
+                        {
+                            "name": "Category",
+                            "type": "Kategorien"
+                        }
+                    ],
+                    "samples": [
+                        "{Category}"
+                    ]
+                },
+                {
+                    "name": "NextQuestionIntent",
+                    "slots": [],
+                    "samples": [
+                        "stelle mir die nächste Frage",
+                        "nächste Frage"
+                    ]
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "SolutionIntent",
+                    "slots": [
+                        {
+                            "name": "Solution",
+                            "type": "Solution"
+                        },
+                        {
+                            "name": "Namen",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "Literale",
+                            "type": "AMAZON.Language"
+                        },
+                        {
+                            "name": "LiteraleA",
+                            "type": "AMAZON.Person"
+                        },
+                        {
+                            "name": "LiteraleB",
+                            "type": "AMAZON.Country"
+                        }
+                    ],
+                    "samples": [
+                        "{LiteraleB}",
+                        "{LiteraleA}",
+                        "{Literale}",
+                        "{Namen}",
+                        "{Solution}"
+                    ]
+                },
+                {
+                    "name": "RulesIntent",
+                    "slots": [
+                        {
+                            "name": "ShowRules",
+                            "type": "ShowRules"
+                        }
+                    ],
+                    "samples": [
+                        "{ShowRules}"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "RepeatQuestionIntent",
+                    "slots": [],
+                    "samples": [
+                        "was",
+                        "noch mal",
+                        "wiederholung bitte",
+                        "Wiederholung",
+                        "Wiederhole",
+                        "Wiederhole die Frage"
+                    ]
+                },
+                {
+                    "name": "RepeatQuestion",
+                    "slots": [],
+                    "samples": [
+                        "bitte die frage wiederholen",
+                        "wiederhole die frage",
+                        "wiederholen",
+                        "wiederhole",
+                        "nochmal",
+                        "wie",
+                        "was"
+                    ]
+                },
+                {
+                    "name": "HelpMeIntent",
+                    "slots": [],
+                    "samples": [
+                        "hilf mir",
+                        "hilfe",
+                        "gib mir einen tipp",
+                        "tipp"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "Kategorien",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "sonstiges"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "geographie"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "politik"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "geschichte"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Schwierigkeitsgrade",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Schwer",
+                                "synonyms": [
+                                    "Sehr Schwer",
+                                    "Hart"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Mittel",
+                                "synonyms": [
+                                    "Normal"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Leicht",
+                                "synonyms": [
+                                    "Einfach",
+                                    "Easy"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Solution",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "bismarck"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "80 Mio",
+                                "synonyms": [
+                                    "achzig millionen",
+                                    "80000000"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "otto von bismarck"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "otto von bismark"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "gerhard schröder"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "moldau"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "hemden"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "widder"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "zugspitze"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Bären",
+                                "synonyms": [
+                                    "Grizzlybären",
+                                    "der Bär"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Der Eiffelturm",
+                                "synonyms": [
+                                    "Eiffelturm"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Die letzte Ziffer muss eine 5 oder 0 sein",
+                                "synonyms": [
+                                    "5 oder 0"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Die Lärche",
+                                "synonyms": [
+                                    "Lärche",
+                                    "eine Lärche"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Der Koran",
+                                "synonyms": [
+                                    "Koran"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "16",
+                                "synonyms": [
+                                    "sechzehn"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Jesu Auferstehung",
+                                "synonyms": [
+                                    "Auferstehung Jesu"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Pyramide"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Levi Strauss",
+                                "synonyms": [
+                                    "Strauss"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "2",
+                                "synonyms": [
+                                    "zwei"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "München",
+                                "synonyms": [
+                                    "Minga"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "2002"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "1945"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "London"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Frankreich und Großbritannien"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Ein Wettlauf über 42",
+                                "synonyms": [
+                                    "195 Kilometer",
+                                    "Wettlauf"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Sauerstoff"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Konrad Adenauer",
+                                "synonyms": [
+                                    "Konrad",
+                                    "Adenauer"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Stier"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Rubel"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Nil"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Vitamin D"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "20"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "George Washington",
+                                "synonyms": [
+                                    "Washington"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Mars"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "1989"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Australien"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Bill Gates",
+                                "synonyms": [
+                                    "Bill",
+                                    "Gates"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Weil er von der Sonne angestrahlt wird"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Eine Wildkatze",
+                                "synonyms": [
+                                    "Die Wildkatze"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Margaret Thatcher",
+                                "synonyms": [
+                                    "Thatcher"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Die Gebrüder Montgolfier"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Der Montblanc",
+                                "synonyms": [
+                                    "Montblanc"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Ural"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Theodor Heuss",
+                                "synonyms": [
+                                    "Theodor",
+                                    "Heuss"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Venus"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Kohlenstoff"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Atlantischer Ozean",
+                                "synonyms": [
+                                    "Atlantik"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Fledermäuse"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "50"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "selbstständig"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Asien"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Demokratie"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Bundesversammlung"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Straßburg"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "New York"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "82 Mio"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Fusion"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Mittelmeer"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Schwarzes Meer"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Schleswig-Holstein"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Louvre"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Boxen"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Südafrika"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Frankfurt"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Faust"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "1914"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "portugiesisch"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ShowRules",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "nein"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "ja"
+                            }
+                        }
+                    ]
+                }
+            ]
         },
-        {
-          "name": "AMAZON.HelpIntent",
-          "samples": [
-            "was muss ich tun"
-          ]
+        "dialog": {
+            "intents": [
+                {
+                    "name": "SelectDifficultyIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "Schwierigkeitsgrad",
+                            "type": "Schwierigkeitsgrade",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                },
+                {
+                    "name": "SelectCategoryIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "Category",
+                            "type": "Kategorien",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                },
+                {
+                    "name": "InsertDifficulty",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "Schwierigkeitsgrad",
+                            "type": "Schwierigkeitsgrade",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                },
+                {
+                    "name": "InsertCategory",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "Category",
+                            "type": "Kategorien",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                },
+                {
+                    "name": "RulesIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "ShowRules",
+                            "type": "ShowRules",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {},
+                            "validations": [
+                                {
+                                    "type": "hasEntityResolutionMatch",
+                                    "prompt": "Slot.Validation.1444177752885.262287461025.1410746789362"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "SolutionIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "Solution",
+                            "type": "Solution",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        },
+                        {
+                            "name": "Namen",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        },
+                        {
+                            "name": "Literale",
+                            "type": "AMAZON.Language",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        },
+                        {
+                            "name": "LiteraleA",
+                            "type": "AMAZON.Person",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        },
+                        {
+                            "name": "LiteraleB",
+                            "type": "AMAZON.Country",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                }
+            ]
         },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": [
-            "tschüss",
-            "Schließe Test your Brain",
-            "Beende Test your Brain"
-          ]
-        },
-        {
-          "name": "SelectDifficultyIntent",
-          "slots": [
+        "prompts": [
             {
-              "name": "Schwierigkeitsgrad",
-              "type": "Schwierigkeitsgrade"
-            }
-          ],
-          "samples": [
-            "Wechsele Schwierigkeitsstufe auf {Schwierigkeitsgrad}",
-            "Wechsele Schwierigkeitsgrad auf {Schwierigkeitsgrad}",
-            "Wechsele Schwierigkeitsstufe zu {Schwierigkeitsgrad}",
-            "Wechsele Schwierigkeitsgrad zu {Schwierigkeitsgrad}"
-          ]
-        },
-        {
-          "name": "SelectCategoryIntent",
-          "slots": [
-            {
-              "name": "Category",
-              "type": "Kategorien"
-            }
-          ],
-          "samples": [
-            "Wechsele Kategorie zu {Category}"
-          ]
-        },
-        {
-          "name": "StartGameIntent",
-          "slots": [],
-          "samples": [
-            "los gehts",
-            "start",
-            "lass uns Anfangen"
-          ]
-        },
-        {
-          "name": "InsertDifficulty",
-          "slots": [
-            {
-              "name": "Schwierigkeitsgrad",
-              "type": "Schwierigkeitsgrade"
-            }
-          ],
-          "samples": [
-            "{Schwierigkeitsgrad}"
-          ]
-        },
-        {
-          "name": "InsertCategory",
-          "slots": [
-            {
-              "name": "Category",
-              "type": "Kategorien"
-            }
-          ],
-          "samples": [
-            "{Category}"
-          ]
-        },
-        {
-          "name": "NextQuestionIntent",
-          "slots": [],
-          "samples": [
-            "stelle mir die nächste Frage",
-            "nächste Frage"
-          ]
-        },
-        {
-          "name": "AMAZON.FallbackIntent",
-          "samples": []
-        },
-        {
-          "name": "SolutionIntent",
-          "slots": [
-            {
-              "name": "Solution",
-              "type": "Solution"
-            }
-          ],
-          "samples": [
-            "{Solution}",
-            "antwort {Solution}"
-          ]
-        },
-        {
-          "name": "RulesIntent",
-          "slots": [
-            {
-              "name": "ShowRules",
-              "type": "ShowRules"
-            }
-          ],
-          "samples": [
-            "{ShowRules}"
-          ]
-        }
-      ],
-      "types": [
-        {
-          "name": "Kategorien",
-          "values": [
-            {
-              "name": {
-                "value": "Sonstiges"
-              }
-            },
-            {
-              "name": {
-                "value": "Politik"
-              }
-            },
-            {
-              "name": {
-                "value": "Geschichte"
-              }
-            },
-            {
-              "name": {
-                "value": "Geografie"
-              }
-            }
-          ]
-        },
-        {
-          "name": "Schwierigkeitsgrade",
-          "values": [
-            {
-              "name": {
-                "value": "Schwer",
-                "synonyms": [
-                  "Sehr Schwer",
-                  "Hart"
+                "id": "Slot.Validation.1444177752885.262287461025.1410746789362",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "try again showrules"
+                    }
                 ]
-              }
-            },
-            {
-              "name": {
-                "value": "Mittel",
-                "synonyms": [
-                  "Normal"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "Leicht",
-                "synonyms": [
-                  "Einfach",
-                  "Easy"
-                ]
-              }
             }
-          ]
-        },
-        {
-          "name": "Solution",
-          "values": [
-            {
-              "name": {
-                "value": "gerhard schröder"
-              }
-            },
-            {
-              "name": {
-                "value": "moldau"
-              }
-            },
-            {
-              "name": {
-                "value": "hemden"
-              }
-            },
-            {
-              "name": {
-                "value": "widder"
-              }
-            },
-            {
-              "name": {
-                "value": "zugspitze"
-              }
-            }
-          ]
-        },
-        {
-          "name": "ShowRules",
-          "values": [
-            {
-              "name": {
-                "value": "nein"
-              }
-            },
-            {
-              "name": {
-                "value": "ja"
-              }
-            }
-          ]
-        }
-      ]
+        ]
     }
-  }
 }
