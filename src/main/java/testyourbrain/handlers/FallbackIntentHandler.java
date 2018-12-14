@@ -27,16 +27,9 @@ public class FallbackIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        if (GameLogic.getGameState() == GameState.ANSWER) {
-            return new SolutionIntent().handle(input);
-        }
-        Request request = input.getRequestEnvelope().getRequest();
-        Intent intent = ((IntentRequest) request).getIntent();
         
         String reply;
         reply = StringContainer.UNKNOWN_MESSAGE;
-        
-        reply = "Bei der Verarbeitung der Anfrage ist leider ein Problem aufgetreten";
 
         return input.getResponseBuilder()
                 .withSpeech(reply)

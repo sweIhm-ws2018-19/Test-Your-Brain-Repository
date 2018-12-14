@@ -27,16 +27,11 @@ public class InsertCategory implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
-        if(GameLogic.getGameState() == GameState.ANSWER){
-            return new SolutionIntent().handle(handlerInput);
-        }
-        
-        
-        
         Request request = handlerInput.getRequestEnvelope().getRequest();
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Category").getValue();
         String optionalMessage = generateReply(answer);
         String debugInformation = "";
+        
         if (GameLogic.DEBUGMODE) {
             debugInformation = "Du hast " + answer + " gewaehlt. ";
         }

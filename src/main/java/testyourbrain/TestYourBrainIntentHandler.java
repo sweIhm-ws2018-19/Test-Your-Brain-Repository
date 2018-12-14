@@ -1,4 +1,3 @@
-
 package testyourbrain;
 
 import testyourbrain.handlers.SolutionIntent;

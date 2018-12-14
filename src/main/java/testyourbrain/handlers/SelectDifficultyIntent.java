@@ -18,6 +18,7 @@ import testyourbrain.GameLogic;
 import testyourbrain.GameState;
 
 public class SelectDifficultyIntent implements RequestHandler {
+
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         //true wenn Richtige Eingabe gemacht wurde UND die Kategorie noch nicht gesetzt wurde.
@@ -26,13 +27,14 @@ public class SelectDifficultyIntent implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
-        Request request = handlerInput.getRequestEnvelope().getRequest();
-        String answer = ((IntentRequest) request).getIntent().getSlots().get("Schwierigkeitsgrad").getValue().toLowerCase();
+        String reply = "Bitte beantworte zunächst die Frage, dann kannst du die Schwierigkeit ändern.";
+        if (GameLogic.getGameState() != GameState.ANSWER) {
 
+            Request request = handlerInput.getRequestEnvelope().getRequest();
+            String answer = ((IntentRequest) request).getIntent().getSlots().get("Schwierigkeitsgrad").getValue().toLowerCase();
 
-        String reply = generateReply(answer);
-
-
+            reply = generateReply(answer);
+        }
         return handlerInput.getResponseBuilder()
                 .withSpeech(reply)
                 .withShouldEndSession(false)

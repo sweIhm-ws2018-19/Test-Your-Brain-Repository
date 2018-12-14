@@ -28,38 +28,17 @@ public class SolutionIntent implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
-        String response = "Solution Intent triggered. Eventual Exception: ";
-        String triggeredIntentStr = "";
-        try{
-        Request request = handlerInput.getRequestEnvelope().getRequest();
-        Intent triggeredIntent = ((IntentRequest) request).getIntent();
-        triggeredIntentStr = triggeredIntent.getName();
-        if (triggeredIntent.getName().equals("AMAZON.FallbackIntent")) {
-            return handlerInput.getResponseBuilder()
-                    .withSpeech(" FallBackIntent Triggered. Deine Antwort war leider falsch. Richtig gewesen wäre: " + GameLogic.getCurrentQuestion().getSolution().replace(",", " oder "))
-                    .withShouldEndSession(false)
-                    .build();
-        }
-                
-        if (triggeredIntent.getName().equals("SolutionIntent")) {
-            String answer = triggeredIntent.getSlots().get("Solution").getValue();
-            if(answer != null){
+        String response = "Wenn du bereits eine Kategorie und eine Schwierigkeitsstufe ausgewählt hast, sage  \"nächste Frage\" um dir eine neue Frage stellen zu lassen.";
+        if (GameLogic.getGameState() == GameState.ANSWER) {
+            try {
+                Request request = handlerInput.getRequestEnvelope().getRequest();
+                String answer = ((IntentRequest) request).getIntent().getSlots().get("Solution").getValue().toLowerCase();
                 response = checkAnswer(answer);
-            } else {
-                response = "Deine Antwort ist leider falsch. Richtig gewesen wäre: " + GameLogic.getCurrentQuestion().getSolution().replace(",", " oder ");
+
+            } catch (Exception e) {
+                response += e.getLocalizedMessage() + "Exception" + e.getMessage() + e.getCause() + e.getStackTrace();
             }
-//            System.out.println("sout answer");
-//            return handlerInput.getResponseBuilder()
-//                    .withSpeech("SolutionIntent:" + response)
-//                    .withShouldEndSession(false)
-//                    .build();
         }
-        
-        
-        } catch(Exception e){
-            response += e.getLocalizedMessage() + "Exception" + e.getMessage() + e.getCause() + e.getStackTrace();
-        }
-        //response += "trigger: " + triggeredIntentStr + "response: " + response;
         GameLogic.setGameState(GameState.GAME);
         return handlerInput.getResponseBuilder()
                 .withSpeech(response)
@@ -72,8 +51,9 @@ public class SolutionIntent implements RequestHandler {
         String solution = GameLogic.getCurrentQuestion().getSolution();
         System.out.println("Compare " + answer + " with the right answers: " + solution);
         for (String sutableOption : solution.split(",")) {
-            if (sutableOption.equalsIgnoreCase(answer)) {
+            if (sutableOption.toLowerCase().equals(answer.toLowerCase())) {
                 result = true;
+                System.out.println("Solution: " + sutableOption.toLowerCase() + " Antwort: " + answer.toLowerCase() + "euqals: " + sutableOption.toLowerCase().equals(answer.toLowerCase()));
             }
             System.out.println("compare " + answer + " with " + sutableOption);
         }

@@ -42,6 +42,7 @@ public class SessionEndedRequestHandler implements RequestHandler {
         // any cleanup logic goes here
         return input.getResponseBuilder().withSpeech(reply)
                 .withSimpleCard("Test your Brain", reply)
+                .withShouldEndSession(true)
                 .build();
     }
 }

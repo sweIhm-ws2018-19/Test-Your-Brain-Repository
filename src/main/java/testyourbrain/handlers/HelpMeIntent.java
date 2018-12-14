@@ -35,7 +35,13 @@ public class HelpMeIntent implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String reply = "Suggestion: " + GameLogic.getCurrentQuestion().getSuggestions() + "Hint: " + GameLogic.getCurrentQuestion().getHint();
+
+        String hint = GameLogic.getCurrentQuestion().getHint();
+        String reply = GameLogic.getCurrentQuestion().getSuggestions();
+
+        if (hint != null && !hint.equals("")) {
+            reply = hint;
+        }
 
         return input.getResponseBuilder()
                 .withSpeech(reply)

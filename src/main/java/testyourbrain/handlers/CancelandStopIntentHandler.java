@@ -42,6 +42,7 @@ public class CancelandStopIntentHandler implements RequestHandler {
         return input.getResponseBuilder()
                 .withSpeech(reply)
                 .withSimpleCard("Test your Brain", reply)
+                .withShouldEndSession(true)
                 .build();
     }
 }
