@@ -49,7 +49,7 @@ public class GameUtil {
     auf Schwierigkeit oder Kategorie.
     Question ersteFrage = getQuestions(inputHandler).stream().filter(question -> question.getDifficulty() == 1).findfirst();
      */
-    public static List<Question> getAllQuestions(HandlerInput input) {
+    public static List<Question> getAllQuestions(HandlerInput input) throws IOException {
         return Arrays.asList(get(input, "fragen", Question[].class).get());
     }
 
@@ -62,13 +62,16 @@ public class GameUtil {
         matching = allQuestions.stream().filter(x -> GameCategory.getByString(x.getCategory())  == GameLogic.getCategory()).
                 filter(x -> GameDifficulty.getByInteger(x.getDifficulty()) == GameLogic.getDifficulty()).
                 collect(Collectors.toList());
+        } else {
+            System.out.println("All Questions is empty");
         }
-        
+        System.out.println("Found Matching Questions: " + matching);
         return matching;
     }
     
     public static Question getNextQuestion(){
         ArrayList<Question> matchingQuestions = GameLogic.getMatchingQuestions();
+        System.out.println("Before: "+ matchingQuestions);
         Question nextQuestion = null;
         
         if(!matchingQuestions.isEmpty()){
@@ -76,7 +79,10 @@ public class GameUtil {
             int randomIndex = randomGen.nextInt(matchingQuestions.size());
             nextQuestion = matchingQuestions.get(randomIndex);
             matchingQuestions.remove(randomIndex);
+        } else{
+            System.out.println("Matchting Questions is empty");
         }
+         System.out.println("After: "+ matchingQuestions);
         return nextQuestion;
     }
 //
@@ -104,13 +110,13 @@ public class GameUtil {
 //
 //    }
 
-    public static <T> Optional<T> get(HandlerInput input, String key, Class<T> clazz) {
+    public static <T> Optional<T> get(HandlerInput input, String key, Class<T> clazz) throws IOException {
         Objects.requireNonNull(clazz, "Class that should be read from source map must not be null!");
 
         // Convert object to desired type
         final Object retVal = input.getAttributesManager().getPersistentAttributes().get(key);
         if (Objects.nonNull(retVal)) {
-            try {
+
                 // Object is String that should be parsed to desired type
                 if (retVal instanceof String && !clazz.equals(String.class)) {
                     final String jsonVal = (String) retVal;
@@ -119,9 +125,6 @@ public class GameUtil {
                 else {
                     return Optional.of(new ObjectMapper().convertValue(retVal, clazz));
                 }
-            } catch (IOException e) {
-                throw new IllegalArgumentException(e);
-            }
         } else {
             return Optional.empty();
         }

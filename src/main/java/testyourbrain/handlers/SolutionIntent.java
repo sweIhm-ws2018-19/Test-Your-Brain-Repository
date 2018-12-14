@@ -2,11 +2,9 @@ package testyourbrain.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.Intent;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
-import com.amazon.ask.model.Slot;
 import testyourbrain.GameLogic;
 import testyourbrain.GameState;
 
@@ -18,10 +16,6 @@ public class SolutionIntent implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
-        //catch Get Hints...
-        //catch Cancel Or Stop...
-        //catch Help...
-        //... intentHandler
         return handlerInput.matches(intentName("SolutionIntent"));
 
     }

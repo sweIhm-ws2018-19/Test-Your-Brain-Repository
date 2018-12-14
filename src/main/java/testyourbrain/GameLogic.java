@@ -18,7 +18,7 @@ public class GameLogic {
 
     private static void updateMatchingQuestions() {
         if (getCategory() != null && getDifficulty() != null && !getAllQuestions().isEmpty()) {
-            getMatchingQuestions().addAll(GameUtil.getMatchingQuestions());
+            setMatchingQuestions(new ArrayList<>(GameUtil.getMatchingQuestions()));
             System.out.println("Es gibt nun : " + matchingQuestions.size() + " fragen in der Kategorie: " + category + " und in der Schwierigkeit: " + difficulty);
         }
 
@@ -48,7 +48,10 @@ public class GameLogic {
     public static ArrayList<Question> getMatchingQuestions() {
         return matchingQuestions;
     }
-
+    
+    public static void setMatchingQuestions(ArrayList<Question> matching) {
+        matchingQuestions = matching;
+    }
     public static void setCategory(GameCategory category) {
         GameLogic.category = category;
         updateMatchingQuestions();
@@ -68,6 +71,15 @@ public class GameLogic {
 
     public static GameState getGameState() {
         return gameState;
+    }
+    
+    public static String getDebugInfo(){
+    return "Difficulty: " + getDifficulty() 
+            + " Category: " + getCategory() 
+            + " GameState: " + getGameState() + "\n"
+            + "AllQuestionAmount: " + getAllQuestions().size()
+            + " MatchingQuestionAmount: " + getMatchingQuestions().size()
+            + " CurrentQuestion: " + getCurrentQuestion();
     }
 
 }

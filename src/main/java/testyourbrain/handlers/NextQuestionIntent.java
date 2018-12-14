@@ -31,13 +31,11 @@ public class NextQuestionIntent implements RequestHandler {
             GameLogic.setGameState(GameState.ANSWER);
             reply = "";
             try {
+                //System.out.println(GameUtil.getNextQuestion());
                 GameLogic.setCurrentQuestion(GameUtil.getNextQuestion());//getQuestionBySelectedCategory();
-//                reply = "Current Category: " + GameLogic.getCategory() + "\n";
-//                reply += "Current Difficulty: " + GameLogic.getDifficulty() + "\n";
-//                reply += "Current Matching Questions" + GameLogic.getMatchingQuestions().toString() + "\n";
-//                reply += "Current Question Object: " + GameLogic.getCurrentQuestion() + "\n";
-                // reply += "All Questions: " + GameLogic.getAllQuestions();
+                System.out.println("Current Quetsion:" + GameLogic.getCurrentQuestion());
             } catch (Exception e) {
+                System.out.println("Exception while setting new question");
                 reply += e.getLocalizedMessage() + e.getMessage() + e.getCause() + e.getStackTrace();
             }
             Question currentQuestion = GameLogic.getCurrentQuestion();

@@ -1,6 +1,5 @@
 package testyourbrain.handlers;
 
-import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.IntentRequest;
@@ -8,9 +7,6 @@ import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
 
 import static com.amazon.ask.request.Predicates.intentName;
-import static com.amazon.ask.request.Predicates.slotValue;
-
-import java.util.Map;
 import java.util.Optional;
 
 import testyourbrain.GameDifficulty;

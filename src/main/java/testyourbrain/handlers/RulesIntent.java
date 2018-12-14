@@ -1,6 +1,5 @@
 package testyourbrain.handlers;
 
-import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.IntentRequest;
@@ -8,13 +7,11 @@ import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
 import testyourbrain.GameLogic;
 
-import java.util.Map;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
 import testyourbrain.GameState;
-import testyourbrain.GameUtil;
 import testyourbrain.StringContainer;
 
 public class RulesIntent implements RequestHandler {
@@ -29,13 +26,6 @@ public class RulesIntent implements RequestHandler {
     public Optional<Response> handle(HandlerInput handlerInput) {
         Request request = handlerInput.getRequestEnvelope().getRequest();
         String answer = ((IntentRequest) request).getIntent().getSlots().get("ShowRules").getValue().toLowerCase();
-//        String debugInformation = "";
-//
-//        if (GameUtil.saveData(handlerInput, "regeln", answer)) {
-//            debugInformation += "in der Dynamo wurde regeln mit dem wert: " + answer + " belegt";
-//        } else {
-//            debugInformation += "speichern in der DB fehlgeschlagen";
-//        }
 
         //ask for Difficulty
         String reply = StringContainer.REQUEST_DIFFICULTY;
@@ -45,11 +35,6 @@ public class RulesIntent implements RequestHandler {
         }
         //set Gamestate to config to enable seting Difficulty and Category
         GameLogic.setGameState(GameState.CONFIG);
-//        if (GameLogic.DEBUGMODE) {
-//            debugInformation += "Der Status der SpielLogic hat sich auf Config geaendert";
-//        }
-//
-//        reply = debugInformation + reply;
 
 
         return handlerInput.getResponseBuilder()
