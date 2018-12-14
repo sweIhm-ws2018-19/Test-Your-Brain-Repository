@@ -26,16 +26,16 @@ public class NextQuestionIntent implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
         String reply = "Wähle erst eine Kategorie und Schwierigkeitsstufe aus.";
-
+        if (GameLogic.getGameState() == GameState.ANSWER){
+        reply = "Beantworte erst die gestellte Frage.";
+        }
         if (GameLogic.getGameState() == GameState.GAME) {
             GameLogic.setGameState(GameState.ANSWER);
             reply = "";
             try {
               
                 GameLogic.setCurrentQuestion(GameUtil.getNextQuestion());
-                System.out.println("Current Quetsion:" + GameLogic.getCurrentQuestion());
             } catch (Exception e) {
-                System.out.println("Exception while setting new question");
                 reply += e.getLocalizedMessage() + e.getMessage() + e.getCause() + e.getStackTrace();
             }
             Question currentQuestion = GameLogic.getCurrentQuestion();

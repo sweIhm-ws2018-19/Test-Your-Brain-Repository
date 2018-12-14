@@ -38,7 +38,6 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        Logger.getLogger("log").log(Level.SEVERE, "Entering LaunchRequestHandler, status of GameLogic: " + GameLogic.getDebugInfo());
 
         GameLogic.setDifficulty(null);
         GameLogic.setCategory(null);
@@ -49,7 +48,6 @@ public class LaunchRequestHandler implements RequestHandler {
             GameLogic.getAllQuestions().addAll(GameUtil.getAllQuestions(input));
         } catch (IOException ex) {
             Logger.getLogger(LaunchRequestHandler.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("IO Exception while reading fetching questions from database");
         }
         String reply = StringContainer.WELCOME_MESSAGE + StringContainer.SKILL_DESCRIPTION;
 
@@ -58,7 +56,6 @@ public class LaunchRequestHandler implements RequestHandler {
         }
 
         String repromptText = StringContainer.RULES_QUESTION;
-        Logger.getLogger("Exiting LaunchRequestHandler, status of GameLogic: " + GameLogic.getDebugInfo());
         return input.getResponseBuilder()
                 .withSimpleCard("ColorSession", reply)
                 .withSpeech(reply)
