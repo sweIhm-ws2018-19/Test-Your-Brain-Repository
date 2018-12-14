@@ -4,19 +4,13 @@ import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import javax.management.ObjectName;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class GameUtil {
@@ -44,19 +38,13 @@ public class GameUtil {
         }
     }
 
-    /*
-    Den Rückgabe Typ wollte ich dann zu einer List<Question> machen, da man die dann ganz einfach mit einem Stream filtern kann, beispielsweise
-    auf Schwierigkeit oder Kategorie.
-    Question ersteFrage = getQuestions(inputHandler).stream().filter(question -> question.getDifficulty() == 1).findfirst();
-     */
     public static List<Question> getAllQuestions(HandlerInput input) throws IOException {
         return Arrays.asList(get(input, "fragen", Question[].class).get());
     }
 
     public static List<Question> getMatchingQuestions() {
         List<Question> allQuestions = GameLogic.getAllQuestions();
-       // Objects.requireNonNull(allQuestions);
-        
+
         List<Question> matching = null;
         if(!allQuestions.isEmpty()){
         matching = allQuestions.stream().filter(x -> GameCategory.getByString(x.getCategory())  == GameLogic.getCategory()).
@@ -85,30 +73,7 @@ public class GameUtil {
          System.out.println("After: "+ matchingQuestions);
         return nextQuestion;
     }
-//
-//    public static List<Question>  getMatchingQuestions(HandlerInput input) {
-//        AttributesManager attributesManager = input.getAttributesManager();
-//        ArrayList<HashMap<Integer, String>> liste = (ArrayList<HashMap<Integer, String>>) attributesManager.getPersistentAttributes().get("fragen");
-//
-//        ArrayList<HashMap<Integer, String>> matching;
-////        HashMap<Integer, Question> allQuestions = new HashMap<>();
-//
-//        Optional<Question[]> allQuestions = get(input, "fragen", Question[].class);
-//
-//        return Arrays.asList(allQuestions.get());
-//    }
 
-//    private static Question fromDBString(String input) {
-//        System.out.println("Das ist er Input: " + input);
-//        input = input.replace("{", "");
-//        input = input.replace("}", "");
-//
-//        System.out.println("Trimmed input: " + input);
-//
-//        String[] fields = input.split(",");
-//        System.out.println("Schwierigkeit: " + fields[3].replace("Schwierigkeit=", ""));
-//
-//    }
 
     public static <T> Optional<T> get(HandlerInput input, String key, Class<T> clazz) throws IOException {
         Objects.requireNonNull(clazz, "Class that should be read from source map must not be null!");
