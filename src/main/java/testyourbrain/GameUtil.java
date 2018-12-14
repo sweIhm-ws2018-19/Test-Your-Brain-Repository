@@ -58,11 +58,13 @@ public class GameUtil {
         } else {
             Logger.getLogger("log").log(Level.SEVERE, "All Questions is empty");
         }
+        Logger.getLogger("log").log(Level.SEVERE, "Found Matching Questions: " + matching);
         return matching;
     }
 
     public static Question getNextQuestion() {
         ArrayList<Question> matchingQuestions = GameLogic.getMatchingQuestions();
+        Logger.getLogger("log").log(Level.SEVERE, "Entering getNextQuestion MatchingQuestionsBefore: " + matchingQuestions);
         Question nextQuestion = null;
 
         if (!matchingQuestions.isEmpty()) {
@@ -73,6 +75,7 @@ public class GameUtil {
         } else {
             Logger.getLogger("log").log(Level.SEVERE, "Matchting Questions is empty");
         }
+        Logger.getLogger("log").log(Level.SEVERE, "Exiting getNextQuestion MatchingQuestionsAfter: " + matchingQuestions);
         return nextQuestion;
     }
 

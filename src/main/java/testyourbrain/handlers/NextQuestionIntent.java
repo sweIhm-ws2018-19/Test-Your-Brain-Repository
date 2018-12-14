@@ -33,7 +33,9 @@ public class NextQuestionIntent implements RequestHandler {
             try {
               
                 GameLogic.setCurrentQuestion(GameUtil.getNextQuestion());
+                System.out.println("Current Quetsion:" + GameLogic.getCurrentQuestion());
             } catch (Exception e) {
+                System.out.println("Exception while setting new question");
                 reply += e.getLocalizedMessage() + e.getMessage() + e.getCause() + e.getStackTrace();
             }
             Question currentQuestion = GameLogic.getCurrentQuestion();
