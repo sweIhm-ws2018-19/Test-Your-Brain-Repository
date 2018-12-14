@@ -55,9 +55,7 @@ public class InsertCategory implements RequestHandler {
             GameLogic.setCategory(GameCategory.valueOf(answer.toUpperCase()));
         } catch (Exception e) {
             noMatchingCategory = true;
-            error = e.getStackTrace().toString();
-            error += e.getMessage();
-            error += e.getCause();
+
         }
 
         String optionalMessage = "";
