@@ -31,8 +31,8 @@ public class NextQuestionIntent implements RequestHandler {
             GameLogic.setGameState(GameState.ANSWER);
             reply = "";
             try {
-                //System.out.println(GameUtil.getNextQuestion());
-                GameLogic.setCurrentQuestion(GameUtil.getNextQuestion());//getQuestionBySelectedCategory();
+              
+                GameLogic.setCurrentQuestion(GameUtil.getNextQuestion());
                 System.out.println("Current Quetsion:" + GameLogic.getCurrentQuestion());
             } catch (Exception e) {
                 System.out.println("Exception while setting new question");
@@ -52,26 +52,4 @@ public class NextQuestionIntent implements RequestHandler {
                 .build();
     }
 
-    private String getQuestionBySelectedCategory() {
-        //later on we have to Change this Method to get Access on The DB or the questions which are in GameLogic saved
-        String question;
-        switch (GameLogic.getCategory()) {
-            case POLITIK:
-                question = "Wer war vor Angela Merkel Bundeskanzler?";
-                break;
-            case GESCHICHTE:
-                question = "Von wem stammt das Zitat: \"Je weniger die Menschen davon wissen wie Würste oder Gesetze gemacht werden, desto besser schlafen sie.\" ?";
-                break;
-            case GEOGRAPHIE:
-                question = "Welcher ist der höchste Berg Deutschlands?";
-                break;
-            case SONSTIGES:
-                question = "Welches Kleidungsstück kaufen deutsche Frauen ihren Ehemännern am Liebsten?";
-                break;
-            default:
-                question = "Ungültige Kategorie";
-                break;
-        }
-        return question;
-    }
 }
