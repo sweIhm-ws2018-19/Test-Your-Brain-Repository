@@ -2,7 +2,6 @@ package testyourbrain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Arrays;
 
 public class Question {
 private String frage;
@@ -12,6 +11,10 @@ private String auswahlmoeglichkeit;
 private String loesung;
 private int schwierigkeit;
 private String themengebiet;
+
+    public String getThemengebiet() {
+        return themengebiet;
+    }
 
 
     @JsonCreator
