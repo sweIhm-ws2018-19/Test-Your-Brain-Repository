@@ -10,14 +10,13 @@ public class GameLogic {
     private static GameDifficulty difficulty;
     private static GameCategory category;
     private static GameState gameState;
-    private static ArrayList<Question> allQuestions = new ArrayList<Question>();
-    private static ArrayList<Question> matchingQuestions = new ArrayList<Question>();
+    private static ArrayList<Question> allQuestions = new ArrayList<>();
+    private static ArrayList<Question> matchingQuestions = new ArrayList<>();
     private static Question currentQuestion;
 
     private static void updateMatchingQuestions() {
         if (getCategory() != null && getDifficulty() != null && !getAllQuestions().isEmpty()) {
             setMatchingQuestions(new ArrayList<>(GameUtil.getMatchingQuestions()));
-            System.out.println("Es gibt nun : " + matchingQuestions.size() + " fragen in der Kategorie: " + category + " und in der Schwierigkeit: " + difficulty);
         }
 
     }
