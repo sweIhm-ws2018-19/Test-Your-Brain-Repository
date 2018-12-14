@@ -11,9 +11,14 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class GameUtil {
+
+    private GameUtil() {
+    }
 
     public static boolean saveData(HandlerInput input, String key, String value) {
         try {
@@ -46,34 +51,33 @@ public class GameUtil {
         List<Question> allQuestions = GameLogic.getAllQuestions();
 
         List<Question> matching = null;
-        if(!allQuestions.isEmpty()){
-        matching = allQuestions.stream().filter(x -> GameCategory.getByString(x.getCategory())  == GameLogic.getCategory()).
-                filter(x -> GameDifficulty.getByInteger(x.getDifficulty()) == GameLogic.getDifficulty()).
-                collect(Collectors.toList());
+        if (!allQuestions.isEmpty()) {
+            matching = allQuestions.stream().filter(x -> GameCategory.getByString(x.getCategory()) == GameLogic.getCategory()).
+                    filter(x -> GameDifficulty.getByInteger(x.getDifficulty()) == GameLogic.getDifficulty()).
+                    collect(Collectors.toList());
         } else {
-            System.out.println("All Questions is empty");
+            Logger.getLogger("log").log(Level.SEVERE, "All Questions is empty");
         }
-        System.out.println("Found Matching Questions: " + matching);
+        Logger.getLogger("log").log(Level.SEVERE, "Found Matching Questions: " + matching);
         return matching;
     }
-    
-    public static Question getNextQuestion(){
+
+    public static Question getNextQuestion() {
         ArrayList<Question> matchingQuestions = GameLogic.getMatchingQuestions();
-        System.out.println("Before: "+ matchingQuestions);
+        Logger.getLogger("log").log(Level.SEVERE, "Entering getNextQuestion MatchingQuestionsBefore: " + matchingQuestions);
         Question nextQuestion = null;
-        
-        if(!matchingQuestions.isEmpty()){
+
+        if (!matchingQuestions.isEmpty()) {
             Random randomGen = new Random();
             int randomIndex = randomGen.nextInt(matchingQuestions.size());
             nextQuestion = matchingQuestions.get(randomIndex);
             matchingQuestions.remove(randomIndex);
-        } else{
-            System.out.println("Matchting Questions is empty");
+        } else {
+            Logger.getLogger("log").log(Level.SEVERE, "Matchting Questions is empty");
         }
-         System.out.println("After: "+ matchingQuestions);
+        Logger.getLogger("log").log(Level.SEVERE, "Exiting getNextQuestion MatchingQuestionsAfter: " + matchingQuestions);
         return nextQuestion;
     }
-
 
     public static <T> Optional<T> get(HandlerInput input, String key, Class<T> clazz) throws IOException {
         Objects.requireNonNull(clazz, "Class that should be read from source map must not be null!");
@@ -82,14 +86,14 @@ public class GameUtil {
         final Object retVal = input.getAttributesManager().getPersistentAttributes().get(key);
         if (Objects.nonNull(retVal)) {
 
-                // Object is String that should be parsed to desired type
-                if (retVal instanceof String && !clazz.equals(String.class)) {
-                    final String jsonVal = (String) retVal;
-                    return Optional.of(new ObjectMapper().readValue(jsonVal, clazz));
-                } // Object is already an object and should be converted to desired type
-                else {
-                    return Optional.of(new ObjectMapper().convertValue(retVal, clazz));
-                }
+            // Object is String that should be parsed to desired type
+            if (retVal instanceof String && !clazz.equals(String.class)) {
+                final String jsonVal = (String) retVal;
+                return Optional.of(new ObjectMapper().readValue(jsonVal, clazz));
+            } // Object is already an object and should be converted to desired type
+            else {
+                return Optional.of(new ObjectMapper().convertValue(retVal, clazz));
+            }
         } else {
             return Optional.empty();
         }
