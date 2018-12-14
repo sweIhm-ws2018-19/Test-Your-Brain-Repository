@@ -43,13 +43,10 @@ public class SolutionIntent implements RequestHandler {
     private String checkAnswer(String answer) {
         boolean result = false;
         String solution = GameLogic.getCurrentQuestion().getSolution();
-        System.out.println("Compare " + answer + " with the right answers: " + solution);
         for (String sutableOption : solution.split(",")) {
             if (sutableOption.toLowerCase().equals(answer.toLowerCase())) {
                 result = true;
-                System.out.println("Solution: " + sutableOption.toLowerCase() + " Antwort: " + answer.toLowerCase() + "euqals: " + sutableOption.toLowerCase().equals(answer.toLowerCase()));
             }
-            System.out.println("compare " + answer + " with " + sutableOption);
         }
 
         String returningString = "Die gewaehlte Antwort " + answer + " ist " + (result ? "richtig" : "falsch");

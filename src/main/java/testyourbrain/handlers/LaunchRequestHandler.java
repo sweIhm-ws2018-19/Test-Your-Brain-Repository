@@ -49,7 +49,6 @@ public class LaunchRequestHandler implements RequestHandler {
             GameLogic.getAllQuestions().addAll(GameUtil.getAllQuestions(input));
         } catch (IOException ex) {
             Logger.getLogger(LaunchRequestHandler.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("IO Exception while reading fetching questions from database");
         }
         String reply = StringContainer.WELCOME_MESSAGE + StringContainer.SKILL_DESCRIPTION;
 
