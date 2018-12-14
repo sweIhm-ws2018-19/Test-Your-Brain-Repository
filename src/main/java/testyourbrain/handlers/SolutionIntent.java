@@ -28,35 +28,41 @@ public class SolutionIntent implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
-        String response = "Solution Intent triggered. Eventual Exception: ";
+        String response = "Deine Antwort ist Falsch.";
         String triggeredIntentStr = "";
-        try{
-        Request request = handlerInput.getRequestEnvelope().getRequest();
-        Intent triggeredIntent = ((IntentRequest) request).getIntent();
-        triggeredIntentStr = triggeredIntent.getName();
-        if (triggeredIntent.getName().equals("AMAZON.FallbackIntent")) {
-            return handlerInput.getResponseBuilder()
-                    .withSpeech(" FallBackIntent Triggered. Deine Antwort war leider falsch. Richtig gewesen wäre: " + GameLogic.getCurrentQuestion().getSolution().replace(",", " oder "))
-                    .withShouldEndSession(false)
-                    .build();
-        }
-                
-        if (triggeredIntent.getName().equals("SolutionIntent")) {
-            String answer = triggeredIntent.getSlots().get("Solution").getValue();
-            if(answer != null){
-                response = checkAnswer(answer);
-            } else {
-                response = "Deine Antwort ist leider falsch. Richtig gewesen wäre: " + GameLogic.getCurrentQuestion().getSolution().replace(",", " oder ");
-            }
+        try {
+            Request request = handlerInput.getRequestEnvelope().getRequest();
+            Intent triggeredIntent = ((IntentRequest) request).getIntent();
+            triggeredIntentStr = triggeredIntent.getName();
+
+        /*
+            if (triggeredIntent.getName().equals("AMAZON.FallbackIntent")) {
+                return handlerInput.getResponseBuilder()
+                        .withSpeech(" FallBackIntent Triggered. Deine Antwort war leider falsch. Richtig gewesen wäre: " + GameLogic.getCurrentQuestion().getSolution().replace(",", " oder "))
+                        .withShouldEndSession(false)
+                        .build();
+            }*/
+
+            if (triggeredIntent.getName().equals("SolutionIntent")) {
+                String answer = triggeredIntent.getSlots().get("Solution").getValue();
+                if (answer != null) {
+                    response = checkAnswer(answer);
+                } else {
+                    response = "Deine Antwort ist leider falsch. Richtig gewesen wäre: " + GameLogic.getCurrentQuestion().getSolution().replace(",", " oder ");
+                }
 //            System.out.println("sout answer");
 //            return handlerInput.getResponseBuilder()
 //                    .withSpeech("SolutionIntent:" + response)
 //                    .withShouldEndSession(false)
 //                    .build();
-        }
-        
-        
-        } catch(Exception e){
+                return handlerInput.getResponseBuilder()
+                        .withSpeech(response)
+                        .withShouldEndSession(false)
+                        .build();
+            }
+
+
+        } catch (Exception e) {
             response += e.getLocalizedMessage() + "Exception" + e.getMessage() + e.getCause() + e.getStackTrace();
         }
         //response += "trigger: " + triggeredIntentStr + "response: " + response;
