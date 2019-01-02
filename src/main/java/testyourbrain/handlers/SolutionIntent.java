@@ -8,6 +8,7 @@ import com.amazon.ask.model.Response;
 import testyourbrain.GameLogic;
 import testyourbrain.GameState;
 
+import java.util.Date;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
@@ -28,7 +29,11 @@ public class SolutionIntent implements RequestHandler {
                 Request request = handlerInput.getRequestEnvelope().getRequest();
                 String answer = ((IntentRequest) request).getIntent().getSlots().get("Solution").getValue().toLowerCase();
                 response = checkAnswer(answer);
-
+                if(GameLogic.getAskedQuestions()>=10){
+                    //End Of The Game
+                    response += String.format(" Das wars, du hast %d Fragen beantwortet und davon waren %d richtig. Ich speichere dein Ergebnis ab.", GameLogic.getAskedQuestions(),GameLogic.getCorrectAnsweredQuestions());
+                    GameLogic.saveScoreToDB(new Date().toString(),handlerInput);
+                }
             } catch (Exception e) {
                 response += e.getLocalizedMessage() + "Exception" + e.getMessage() + e.getCause() + e.getStackTrace();
             }
@@ -50,6 +55,7 @@ public class SolutionIntent implements RequestHandler {
         }
 
         String returningString = "Die gewaehlte Antwort " + answer + " ist " + (result ? "richtig" : "falsch");
+        GameLogic.questionAnswered(result);
         if (!result) {
             returningString = "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_01'/> " + returningString;
             returningString += " Die Richtige Antwort waere " + solution.replace(",", " oder ") + " gewesen.";

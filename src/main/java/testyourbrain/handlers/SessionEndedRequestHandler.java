@@ -33,6 +33,7 @@ public class SessionEndedRequestHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
         String reply = StringContainer.GOOD_BYE_MESSAGE + "session end";
 
+
         // any cleanup logic goes here
         return input.getResponseBuilder().withSpeech(reply)
                 .withSimpleCard("Test your Brain", reply)

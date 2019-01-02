@@ -15,8 +15,10 @@ package testyourbrain.handlers;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import testyourbrain.GameLogic;
 import testyourbrain.StringContainer;
 
+import java.util.Date;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
@@ -31,7 +33,7 @@ public class CancelandStopIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         String reply = StringContainer.GOOD_BYE_MESSAGE + "cancel";
-
+        GameLogic.saveScoreToDB(new Date().toString(),input);
         return input.getResponseBuilder()
                 .withSpeech(reply)
                 .withSimpleCard("Test your Brain", reply)
