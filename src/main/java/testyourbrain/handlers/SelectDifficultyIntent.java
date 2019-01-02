@@ -1,6 +1,5 @@
 package testyourbrain.handlers;
 
-import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.IntentRequest;
@@ -8,9 +7,6 @@ import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
 
 import static com.amazon.ask.request.Predicates.intentName;
-import static com.amazon.ask.request.Predicates.slotValue;
-
-import java.util.Map;
 import java.util.Optional;
 
 import testyourbrain.GameDifficulty;
@@ -18,6 +14,7 @@ import testyourbrain.GameLogic;
 import testyourbrain.GameState;
 
 public class SelectDifficultyIntent implements RequestHandler {
+
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         //true wenn Richtige Eingabe gemacht wurde UND die Kategorie noch nicht gesetzt wurde.
@@ -26,13 +23,14 @@ public class SelectDifficultyIntent implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
-        Request request = handlerInput.getRequestEnvelope().getRequest();
-        String answer = ((IntentRequest) request).getIntent().getSlots().get("Schwierigkeitsgrad").getValue().toLowerCase();
+        String reply = "Bitte beantworte zunächst die Frage, dann kannst du die Schwierigkeit ändern.";
+        if (GameLogic.getGameState() != GameState.ANSWER) {
 
+            Request request = handlerInput.getRequestEnvelope().getRequest();
+            String answer = ((IntentRequest) request).getIntent().getSlots().get("Schwierigkeitsgrad").getValue().toLowerCase();
 
-        String reply = generateReply(answer);
-
-
+            reply = generateReply(answer);
+        }
         return handlerInput.getResponseBuilder()
                 .withSpeech(reply)
                 .withShouldEndSession(false)

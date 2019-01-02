@@ -2,12 +2,7 @@ package testyourbrain.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.Intent;
-import com.amazon.ask.model.IntentRequest;
-import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
-import testyourbrain.GameLogic;
-import testyourbrain.GameState;
 import testyourbrain.StringContainer;
 
 import java.util.Optional;
@@ -27,16 +22,9 @@ public class FallbackIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        if (GameLogic.getGameState() == GameState.ANSWER) {
-            return new SolutionIntent().handle(input);
-        }
-        Request request = input.getRequestEnvelope().getRequest();
-        Intent intent = ((IntentRequest) request).getIntent();
         
         String reply;
         reply = StringContainer.UNKNOWN_MESSAGE;
-        
-        reply = "Bei der Verarbeitung der Anfrage ist leider ein Problem aufgetreten";
 
         return input.getResponseBuilder()
                 .withSpeech(reply)

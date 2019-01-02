@@ -25,11 +25,6 @@ public class InsertDifficulty implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
-        if (GameLogic.getGameState() == GameState.ANSWER) {
-            return new SolutionIntent().handle(handlerInput);
-        }
-        
-        
         
         Request request = handlerInput.getRequestEnvelope().getRequest();
         String answer = ((IntentRequest) request).getIntent().getSlots().get("Schwierigkeitsgrad").getValue().toLowerCase();

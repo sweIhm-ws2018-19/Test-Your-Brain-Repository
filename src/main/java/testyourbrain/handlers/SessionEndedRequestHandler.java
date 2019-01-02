@@ -12,21 +12,15 @@
  */
 package testyourbrain.handlers;
 
-import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.SessionEndedRequest;
 import testyourbrain.StringContainer;
 
-import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static com.amazon.ask.request.Predicates.requestType;
-import testyourbrain.GameLogic;
-import testyourbrain.GameState;
 
 public class SessionEndedRequestHandler implements RequestHandler {
 
@@ -42,6 +36,7 @@ public class SessionEndedRequestHandler implements RequestHandler {
         // any cleanup logic goes here
         return input.getResponseBuilder().withSpeech(reply)
                 .withSimpleCard("Test your Brain", reply)
+                .withShouldEndSession(true)
                 .build();
     }
 }

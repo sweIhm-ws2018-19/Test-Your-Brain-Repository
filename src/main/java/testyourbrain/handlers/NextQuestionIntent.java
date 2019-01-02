@@ -18,56 +18,38 @@ public class NextQuestionIntent implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput handlerInput) {
         //true wenn Richtige Eingabe gemacht wurde UND die Kategorie noch nicht gesetzt wurde.
+
         return handlerInput.matches(intentName("NextQuestionIntent"));
 
     }
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
-        String reply = null;
-        GameLogic.setGameState(GameState.ANSWER);
-        try {
-            GameLogic.setCurrentQuestion(GameUtil.getNextQuestion());//getQuestionBySelectedCategory();
-//            reply = "Current Category: " + GameLogic.getCategory();
-//            reply += "Current Difficulty: " + GameLogic.getDifficulty();
-//            reply += "Current Matching Questions" + GameLogic.getMatchingQuestions().toString();
-//            reply += "Current Question Object: " + GameLogic.getCurrentQuestion();
-           // reply += "All Questions: " + GameLogic.getAllQuestions();
-        } catch (Exception e) {
-            reply += e.getLocalizedMessage() + e.getMessage() + e.getCause() + e.getStackTrace();
+        String reply = "Wähle erst eine Kategorie und Schwierigkeitsstufe aus.";
+        if (GameLogic.getGameState() == GameState.ANSWER){
+        reply = "Beantworte erst die gestellte Frage.";
         }
-        Question currentQuestion = GameLogic.getCurrentQuestion();
-        if (currentQuestion != null)
-            reply = currentQuestion.getQuestion();
-        else
-            reply = "Leider sind für die aktuellen Einstellungen keine weiteren Fragen verfügbar. Um die Einstellungen zu wechseln sage zum Beispiel \" Wechsele Schwierigkeit zu schwer\" . ";
-
+        if (GameLogic.getGameState() == GameState.GAME) {
+            GameLogic.setGameState(GameState.ANSWER);
+            reply = "";
+            try {
+              
+                GameLogic.setCurrentQuestion(GameUtil.getNextQuestion());
+            } catch (Exception e) {
+                reply += e.getLocalizedMessage() + e.getMessage() + e.getCause() + e.getStackTrace();
+            }
+            Question currentQuestion = GameLogic.getCurrentQuestion();
+            if (currentQuestion != null) {
+                reply += currentQuestion.getQuestion();
+            } else {
+                GameLogic.setGameState(GameState.GAME);
+                reply += "Leider sind für die aktuellen Einstellungen keine weiteren Fragen verfügbar. Um die Einstellungen zu wechseln sage zum Beispiel \" Wechsele Schwierigkeit zu schwer\" . ";
+            }
+        }
         return handlerInput.getResponseBuilder()
                 .withSpeech(reply)
                 .withShouldEndSession(false)
                 .build();
     }
 
-    private String getQuestionBySelectedCategory() {
-        //later on we have to Change this Method to get Access on The DB or the questions which are in GameLogic saved
-        String question;
-        switch (GameLogic.getCategory()) {
-            case POLITIK:
-                question = "Wer war vor Angela Merkel Bundeskanzler?";
-                break;
-            case GESCHICHTE:
-                question = "Von wem stammt das Zitat: \"Je weniger die Menschen davon wissen wie Würste oder Gesetze gemacht werden, desto besser schlafen sie.\" ?";
-                break;
-            case GEOGRAPHIE:
-                question = "Welcher ist der höchste Berg Deutschlands?";
-                break;
-            case SONSTIGES:
-                question = "Welches Kleidungsstück kaufen deutsche Frauen ihren Ehemännern am Liebsten?";
-                break;
-            default:
-                question = "Ungültige Kategorie";
-                break;
-        }
-        return question;
-    }
 }
