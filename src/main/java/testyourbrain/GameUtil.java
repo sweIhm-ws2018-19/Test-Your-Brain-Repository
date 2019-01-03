@@ -46,16 +46,18 @@ public class GameUtil {
     public static List<Question> getAllQuestions(HandlerInput input) throws IOException {
 
         Question[] all = get(input, "fragen", Question[].class).get();
-        System.out.println("getAQ-start: " + all);
-        if (all.length == 0) {
+        List<Question> allQuestions = Arrays.asList(all);
+        System.out.println("getAQ-Start: " + allQuestions+ " size: " + allQuestions.size());
+
+        if (allQuestions.size() == 0) {
             throw new IOException("DB Connection failed.");
         }
-        if (all.length > 59) {
-            all = Arrays.copyOfRange(all, 0, 59);
+        if (allQuestions.size() > 59) {
+            allQuestions = allQuestions.subList(0, 59);
         }
-        System.out.println("getAQ-end: " + all);
+        System.out.println("getAQ-end: " + allQuestions + " size: " + allQuestions.size());
 
-        return Arrays.asList(all);
+        return allQuestions;
     }
 
     public static List<Question> getMatchingQuestions() {

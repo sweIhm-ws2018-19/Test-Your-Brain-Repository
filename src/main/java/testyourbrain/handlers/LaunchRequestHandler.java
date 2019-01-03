@@ -45,6 +45,7 @@ public class LaunchRequestHandler implements RequestHandler {
         //set initial Game state!
         GameLogic.setGameState(GameState.RULES);
         try {
+            GameLogic.setAllQuestions(GameUtil.getAllQuestions(input));
             GameLogic.getAllQuestions().addAll(GameUtil.getAllQuestions(input));
         } catch (IOException ex) {
             Logger.getLogger(LaunchRequestHandler.class.getName()).log(Level.SEVERE, null, ex);

@@ -2,6 +2,7 @@ package testyourbrain;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameLogic {
 
@@ -10,7 +11,7 @@ public class GameLogic {
     private static GameDifficulty difficulty;
     private static GameCategory category;
     private static GameState gameState;
-    private static ArrayList<Question> allQuestions = new ArrayList<>();
+    private static List<Question> allQuestions = new ArrayList<>();
     private static ArrayList<Question> matchingQuestions = new ArrayList<>();
     private static Question currentQuestion;
 
@@ -38,10 +39,13 @@ public class GameLogic {
 
     }
 
-    public static ArrayList<Question> getAllQuestions() {
+    public static List<Question> getAllQuestions() {
         return allQuestions;
     }
-
+    
+        public static void setAllQuestions(List<Question> all) {
+        allQuestions = all;
+    }
     public static ArrayList<Question> getMatchingQuestions() {
         return matchingQuestions;
     }
