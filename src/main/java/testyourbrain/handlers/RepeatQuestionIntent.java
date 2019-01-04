@@ -19,6 +19,8 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import static com.amazon.ask.request.Predicates.intentName;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import testyourbrain.GameLogic;
 
@@ -35,7 +37,7 @@ public class RepeatQuestionIntent implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String reply = GameLogic.getCurrentQuestion().getQuestion();
+        String reply = generateReply();
         if (GameLogic.getCurrentQuestion().getQuestion() == null) {
             reply = "Wenn du eine Kategorie und eine Schwierigkeitsstufe gewählt hast, dann sage zuerst \"nächste Frage\" um dir eine Frage stellen zu lassen.";
         }
@@ -45,5 +47,21 @@ public class RepeatQuestionIntent implements RequestHandler {
                  .withShouldEndSession(false)
                 //.withReprompt(reply)
                 .build();
+    }
+    
+        private String generateReply() {
+        List<String> solutions = Arrays.asList(GameLogic.getCurrentQuestion().getSuggestions().split(","));
+        String reply = GameLogic.getCurrentQuestion().getQuestion();
+        if(solutions.size() == 3){
+        reply += "? Antwort A: " +  solutions.get(0);
+        reply += " Antwort B: " + solutions.get(1);
+        reply += " Antwort C: " +  solutions.get(2);
+        }
+        else{
+            reply = "Liste der Antwortmöglichkeiten ungleich 3.";
+            System.out.println(solutions);
+        }
+        
+        return reply;
     }
 }
