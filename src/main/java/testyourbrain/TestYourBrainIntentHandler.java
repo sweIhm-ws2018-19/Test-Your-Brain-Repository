@@ -15,6 +15,7 @@ import testyourbrain.handlers.CancelandStopIntentHandler;
 import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
+import testyourbrain.handlers.BackupHandler;
 import testyourbrain.handlers.FallbackIntentHandler;
 import testyourbrain.handlers.HelpMeIntent;
 import testyourbrain.handlers.RepeatQuestionIntent;
@@ -38,7 +39,8 @@ public class TestYourBrainIntentHandler extends SkillStreamHandler {
                         new RulesIntent(),
                         new NextQuestionIntent(),
                         new HelpMeIntent(),
-                        new RepeatQuestionIntent())
+                        new RepeatQuestionIntent(),
+                        new BackupHandler())
                 .withTableName("testYourBrainData")
                 .withAutoCreateTable(false)
                 // Add your skill id below

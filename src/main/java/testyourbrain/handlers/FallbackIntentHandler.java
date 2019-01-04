@@ -30,6 +30,7 @@ public class FallbackIntentHandler implements RequestHandler {
                 .withSpeech(reply)
                 .withSimpleCard("ColorSession", reply)
                 //.withReprompt(reply)
+                                .withShouldEndSession(false)
                 .build();
     }
 
