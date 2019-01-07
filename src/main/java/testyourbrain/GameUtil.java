@@ -44,11 +44,25 @@ public class GameUtil {
     }
 
     public static List<Question> getAllQuestions(HandlerInput input) throws IOException {
-        return Arrays.asList(get(input, "fragen", Question[].class).get());
+
+        Question[] all = get(input, "fragen", Question[].class).get();
+        List<Question> allQuestions = Arrays.asList(all);
+        System.out.println("getAQ-Start: " + allQuestions+ " size: " + allQuestions.size());
+
+        if (allQuestions.size() == 0) {
+            throw new IOException("DB Connection failed.");
+        }
+        if (allQuestions.size() > 59) {
+            allQuestions = allQuestions.subList(0, 59);
+        }
+        System.out.println("getAQ-end: " + allQuestions + " size: " + allQuestions.size());
+
+        return allQuestions;
     }
 
     public static List<Question> getMatchingQuestions() {
         List<Question> allQuestions = GameLogic.getAllQuestions();
+        System.out.println("getMQ-Start ALL: " + allQuestions.size());
 
         List<Question> matching = null;
         if (!allQuestions.isEmpty()) {
@@ -58,21 +72,28 @@ public class GameUtil {
         } else {
             Logger.getLogger("log").log(Level.SEVERE, "All Questions is empty");
         }
+        System.out.println("getMQ-End All: " + allQuestions.size());
+        System.out.println("getMQ-Start MAT: " + matching);
+
         return matching;
     }
 
     public static Question getNextQuestion() {
         ArrayList<Question> matchingQuestions = GameLogic.getMatchingQuestions();
         Question nextQuestion = null;
+        System.out.println("getNQ-Start: " + matchingQuestions);
 
         if (!matchingQuestions.isEmpty()) {
             Random randomGen = new Random();
             int randomIndex = randomGen.nextInt(matchingQuestions.size());
             nextQuestion = matchingQuestions.get(randomIndex);
+
             matchingQuestions.remove(randomIndex);
         } else {
             Logger.getLogger("log").log(Level.SEVERE, "Matchting Questions is empty");
         }
+        System.out.println("getNQ-End: " + matchingQuestions);
+
         return nextQuestion;
     }
 

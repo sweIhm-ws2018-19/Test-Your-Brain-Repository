@@ -57,7 +57,7 @@ public class InsertCategory implements RequestHandler {
             noMatchingCategory = true;
 
         }
-
+        System.out.println(GameLogic.getMatchingQuestions());
         String optionalMessage = "";
         if (noMatchingCategory) {
             optionalMessage = "Die eingegebene entspricht keiner gueltigen Kategorie." + error;
