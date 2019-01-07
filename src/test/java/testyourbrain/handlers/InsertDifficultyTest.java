@@ -15,9 +15,17 @@
  */
 package testyourbrain.handlers;
 
+import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import com.amazon.ask.model.Response;
+import testyourbrain.GameCategory;
 import testyourbrain.GameLogic;
 import testyourbrain.GameDifficulty;
 import org.junit.Test;
+import testyourbrain.GameState;
+
+import java.util.HashMap;
+import java.util.Optional;
+
 import static org.junit.Assert.*;
 
 /**
@@ -71,6 +79,21 @@ public class InsertDifficultyTest {
         String outputMessage = id.generateReply(inputDifficulty);
         assertEquals(outputMessage, "Deine Antwort: " + inputDifficulty + " entspricht keinem verfuegbaren Schwierigkeitsgrad.");
 
+    }
+
+    @Test
+    public void test_InsertCategory_canHandle(){
+        HashMap<String,String> slotMap = new HashMap<>();
+        slotMap.put("Schwierigkeitsgrad","Leicht");
+        HashMap<String,Object> objMap = new HashMap<>();
+        HandlerInput handlerInput = TestUtil.mockHandlerInput(slotMap,objMap,objMap,objMap);
+
+        GameLogic.setGameState(GameState.CONFIG);
+        Optional<Response> response = new InsertDifficulty().handle(handlerInput);
+        assertTrue(response.isPresent());
+        String ende = response.get().getOutputSpeech().toString();
+        assertTrue(GameLogic.getDifficulty().equals(GameDifficulty.EASY));
+        assertTrue(ende.contains("Waehle jetzt noch eine Kategorie."));
     }
 
     

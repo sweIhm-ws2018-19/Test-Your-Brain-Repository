@@ -17,13 +17,19 @@ package testyourbrain.handlers;
 
 import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import com.amazon.ask.model.Response;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import testyourbrain.GameCategory;
+import testyourbrain.GameDifficulty;
 import testyourbrain.GameLogic;
 import testyourbrain.GameState;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import static com.amazon.ask.request.Predicates.intentName;
@@ -139,12 +145,17 @@ public class InsertCategoryTest {
 
     @Test
     public void test_InsertCategory_canHandle(){
-        HandlerInput handlerInput = Mockito.mock(HandlerInput.class);
+        HashMap<String,String> slotMap = new HashMap<>();
+        slotMap.put("Category","Politik");
+        HashMap<String,Object> objMap = new HashMap<>();
+        HandlerInput handlerInput = TestUtil.mockHandlerInput(slotMap,objMap,objMap,objMap);
 
         GameLogic.setGameState(GameState.CONFIG);
-        handlerInput.matches(intentName("InsertCategory"));
-        when(handlerInput.matches(any())).thenReturn(true);
-        assertTrue(insertCategoryHandler.canHandle(handlerInput));
+        Optional<Response> response = insertCategoryHandler.handle(handlerInput);
+        assertTrue(response.isPresent());
+        String ende = response.get().getOutputSpeech().toString();
+        assertTrue(GameLogic.getCategory().equals(GameCategory.POLITIK));
+        assertTrue(ende.contains("Ok"));
     }
 
     @Test
@@ -156,5 +167,5 @@ public class InsertCategoryTest {
         when(handlerInput.matches(any())).thenReturn(false);
         assertFalse(insertCategoryHandler.canHandle(handlerInput));
     }
-    
+
 }
