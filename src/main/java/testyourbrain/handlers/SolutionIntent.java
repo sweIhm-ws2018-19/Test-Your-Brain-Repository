@@ -36,7 +36,6 @@ public class SolutionIntent implements RequestHandler {
                 e.printStackTrace();
             }
 
-
         }
         GameLogic.setGameState(GameState.GAME);
         return handlerInput.getResponseBuilder()
@@ -68,6 +67,13 @@ public class SolutionIntent implements RequestHandler {
         String returningString = "Die gewaehlte Antwort " + answer + " ist " + (result ? "richtig." : "falsch.");
         if (!result) {
             returningString += " Die Richtige Antwort waere " + solution.split(",")[0] + " gewesen.";
+        }
+
+        if (result) {
+            returningString = "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_neutral_response_01'/> " + returningString;
+        } else {
+            returningString = "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_01'/> " + returningString;
+
         }
         return returningString;
     }
