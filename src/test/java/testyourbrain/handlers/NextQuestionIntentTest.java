@@ -1,11 +1,13 @@
 package testyourbrain.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import com.amazon.ask.model.Response;
 import org.junit.Before;
 import org.junit.Test;
 import testyourbrain.*;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
@@ -38,7 +40,9 @@ public class NextQuestionIntentTest {
                 .limit(1).collect(Collectors.toList());
         GameLogic.setMatchingQuestions(singleQuestion);
         String question= singleQuestion.get(0).getQuestion().toLowerCase();
-        nextQuestionIntent.handle(goodHandlerInput).get().getOutputSpeech().toString().toLowerCase().contains(question);
+        Optional<Response> response =nextQuestionIntent.handle(goodHandlerInput);
+        assertTrue(response.isPresent());
+        assertTrue(response.get().getOutputSpeech().toString().toLowerCase().contains(question));
     }
 
 
