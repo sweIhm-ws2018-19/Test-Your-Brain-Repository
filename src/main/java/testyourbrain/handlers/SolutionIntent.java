@@ -23,15 +23,20 @@ public class SolutionIntent implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
         String response = "Wenn du bereits eine Kategorie und eine Schwierigkeitsstufe ausgewählt hast, sage  \"nächste Frage\" um dir eine neue Frage stellen zu lassen.";
+        System.out.println("GS: " + GameLogic.getGameState());
         if (GameLogic.getGameState() == GameState.ANSWER) {
+
             try {
                 Request request = handlerInput.getRequestEnvelope().getRequest();
                 String answer = ((IntentRequest) request).getIntent().getSlots().get("ABC").getValue().toLowerCase();
+                System.out.println(answer);
                 response = checkAnswer(answer);
-
+                System.out.println(response);
             } catch (Exception e) {
-                response += e.getLocalizedMessage() + "Exception" + e.getMessage() + e.getCause() + e.getStackTrace();
+                e.printStackTrace();
             }
+
+
         }
         GameLogic.setGameState(GameState.GAME);
         return handlerInput.getResponseBuilder()
