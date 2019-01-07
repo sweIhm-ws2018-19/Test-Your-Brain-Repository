@@ -11,6 +11,7 @@ import testyourbrain.GameState;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SolutionIntent implements RequestHandler {
@@ -39,7 +40,8 @@ public class SolutionIntent implements RequestHandler {
             if(GameLogic.getNumberAskedQuestions() >= 10){
                 response += " Du hast nun 10 Fragen beantwortet, davon waren " + GameLogic.getNumberCorrectQuestions() + " richtig. Sage \"nächste Frage\""
                         + "um erneut 10 Fragen gestellt zu bekommen oder beende den Skill.";
-                 GameLogic.saveScoreToDB(new Date().toString(),handlerInput);
+                String date = new SimpleDateFormat("yyyy.MM.dd").format(new Date());
+                 GameLogic.saveScoreToDB(date, handlerInput);
                  GameLogic.setNumberAskedQuestions(0);
             }
         }

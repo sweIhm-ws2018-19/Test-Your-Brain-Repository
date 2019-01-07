@@ -129,13 +129,15 @@ public class GameLogic {
         AttributesManager attributesManager = input.getAttributesManager();
         Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
         System.out.println("DB before: " + persistentAttributes);
-        if (!persistentAttributes.keySet().contains("Scores")) {
-            persistentAttributes.put("Scores", new HashMap<String, Integer>());
+        if (!persistentAttributes.keySet().contains("Score")) {
+            persistentAttributes.put("Score", new ArrayList<HashMap<String, Integer>>());
         }
 
-        Map<String, Integer> scores = (Map<String, Integer>) persistentAttributes.get("Scores");
+        ArrayList<Map<String, Integer>> scores = (ArrayList<Map<String, Integer>>) persistentAttributes.get("Score");
         System.out.println("DB Scores: " + scores);
-        scores.put(keyString, numberCorrectQuestions);
+        HashMap<String, Integer> element = new HashMap<String, Integer>();
+        element.put(keyString, numberCorrectQuestions);
+        scores.add(element);
         System.out.println("DB Scores added currentscore: " + scores);
 
         attributesManager.setPersistentAttributes(persistentAttributes);
