@@ -1,8 +1,11 @@
 package testyourbrain;
 
-
+import com.amazon.ask.attributes.AttributesManager;
+import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GameLogic {
 
@@ -14,6 +17,8 @@ public class GameLogic {
     private static List<Question> allQuestions = new ArrayList<>();
     private static ArrayList<Question> matchingQuestions = new ArrayList<>();
     private static Question currentQuestion;
+    private static int numberAskedQuestions;
+    private static int numberCorrectQuestions;
 
     private static void updateMatchingQuestions() {
         if (getCategory() != null && getDifficulty() != null && !getAllQuestions().isEmpty()) {
@@ -30,6 +35,13 @@ public class GameLogic {
         GameLogic.currentQuestion = currentQuestion;
     }
 
+    public static void countQuestions(boolean result) {
+        setNumberAskedQuestions(getNumberAskedQuestions() + 1);
+        if (result) {
+            setNumberCorrectQuestions(getNumberCorrectQuestions() + 1);
+        }
+    }
+
     private GameLogic() {
     }
 
@@ -42,17 +54,19 @@ public class GameLogic {
     public static List<Question> getAllQuestions() {
         return allQuestions;
     }
-    
-        public static void setAllQuestions(List<Question> all) {
+
+    public static void setAllQuestions(List<Question> all) {
         allQuestions = all;
     }
+
     public static ArrayList<Question> getMatchingQuestions() {
         return matchingQuestions;
     }
-    
+
     public static void setMatchingQuestions(ArrayList<Question> matching) {
         matchingQuestions = matching;
     }
+
     public static void setCategory(GameCategory category) {
         GameLogic.category = category;
         updateMatchingQuestions();
@@ -73,14 +87,59 @@ public class GameLogic {
     public static GameState getGameState() {
         return gameState;
     }
-    
-    public static String getDebugInfo(){
-    return "Difficulty: " + getDifficulty() 
-            + " Category: " + getCategory() 
-            + " GameState: " + getGameState() + "\n"
-            + "AllQuestionAmount: " + getAllQuestions().size()
-            + " MatchingQuestionAmount: " + getMatchingQuestions().size()
-            + " CurrentQuestion: " + getCurrentQuestion();
+
+    public static String getDebugInfo() {
+        return "Difficulty: " + getDifficulty()
+                + " Category: " + getCategory()
+                + " GameState: " + getGameState() + "\n"
+                + "AllQuestionAmount: " + getAllQuestions().size()
+                + " MatchingQuestionAmount: " + getMatchingQuestions().size()
+                + " CurrentQuestion: " + getCurrentQuestion();
     }
+
+    /**
+     * @return the numberAskedQuestions
+     */
+    public static int getNumberAskedQuestions() {
+        return numberAskedQuestions;
+    }
+
+    /**
+     * @param aNumberAskedQuestions the numberAskedQuestions to set
+     */
+    public static void setNumberAskedQuestions(int aNumberAskedQuestions) {
+        numberAskedQuestions = aNumberAskedQuestions;
+    }
+
+    /**
+     * @return the numberCorrectQuestions
+     */
+    public static int getNumberCorrectQuestions() {
+        return numberCorrectQuestions;
+    }
+
+    /**
+     * @param aNumberCorrectQuestions the numberCorrectQuestions to set
+     */
+    public static void setNumberCorrectQuestions(int aNumberCorrectQuestions) {
+        numberCorrectQuestions = aNumberCorrectQuestions;
+    }
+        public static void saveScoreToDB(String keyString, HandlerInput input) {
+        //store persistent
+        AttributesManager attributesManager = input.getAttributesManager();
+        Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
+        System.out.println("DB before: " + persistentAttributes);
+        if (!persistentAttributes.keySet().contains("Scores")) {
+            persistentAttributes.put("Scores", new HashMap<String, Integer>());
+        }
+
+        Map<String, Integer> scores = (Map<String, Integer>) persistentAttributes.get("Scores");
+        System.out.println("DB Scores: " + scores);
+        scores.put(keyString, numberCorrectQuestions);
+        System.out.println("DB Scores added currentscore: " + scores);
+
+        attributesManager.setPersistentAttributes(persistentAttributes);
+        attributesManager.savePersistentAttributes();
+}
 
 }
