@@ -63,9 +63,9 @@ public class NextQuestionIntent implements RequestHandler {
         List<String> solutions = Arrays.asList(GameLogic.getCurrentQuestion().getSuggestions().split(","));
         String reply = GameLogic.getCurrentQuestion().getQuestion();
         if(solutions.size() == 3){
-        reply += "? Antwort A: " +  solutions.get(0);
-        reply += " Antwort B: " + solutions.get(1);
-        reply += " Antwort C: " +  solutions.get(2);
+        reply += " Antwort A: " +  solutions.get(0);
+        reply += ", Antwort B: " + solutions.get(1);
+        reply += ", Antwort C: " +  solutions.get(2);
         }
         else{
             reply = "Liste der Antwortmöglichkeiten ungleich 3.";

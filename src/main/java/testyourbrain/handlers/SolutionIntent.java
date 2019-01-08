@@ -85,7 +85,7 @@ public class SolutionIntent implements RequestHandler {
             }
         }
 
-        String returningString = "Die gewaehlte Antwort " + answer + userAnswer + " ist " + (result ? "richtig." : "falsch.");
+        String returningString = "Die gewaehlte Antwort " + answer +" "+ userAnswer + " ist " + (result ? "richtig." : "falsch.");
         if (!result) {
             returningString += " Die Richtige Antwort waere " + solution.split(",")[0] + " gewesen.";
         }
