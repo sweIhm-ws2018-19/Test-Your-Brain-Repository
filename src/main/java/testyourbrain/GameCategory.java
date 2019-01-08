@@ -17,6 +17,6 @@ public enum GameCategory {
         if (category.equals("Geografie")) {
             return GEOGRAPHIE;
         }
-        return null;
+        return SONSTIGES;
     }
 }

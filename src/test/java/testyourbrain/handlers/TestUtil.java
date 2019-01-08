@@ -14,6 +14,8 @@ import testyourbrain.Question;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
@@ -618,6 +620,10 @@ public class TestUtil {
             questions.add(question);
         }
         return questions;
+    }
+
+    public static List<Question> getFilteredQuestions(List<Question> questions, Predicate<Question> filter){
+        return questions.stream().filter(filter).collect(Collectors.toList());
     }
 
 }

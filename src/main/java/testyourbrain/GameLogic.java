@@ -49,6 +49,7 @@ public class GameLogic {
     public static void setMatchingQuestions(ArrayList<Question> matching) {
         matchingQuestions = matching;
     }
+
     public static void setCategory(GameCategory category) {
         GameLogic.category = category;
         updateMatchingQuestions();
