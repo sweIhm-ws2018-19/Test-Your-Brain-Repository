@@ -37,10 +37,12 @@ public class HelpMeIntent implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
 
         String hint = GameLogic.getCurrentQuestion().getHint();
-        String reply = GameLogic.getCurrentQuestion().getSuggestions();
 
+        String reply = "";
         if (hint != null && !hint.equals("")) {
             reply = hint;
+        } else {
+            reply = "Für diese Frage ist leider kein Hinweis verfuegbar.";
         }
 
         return input.getResponseBuilder()

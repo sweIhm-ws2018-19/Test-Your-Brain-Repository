@@ -13,24 +13,18 @@ import static com.amazon.ask.request.Predicates.intentName;
 //              This handler will not be triggered except in that locale, so it can be
 //
 //   safely deployed for any locale.
-public class FallbackIntentHandler implements RequestHandler {
+public class BackupHandler implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.FallbackIntent"));
+        return true;
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        
-        String reply;
-        reply = StringContainer.UNKNOWN_MESSAGE;
-
         return input.getResponseBuilder()
-                .withSpeech(reply)
-                .withSimpleCard("ColorSession", reply)
-                //.withReprompt(reply)
-                                .withShouldEndSession(false)
+                .withSpeech("Ich konnte dich leider nicht verstehen.")
+                .withShouldEndSession(false)
                 .build();
     }
 

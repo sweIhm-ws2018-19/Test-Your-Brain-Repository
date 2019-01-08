@@ -20,6 +20,9 @@ import testyourbrain.StringContainer;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import testyourbrain.GameLogic;
 
 public class CancelandStopIntentHandler implements RequestHandler {
 
@@ -31,7 +34,8 @@ public class CancelandStopIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         String reply = StringContainer.GOOD_BYE_MESSAGE + "cancel";
-
+                String date = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
+                 GameLogic.saveScoreToDB(date, input);
         return input.getResponseBuilder()
                 .withSpeech(reply)
                 .withSimpleCard("Test your Brain", reply)

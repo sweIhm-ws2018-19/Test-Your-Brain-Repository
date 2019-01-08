@@ -28,40 +28,22 @@ import testyourbrain.GameLogic;
  *
  * @author wiesbob
  */
-public class RepeatQuestionIntent implements RequestHandler {
+public class LastScoresIntent implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("RepeatQuestionIntent"));
+        return input.matches(intentName("LastScoresIntent"));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String reply = generateReply();
-        if (GameLogic.getCurrentQuestion().getQuestion() == null) {
-            reply = "Wenn du eine Kategorie und eine Schwierigkeitsstufe gewählt hast, dann sage zuerst \"nächste Frage\" um dir eine Frage stellen zu lassen.";
-        }
-
+        
         return input.getResponseBuilder()
-                .withSpeech(reply)
+                .withSpeech("")
                  .withShouldEndSession(false)
                 //.withReprompt(reply)
                 .build();
     }
+
     
-        private String generateReply() {
-        List<String> solutions = Arrays.asList(GameLogic.getCurrentQuestion().getSuggestions().split(","));
-        String reply = GameLogic.getCurrentQuestion().getQuestion();
-        if(solutions.size() == 3){
-        reply += "? Antwort A: " +  solutions.get(0);
-        reply += " Antwort B: " + solutions.get(1);
-        reply += " Antwort C: " +  solutions.get(2);
-        }
-        else{
-            reply = "Liste der Antwortmöglichkeiten ungleich 3.";
-            System.out.println(solutions);
-        }
-        
-        return reply;
-    }
 }
