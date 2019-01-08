@@ -51,6 +51,7 @@ public class LaunchRequestHandler implements RequestHandler {
             Logger.getLogger(LaunchRequestHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
         String reply = StringContainer.WELCOME_MESSAGE + StringContainer.SKILL_DESCRIPTION;
+        reply = "willkommen, soll ich die Regeln erklären?";
 
         if (GameLogic.DEBUGMODE) {
             GameUtil.getMatchingQuestions();
