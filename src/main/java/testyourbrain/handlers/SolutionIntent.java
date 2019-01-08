@@ -27,6 +27,7 @@ public class SolutionIntent implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput handlerInput) {
+        System.out.println(GameLogic.getGameState());
         String response = "Wenn du bereits eine Kategorie und eine Schwierigkeitsstufe ausgewählt hast, sage  \"nächste Frage\" um dir eine neue Frage stellen zu lassen.";
         System.out.println("GS: " + GameLogic.getGameState());
         if (GameLogic.getGameState() == GameState.ANSWER) {
@@ -35,9 +36,11 @@ public class SolutionIntent implements RequestHandler {
                 Request request = handlerInput.getRequestEnvelope().getRequest();
                 String answer = "default";
                 Map<String, Slot> slotMap = ((IntentRequest) request).getIntent().getSlots();
-                Optional<Slot> slot = slotMap.values().stream().findFirst();
+                Optional<Slot> slot = slotMap.values().stream().filter(x -> x.getValue() != null).findFirst();
                 if (slot.isPresent()) {
-                    answer = slot.get().getValue().toLowerCase();
+                    Slot otherSlot = slot.get();
+                    System.out.println(otherSlot.toString());
+                    answer = otherSlot.getValue().toLowerCase();
                     answer = "" + answer.charAt(0);
                 }
                 System.out.println(answer);

@@ -29,7 +29,7 @@ public class TestYourBrainIntentHandler extends SkillStreamHandler {
                         new CancelandStopIntentHandler(),
                         new SessionEndedRequestHandler(),
                         new HelpIntentHandler(),
-                        //new FallbackIntentHandler(),
+                        new FallbackIntentHandler(),
                         new StartGameIntent(),
                         new SelectCategoryIntent(),
                         new SelectDifficultyIntent(),
@@ -39,8 +39,8 @@ public class TestYourBrainIntentHandler extends SkillStreamHandler {
                         new RulesIntent(),
                         new NextQuestionIntent(),
                         new HelpMeIntent(),
-                        new RepeatQuestionIntent()
-                        /*new BackupHandler()*/)
+                        new RepeatQuestionIntent(),
+                        new BackupHandler())
                 .withTableName("testYourBrainData")
                 .withAutoCreateTable(false)
                 // Add your skill id below
