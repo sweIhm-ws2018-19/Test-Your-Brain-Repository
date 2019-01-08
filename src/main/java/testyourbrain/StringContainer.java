@@ -5,9 +5,9 @@ public class StringContainer {
     private StringContainer() {
     }
 
-    public static final String WELCOME_MESSAGE = " Hallo, willkommen bei Test your Brain. Dem besten Skill auf diesem Planeten. ";
+    public static final String WELCOME_MESSAGE = "Willkommen bei Test your Brain. Dem besten Skill um dein Allgemeinwissen zu trainieren. ";
     public static final String GOOD_BYE_MESSAGE = "Tschuess, bis zum naechsten mal. Ich hoffe du hast was gelernt.";
-    public static final String SKILL_DESCRIPTION = "Test your Brain ist der Skill, um dein Allgemeinwissen zu verbessern. Waehle eine Schwierigkeit und eine Kategorie und lege einfach drauf los. Soll ich dir die Regeln erklaeren? ";
+    public static final String SKILL_DESCRIPTION = "Waehle eine Schwierigkeit und eine Kategorie. Soll ich dir die Regeln erklaeren? ";
     public static final String REQUEST_DIFFICULTY = "Nenne mir bitte die gewuenschte Schwierigkeitsstufe.";
     public static final String REQUEST_CATEGORY = "Nenne mir bitte die gewuenschte Kategorie.";
     public static final String UNKNOWN_MESSAGE = "Tut mir leid, das weiss ich nicht. Sage einfach Hilfe.";
