@@ -33,7 +33,7 @@ public class CancelandStopIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String reply = StringContainer.GOOD_BYE_MESSAGE + "cancel";
+        String reply = StringContainer.GOOD_BYE_MESSAGE;
                 String date = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
                  GameLogic.saveScoreToDB(date, input);
         return input.getResponseBuilder()

@@ -15,14 +15,20 @@
  */
 package testyourbrain.handlers;
 
+import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import static com.amazon.ask.request.Predicates.intentName;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
 import java.util.Optional;
 import testyourbrain.GameLogic;
+import testyourbrain.GameUtil;
 
 /**
  *
@@ -37,13 +43,27 @@ public class LastScoresIntent implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        
+        String response = "Deine letzten Punkte: ";
+        try {
+            AttributesManager attributesManager = input.getAttributesManager();
+            Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
+            ArrayList<HashMap<String, Integer>> score = (ArrayList<HashMap<String, Integer>>) persistentAttributes.get("Score");
+
+            ListIterator li = score.listIterator(score.size());
+            int elementCount = 0;
+            while (li.hasPrevious() && elementCount < 3) {
+                HashMap<String, Integer> element = (HashMap<String, Integer>) li.previous();
+                response += "Am " + element.keySet().toArray()[0] + ": " + element.entrySet().toArray()[0].toString().split("=")[1] + " Punkte" + ((!li.hasPrevious() || elementCount == 2) ? ". " : ", ");
+                elementCount++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return input.getResponseBuilder()
-                .withSpeech("")
-                 .withShouldEndSession(false)
-                //.withReprompt(reply)
+                .withSpeech(response)
+                .withShouldEndSession(false)
                 .build();
     }
 
-    
 }
