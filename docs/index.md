@@ -20,5 +20,7 @@ Das ist auch notwendig, falls in der gewählten Kategorie und Schwierigkeit kein
 
 # Buisnesslogic
 ![classdiagram.jpg](https://github.com/sweIhm-ws2018-19/skillproject-fr-34/blob/master/UML/classdiagram.jpg)
-<img src="https://github.com/sweIhm-ws2018-19/skillproject-fr-34/blob/master/UML/classdiagram.jpg" alt="test"/>
+<img src="
+        Test-Your-Brain-Repository/UML/classdiagram.jpg
+      " alt="test"/>
 # FAQ
