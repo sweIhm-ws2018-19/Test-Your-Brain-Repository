@@ -19,5 +19,7 @@ Dafür stellt uns Alexa Fragen in verschiedenen Schwierigkeitsgraden und aus div
 Das ist auch notwendig, falls in der gewählten Kategorie und Schwierigkeit keine Fragen mehr vorhanden sind.
 
 # Buisnesslogic
+[[https://github.com/sweIhm-ws2018-19/skillproject-fr-34/blob/master/UML/classdiagram.png|alt=octocat]]
+
 ![classdiagram.jpg](https://github.com/sweIhm-ws2018-19/skillproject-fr-34/blob/master/UML/classdiagram.png)
 # FAQ
