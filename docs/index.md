@@ -7,8 +7,15 @@ Dafür stellt uns Alexa Fragen in verschiedenen Schwierigkeitsgraden und aus div
 
 Über ein Highscore kann man den eigenen Lernfortschritt schließlich betrachten.
 # Funktionsweise
-* Zu Begin des Spiels wird dem Spieler die Möglichkeit gegeben sich die Spielregeln erklären zu lassen. 
-* Anschließend muss der Spieler zwischen den Schwierigkeiten Leicht, Mittel und Schwer entscheiden.
+1. Zu Begin des Spiels wird dem Spieler die Möglichkeit gegeben sich die Spielregeln erklären zu lassen. 
+2. Anschließend muss der Spieler zwischen den Schwierigkeiten Leicht, Mittel und Schwer entscheiden.
+3. Nun muss der Spieler noch eine Kategorie wählen. Er kann zwischen Geschichte, Geografie, Politik und Sonstiges wählen.
+4. Mit nächste Frage kann der Spieler sich jetzt die Erste Frage aus der gewählten Schwierigkeit und Kategorie ausgeben lassen.
+5.1. Mit _antwort a_,_antwort b_ oder _antwort c_ wählt der Spieler eine der Anwortmöglichkeiten aus.
+5.2. Der Spieler hat aber auch die Möglichkeit sich eine Hinweis ausgeben zu lassen. Dafür muss er _hilfe_ sagen.
+5.3. Falls der Spieler sich bei den Antwortmöglichkeiten nicht sicher ist, kann er auch die Frage wiederholen lassen. Dafür muss er _wiederholung_ sagen.
+6. Nach einer eingegenben Antwort, ertönt ein Signalton und der Spieler bekommt eine Mitteilung ob seine Antwort Richtig oder Falsch war.
+
 
 # Buisnesslogic
 
