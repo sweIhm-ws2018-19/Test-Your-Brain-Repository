@@ -20,4 +20,3 @@ Das ist auch notwendig, falls in der gewählten Kategorie und Schwierigkeit kein
 
 # Buisnesslogic
 ![classdiagram.jpg](classdiagram.jpg)
-# FAQ
